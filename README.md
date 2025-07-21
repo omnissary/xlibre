@@ -12,7 +12,7 @@ For now, this is mainly for my personal use. The quality of the code may not be 
 
 I am not good at NixOS software packaging. If you see something wrong, plesae help me.
 
-Now the [mesonFlags for xlibre-xserver](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/overlays/xlibre-xserver.nix#L25-L77) is for linux only.
+Now the [mesonFlags for xlibre-xserver](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/overlays/xlibre-xserver.nix#L25-L77) is for linux only.
 
 I have no idea how to automatically update the `src` of overlays. I just do it manually for now.
 
@@ -23,7 +23,7 @@ Please let me know if you have some idea.
 
 Drivers: most successfully build (on x86-64_linux). Only `xlibre-xf86-input-evdev` and `xlibre-xf86-input-libinput` are tested.
 
-All the available drivers overlay are listed in [./xlibre-drivers-overlay-choice.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/xlibre-build-options/xlibre-drivers-overlay-choice.nix).
+All the available drivers overlay are listed in [./xlibre-drivers-overlay-choice.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/xlibre-build-options/xlibre-drivers-overlay-choice.nix).
 
 It triggers building all the packages depending on `xorg.xorgserver` after you run `nixos-rebuild`.
 
@@ -81,21 +81,21 @@ As described above, this flake expose some `nixosModules` for user to apply over
 
 You can put them in `imports = [ ];` section of `configuration.nix` or in `modules = [ ];` section in `nixosSystem { }` in `flake.nix`:
 
-`xlibre-xserver` and drivers `nixosModules` are exposed in [./nixosModules/apply-xlibre-xserver-and-drivers.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/nixosModules/apply-xlibre-xserver-and-drivers.nix)
+`xlibre-xserver` and drivers `nixosModules` are exposed in [./nixosModules/apply-xlibre-xserver-and-drivers.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/nixosModules/apply-xlibre-xserver-and-drivers.nix)
 
 Instead of using `overlay-all-xlibre-drivers`, user can also choose the drivers individually for overlay.
 
-All the available drivers overlay are listed in [./xlibre-drivers-overlay-choice.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/xlibre-build-options/xlibre-drivers-overlay-choice.nix), just prepend "overlay-" of the desired drivers attribute name.
+All the available drivers overlay are listed in [./xlibre-drivers-overlay-choice.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/xlibre-build-options/xlibre-drivers-overlay-choice.nix), just prepend "overlay-" of the desired drivers attribute name.
 
-Implementation of all the overlays are located in [./overlays](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/overlays) directory
+Implementation of all the overlays are located in [./overlays](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/overlays) directory
 
 `nixosModules` `nvidia-ignore-ABI` also exposed for those who use Nvidia proprietary drivers and encounter display problem.
 
-This is implemented in [./nixosModules/nvidia-ignore-ABI.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/nixosModules/nvidia-ignore-ABI.nix)
+This is implemented in [./nixosModules/nvidia-ignore-ABI.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/nixosModules/nvidia-ignore-ABI.nix)
 
 # This part is optional
 ## Choose between two predefined drivers versions
-All the drivers overlays are defined in [./overlays/drivers](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/overlays/drivers).
+All the drivers overlays are defined in [./overlays/drivers](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/overlays/drivers).
 
 Most of the drivers there have two predefined version of overlay to choose from. I just do it for fun.
 
@@ -110,7 +110,7 @@ Extensive instructions of how to choose predefined version is located inside the
 The idea is to use user define nix expression to replace the expression in flake.
 
 In this case, to replace the `xlibre-drivers-overlay-choice` input using `inputs.xlibre-drivers-overlay-choice.follows`:
-https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/flake.nix#L17-L20
+https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/flake.nix#L17-L20
 
 Example of NixOS `flake.nix` configuration for predefined drivers:
 ```nix
@@ -146,7 +146,7 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 ## Glamor
 Glamor is enabled by default, but it seem break the machine using `xf86videoati` driver (for now). It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace `xlibre-xserver-build-options` input using `inputs.xlibre-xserver-build-options.follows`:
 
-https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/305ac220aa9770583343d37068b6b4e395932a9a/flake.nix#L21-L24
+https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/flake.nix#L21-L24
 
 You can also find the example in:
 
