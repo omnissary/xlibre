@@ -140,7 +140,7 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 }
 ```
 
-(Since I am new to writing flakes, this is the only way I can think of to modify the things in the flake by users. I bet it must be other better way like options.)
+(Since writing flakes is new to me, this is the only way I can think of to modify the things in the flake by users. I bet it must be other better way like options.)
 
 
 ## Glamor
