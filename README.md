@@ -4,11 +4,9 @@
 # Warning!!!
 This is an experimental WIP flake to overlay the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
-Things might change at any time and breaking changes may happeen to break previous configurations.
+Things might change at any time and breaking changes may happen to break previous configurations.
 
 For now, this is mainly for my personal use. The quality of the code may not be good enough for everyone's machine.
-
-**Please inspect the code before use.**
 
 I am not good at NixOS software packaging. If you see something wrong, plesae help me.
 
@@ -109,8 +107,7 @@ Extensive instructions of how to choose predefined version is located inside the
 
 The idea is to use user define nix expression to replace the expression in flake.
 
-In this case, to replace the `xlibre-drivers-overlay-choice` input using `inputs.xlibre-drivers-overlay-choice.follows`:
-https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/flake.nix#L17-L20
+In this case, to replace the [`xlibre-drivers-overlay-choice` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L18) with [`xlibre-overlay.inputs.xlibre-drivers-overlay-choice.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L8)
 
 Example of NixOS `flake.nix` configuration for predefined drivers:
 ```nix
@@ -144,9 +141,7 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 
 
 ## Glamor
-Glamor is enabled by default, but it seem break the machine using `xf86videoati` driver (for now). It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace `xlibre-xserver-build-options` input using `inputs.xlibre-xserver-build-options.follows`:
-
-https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/flake.nix#L21-L24
+Glamor is enabled by default, but it seem break the machine using `xf86videoati` driver (for now). It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):
 
 You can also find the example in:
 
@@ -168,5 +163,4 @@ For example `tigervnc`, the way it was packaged included [some hardcoded xorg pa
 # Note
 The overlays mostly use the nixpkgs functionality `overrideAttrs` to modify the original package if the xorg counterpart is available in nixpkgs. Therefore this flake's overlay is not the whole packaging of the packages, just some modification of them (in nixpkgs) to make them become xlibre. If the corresponding packages change/removed in nixpkgs, it would also affect this flakes' overlay.
 
-I do it that way (for now) because xorg in nixpkgs does not always change. Also nixpkgs have a file in `pkgs/servers/x11/xorg/overrides.nix` that take care of multiple architectures or build cases. Overlaying with `overrideAttrs` affect it less and require less code, so it might help building `xlibre-xserver` into other architectures running NixOS. If some big change happens in nixpkgs' xorg, I may also bring those code into this flake and make it a true packages.
-
+I do it that way (for now) because xorg in nixpkgs does not always change. Also nixpkgs have a file in `pkgs/servers/x11/xorg/overrides.nix` that take care of multiple architectures or build cases. Overlaying with `overrideAttrs` affect it less and require less code, so it might help building them in other architectures running NixOS. If some big change happens in nixpkgs' xorg, I may also bring those code into this flake and make it a true packages (like `xlibre-xf86-input-elographics`).
