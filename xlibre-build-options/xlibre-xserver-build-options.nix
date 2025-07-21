@@ -1,0 +1,3 @@
+{
+  BUILD-WITH-GLAMOR = true;
+}

@@ -1,0 +1,58 @@
+{ USE-XLIBRE-VERSION-DRIVER }:
+{ lib, self, ... }:
+{
+  flake = {
+    overlays.xlibre-xf86-input-synaptics = final: prev: {
+      xorg = prev.xorg // {
+        xf86inputsynaptics =
+          let
+            basename = "xf86-input-synaptics";
+            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xf86inputsynaptics-overrideAttrs = prev.xorg.xf86inputsynaptics.overrideAttrs (
+              finalAttrs: prevAttrs: {
+                pname = "xlibre-${basename}";
+                version = lib.strings.removeSuffix ".tar.gz" (
+                  lib.strings.removePrefix "${basename}-" (
+                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
+                  )
+                );
+                src =
+                  if USE-XLIBRE-VERSION-DRIVER then
+                    # no xlibre version for now
+                    prev.fetchurl {
+                      url = "https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xf86-input-synaptics-1.10.0.tar.gz";
+                      sha256 = "sha256-st/P+3qvraeb/Sjcz7seJf+ToVAMy0tx6ZW4+81RH+g=";
+                    }
+                  else
+                    prev.fetchurl {
+                      url = "https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xf86-input-synaptics-1.10.0.tar.gz";
+                      sha256 = "sha256-st/P+3qvraeb/Sjcz7seJf+ToVAMy0tx6ZW4+81RH+g=";
+                    };
+                nativeBuildInputs =
+                  with prev;
+                  prevAttrs.nativeBuildInputs or [ ]
+                  # referece to /pkgs/by-name/xf/xf86_input_wacom/package.nix in nixpkgs
+                  ++ [
+                    autoreconfHook
+                    # pkg-config #already in /pkgs/servers/x11/xorg/default.nix in nixpkgs
+
+                    # solve error message
+                    # configure.ac:41: error: must install xorg-macros 1.8 or later before running autoconf/autogen
+                    # util-macros # provides xorg-macros
+                    xorg.utilmacros
+
+                  ];
+                # also need autoreconfHook in buildInputs.
+                # Fix error:
+                # > ./configure: line 20204: syntax error near unexpected token `XINPUT,'
+                # > ./configure: line 20204: `XORG_DRIVER_CHECK_EXT(XINPUT, inputproto)'
+                # https://wiki.nixos.org/wiki/Packaging/Quirks_and_Caveats#Configure_Scripts_that_are_using_pkg-config
+                buildInputs = with prev; prevAttrs.buildInputs or [ ] ++ [ autoreconfHook ];
+              }
+            );
+          in
+          xf86inputsynaptics-overrideAttrs.override { inherit xorgserver; };
+      };
+    };
+  };
+}
