@@ -4,6 +4,7 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
 
     # https://github.com/nix-systems/nix-systems
     # This make it possible for user to choose predefined drivers revision
@@ -129,14 +130,15 @@
         flake = { inherit flakeModules; };
 
         # systems for which you want to build the `perSystem` attributes
-        systems = [
-
-          # only x86_64-linux is tested.
-          "x86_64-linux"
-          "aarch64-linux"
-          "aarch64-darwin"
-          "x86_64-darwin"
-        ];
+        # systems = [
+        #
+        #   # only x86_64-linux is tested.
+        #   "x86_64-linux"
+        #   "aarch64-linux"
+        #   "aarch64-darwin"
+        #   "x86_64-darwin"
+        # ];
+        systems = import inputs.systems;
       }
     );
 }
