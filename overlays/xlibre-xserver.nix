@@ -1,5 +1,5 @@
 { BUILD-WITH-GLAMOR }:
-{ lib, config, ... }:
+{ lib, ... }:
 {
   flake = {
     overlays.xlibre-xserver = final: prev: {
@@ -24,29 +24,11 @@
               ];
             mesonFlags =
               prevAttrs.mesonFlags or [ ]
-              # # configureFlags in /pkgs/servers/x11/xorg/overrides.nix for Linux
-              # configureFlags =
-              #   [
-              #     "--enable-kdrive" # not built by default
-              #     "--enable-xephyr"
-              #     "--enable-xcsecurity" # enable SECURITY extension
-              #     "--with-default-font-path="
-              #     # there were only paths containing "${prefix}",
-              #     # and there are no fonts in this package anyway
-              #     "--with-xkb-bin-directory=${xorg.xkbcomp}/bin"
-              #     "--with-xkb-path=${xorg.xkeyboardconfig}/share/X11/xkb"
-              #     "--with-xkb-output=$out/share/X11/xkb/compiled"
-              #     "--with-log-dir=/var/log"
-              #     "--enable-glamor"
-              #     "--with-os-name=Nix" # r13y, embeds the build machine's kernel version otherwise
-              #   ]
-              #   ++ lib.optionals stdenv.hostPlatform.isMusl [
-              #     "--disable-tls"
-              #   ];
-              #
+              # configureFlags in /pkgs/servers/x11/xorg/overrides.nix for non-Darwin
+              # https://github.com/NixOS/nixpkgs/blob/140a6b4522f396cabf7d91b1ea2a11f063d02126/pkgs/servers/x11/xorg/overrides.nix#L1035-L1052
               ++ lib.optionals (!prev.stdenv.hostPlatform.isDarwin) [
                 # "--enable-kdrive" # not built by default
-                # (lib.mesonBool "kdrive" true) # This is not available in meson
+                # (lib.mesonBool "kdrive" true) # This is not available in meson_option
                 # "--enable-xephyr"
                 (lib.mesonBool "xephyr" true)
                 # "--enable-xcsecurity" # enable SECURITY extension
@@ -62,7 +44,7 @@
                 # "--with-log-dir=/var/log"
                 (lib.mesonOption "localstatedir" "/var")
                 # "--with-os-name=Nix" # r13y, embeds the build machine's kernel version otherwise
-                # (lib.mesonOption "os_name" "Nix") # This is not available in meson
+                # (lib.mesonOption "os_name" "Nix") # This is not available in meson_option
               ]
               # This may break xf86-video-ati (Radeon driver)
               # https://github.com/X11Libre/xserver/issues/347

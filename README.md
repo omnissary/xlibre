@@ -10,7 +10,9 @@ For now, this is mainly for my personal use. The quality of the code may not be 
 
 I am not good at NixOS software packaging. If you see something wrong, plesae help me.
 
-Now the [mesonFlags for xlibre-xserver](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/overlays/xlibre-xserver.nix#L25-L77) is for linux only.
+Now the [mesonFlags for xlibre-xserver](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/706bf7150ee3d2ef9e63846dba568a433409532e/overlays/xlibre-xserver.nix#L25-L59) is for linux only.
+
+Darwin's variant (XQuartz) is not supported because of skill issue. PR welcome.
 
 I have no idea how to automatically update the `src` of overlays. I just do it manually for now.
 
