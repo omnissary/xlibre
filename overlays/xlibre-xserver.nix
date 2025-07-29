@@ -12,8 +12,8 @@
             );
             # use tarball because some packages assume this fetch tarball, e.g. tigervnc
             src = prev.fetchurl {
-              url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.5.tar.gz";
-              sha256 = "sha256-DVmZeNK8kR0ZnV8YdVKX7C0hakH5HHRrdKHKr1e169M=";
+              url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.7.tar.gz";
+              sha256 = "sha256-K64djRpLzYUwWz2JHnrW3ly1tOpPgPls0lVAKvU2x4c=";
             };
             nativeBuildInputs =
               with prev;
@@ -46,12 +46,6 @@
                 # "--with-os-name=Nix" # r13y, embeds the build machine's kernel version otherwise
                 # (lib.mesonOption "os_name" "Nix") # This is not available in meson_option
               ]
-              # This may break xf86-video-ati (Radeon driver)
-              # https://github.com/X11Libre/xserver/issues/347
-              #
-              # Wiki about Graphics devices and drivers support:
-              # https://github.com/X11Libre/xserver/wiki/Graphics-devices-&-drivers
-              #
               # https://github.com/NixOS/nixpkgs/blob/140a6b4522f396cabf7d91b1ea2a11f063d02126/nixos/modules/services/x11/xserver.nix#L18-L33
               ++ lib.optionals BUILD-WITH-GLAMOR [
                 # "--enable-glamor"
