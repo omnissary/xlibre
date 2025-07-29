@@ -6,6 +6,9 @@ This is a [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix
 
 Things might change at any time and breaking changes may happen.
 
+# Prerequisite
+The NixOS system needs to be [defined as a flake](https://wiki.nixos.org/wiki/NixOS_system_configuration#Defining_NixOS_as_a_flake) in order to consume this flake.
+
 # Status
 ### x86_64-linux
 `xlibre-xserver`, `xlibre-xf86-input-evdev` and `xlibre-xf86-input-libinput`: tested and works.
