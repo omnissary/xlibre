@@ -47,8 +47,8 @@
                         # >       |         ^~~~~~~~~~~~~~~~
                         # >       |         xf86IDrvMsgVerb
                         name = "xf86IDrvMsgVerb-fix.patch";
-                        url = "https://github.com/X11Libre/xf86-input-wacom/pull/6/commits/b8ccb92eecf2798831e76d943763bc8f16c0f836.patch";
-                        hash = "sha256-IIm4nBmza/gRFuoRy2cWXCLx1020Vg51JuSjkB/NTNc=";
+                        url = "https://github.com/X11Libre/xf86-input-wacom/commit/bb65266d0ce671a9f3d7623125855c4da43ecbae.patch";
+                        hash = "sha256-qUlRQ4u7PWvOeBIqHuxN9nNdJYMj4njtFzgNS1u9HHY=";
                       })
                     ];
             }
