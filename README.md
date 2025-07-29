@@ -2,7 +2,7 @@
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
 # Welcome
-This is an experimental WIP flake to overlay the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
+This is a [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) WIP [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
 Things might change at any time and breaking changes may happen.
 
