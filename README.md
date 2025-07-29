@@ -143,7 +143,7 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 
 
 ## Glamor
-Glamor is enabled by default, but it seem break the machine using `xf86videoati` driver (for now). It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):
+Glamor is enabled by default. It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):
 
 You can also find the example in:
 
