@@ -4,7 +4,10 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default";
+    systems = {
+      url = "path:./systems.nix";
+      flake = false;
+    };
 
     # https://github.com/nix-systems/nix-systems
     # This make it possible for user to choose predefined drivers revision
