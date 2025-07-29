@@ -1,31 +1,23 @@
 # 🏳️‍⚧️ XLibre-overlay: Transformation of the (already Trans) Xorg server in NixOS 💪
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
-# Warning!!!
+# Welcome
 This is an experimental WIP flake to overlay the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
-Things might change at any time and breaking changes may happen to break previous configurations.
-
-For now, this is mainly for my personal use. The quality of the code may not be good enough for everyone's machine.
-
-I am not good at NixOS software packaging. If you see something wrong, plesae help me.
-
-Now the [mesonFlags for xlibre-xserver](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/706bf7150ee3d2ef9e63846dba568a433409532e/overlays/xlibre-xserver.nix#L25-L59) is for linux only.
-
-Darwin's variant (XQuartz) is not supported because of skill issue. PR welcome.
-
-I have no idea how to automatically update the `src` of overlays. I just do it manually for now.
-
-Please let me know if you have some idea.
+Things might change at any time and breaking changes may happen.
 
 # Status
-`xlibre-xserver`: works (tested only on x86-64_linux).
+### x86_64-linux
+`xlibre-xserver`, `xlibre-xf86-input-evdev` and `xlibre-xf86-input-libinput`: tested and works.
 
-Drivers: most successfully build (on x86-64_linux). Only `xlibre-xf86-input-evdev` and `xlibre-xf86-input-libinput` are tested.
+Other drivers overlay can be successfully build but untested.
+
+### aarch64-linux
+`xlibre-xserver`, `xlibre-xf86-input-evdev` and `xlibre-xf86-input-libinput`: successfully build but untested.
+
+Other drivers overlay can be successfully build except some old or incompatible ones: `xlibre-xf86-video-intel`, `xlibre-xf86-video-vmware`, `xlibre-xf86-input-vmmouse`, `xlibre-xf86-video-ast`, `xlibre-xf86-video-vesa`, `xlibre-xf86-video-geode`, `xlibre-xf86-video-siliconmotion`
 
 All the available drivers overlay are listed in [./xlibre-drivers-overlay-choice.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/xlibre-build-options/xlibre-drivers-overlay-choice.nix).
-
-It triggers building all the packages depending on `xorg.xorgserver` after you run `nixos-rebuild`.
 
 # Common usage
 Example of `flake.nix` configuration:
@@ -75,6 +67,8 @@ Example of `flake.nix` configuration:
     };
 }
 ```
+
+It triggers building all the packages depending on `xorg.xorgserver` after you run `nixos-rebuild`.
 
 # Flake structure
 As described above, this flake expose some `nixosModules` for user to apply overlays easily into their own NixOS flake configuration.
@@ -143,7 +137,7 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 
 
 ## Glamor
-Glamor is enabled by default, but it seem break the machine using `xf86videoati` driver (for now). It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):
+Glamor is enabled by default. It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):
 
 You can also find the example in:
 
@@ -159,8 +153,7 @@ It breaks some packages that were deeply integrated with Xorg.
 For example `tigervnc`, the way it was packaged included [some hardcoded xorg paths](https://github.com/NixOS/nixpkgs/blob/fa0ef8a6bb1651aa26c939aeb51b5f499e86b0ec/pkgs/by-name/ti/tigervnc/package.nix#L69-L92). It assumed the source of `xorg.xorgserver` is a tarball, so `fetchFromGitHub` cannot be used. It failed to build against xlibre-xserver without modification.
 
 # TODO
-1. Darwin support.
-2. Xnamespace `NixosModule` (After figured it out how to configure).
+1. Xnamespace `NixosModule` (After figured it out how to configure).
 
 # Note
 The overlays mostly use the nixpkgs functionality `overrideAttrs` to modify the original package if the xorg counterpart is available in nixpkgs. Therefore this flake's overlay is not the whole packaging of the packages, just some modification of them (in nixpkgs) to make them become xlibre. If the corresponding packages change/removed in nixpkgs, it would also affect this flakes' overlay.
