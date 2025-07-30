@@ -6,6 +6,8 @@ This is a [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix
 
 Things might change at any time and breaking changes may happen.
 
+The code is not good I know. Feel free to help me improve this flake!
+
 # Prerequisite
 The NixOS system needs to be [defined as a flake](https://wiki.nixos.org/wiki/NixOS_system_configuration#Defining_NixOS_as_a_flake) in order to consume this flake.
 
