@@ -23,7 +23,7 @@
       flake = false;
     };
     xlibre-xserver-build-options = {
-      url = "path:./xlibre-build-options/xlibre-xserver-build-options.nix"; # set if build with glamor (it crashes "ATI"/"radeon" drivers)
+      url = "path:./xlibre-build-options/xlibre-xserver-build-options.nix"; # set building with glamor
       flake = false;
     };
   };
