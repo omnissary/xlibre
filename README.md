@@ -2,14 +2,27 @@
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
 # Welcome
-This is a [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) WIP [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
+This is a [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
 Things might change at any time and breaking changes may happen.
 
 The code is not good I know. Feel free to help me improve this flake!
 
-# Prerequisite
-The NixOS system needs to be [defined as a flake](https://wiki.nixos.org/wiki/NixOS_system_configuration#Defining_NixOS_as_a_flake) in order to consume this flake.
+# Prerequisites
+Flake is an experimental feature and it is required to be enabled.
+
+To enable flake permanently, you'll need to put something like this in your `configuration.nix`:
+
+```nix
+{
+  # https://nix.dev/manual/nix/2.30/development/experimental-features
+  # https://nix.dev/manual/nix/2.30/command-ref/conf-file#conf-experimental-features
+  # https://wiki.nixos.org/wiki/Flake#Setup
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+}
+```
+
+Then the NixOS system needs to be [defined as a flake](https://wiki.nixos.org/wiki/NixOS_system_configuration#Defining_NixOS_as_a_flake) in order to consume this flake.
 
 # Status
 ### x86_64-linux
@@ -139,7 +152,6 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
 ```
 
 (Since writing flakes is new to me, this is the only way I can think of to modify the things in the flake by users. I bet it must be other better way like options.)
-
 
 ## Glamor
 Glamor is enabled by default. It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace [`xlibre-xserver-build-options` input in this flake](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/826164bebe541d3d62408f4faa741621152e03e7/flake.nix#L22) with [`xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake](https://codeberg.org/takagemacoed/machine-nixos/src/commit/24fdb0df24909d732464adba980bb3578e7d7d95/flake.nix#L9):

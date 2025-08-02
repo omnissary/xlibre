@@ -43,7 +43,7 @@
         packages-reference = import ./packages-reference.nix;
 
         # Combination of the use of "lib.nameValuePair", and "lib.mapAttrs'"
-        # https://noogle.dev/f/lib/attrsets/lib.mapAttrs'
+        # https://github.com/NixOS/nixpkgs/blob/3ff0e34b1383648053bba8ed03f201d3466f90c9/lib/attrsets.nix#L1030-L1045
         flakeModules =
           lib.mapAttrs' (
             name: value:
