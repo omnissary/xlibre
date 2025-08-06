@@ -38,6 +38,29 @@
                     xorg.utilmacros
 
                   ];
+                patches =
+                  let
+                    # xorgserver.version not work, it shows the version from xorg with unknown reason
+                    xlibre-xserver-version = lib.strings.removeSuffix ".tar.gz" (
+                      lib.strings.removePrefix "${xorgserver.pname}-" xorgserver.src.name
+                    );
+                  in
+                  prevAttrs.patches or [ ]
+                  # Both version require this patch to bring back linux support
+                  ++
+                    lib.optionals
+                      (
+                        # https://nix.dev/manual/nix/2.18/language/builtins#builtins-compareVersions
+                        # xorgserver.version not work, it shows the version from xorg with unknown reason
+                        (builtins.compareVersions "${xlibre-xserver-version}" "25.0.0.7") == 1
+                        # I "think" next version of xf86-video-intel may not need this
+                        && (finalAttrs.version == "3.0.0.1")
+                      )
+                      [
+                        # https://github.com/ONykyf/X11Libre-SlackBuild/blob/b079336ed7ee915d68213092d2cfcdf346b76469/patch/xlibre-video-intel/xf86-video-intel-maxclients.patch
+                        (self + /overlays/patches/xlibre-xf86-video-intel/maxclients.patch)
+                      ];
+
               }
             );
           in

@@ -1,0 +1,12 @@
+# https://raw.githubusercontent.com/ONykyf/X11Libre-SlackBuild/b079336ed7ee915d68213092d2cfcdf346b76469/patch/xlibre-video-intel/xf86-video-intel-maxclients.patch
+--- xf86-video-intel-xlibre-xf86-video-intel-3.0.0.1/src/fd.c.orig	2025-08-06 16:16:20.914804896 +0300
++++ xf86-video-intel-xlibre-xf86-video-intel-3.0.0.1/src/fd.c	2025-08-06 16:18:07.536808308 +0300
+@@ -31,7 +31,7 @@
+ #include <fcntl.h>
+ #include <unistd.h>
+ 
+-#include <misc.h> /* MAXCLIENTS */
++#include <xorg-server.h> /* MAXCLIENTS */
+ 
+ #include "fd.h"
+ 
