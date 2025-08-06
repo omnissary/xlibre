@@ -106,6 +106,16 @@ Implementation of all the overlays are located in [./overlays](https://codeberg.
 This is implemented in [./nixosModules/nvidia-ignore-ABI.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/nixosModules/nvidia-ignore-ABI.nix)
 
 # This part is optional
+
+## Replace the sources URL of xserver or drivers for further testing
+All the sources of xserver and drivers are now located in [./xlibre-build-options/fetchurl-sources.nix](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/0fc6867cc5b8842f07069ca8ef7fab4bbf0aefa6/xlibre-build-options/fetchurl-sources.nix)
+
+This file is now become a flake input "fetchurl-sources". Consumer can override the file by some inputs like:
+
+`inputs.xlibre-overlay.inputs.fetchurl-sources.follow = "your-own-flake-input-about-fetchurl-sources"`
+
+Example of configuration is in the below section.
+
 ## Choose between two predefined drivers versions
 All the drivers overlays are defined in [./overlays/drivers](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/6f4500e13a242245adb0193819923425b2caae63/overlays/drivers).
 
