@@ -11,7 +11,7 @@
       xorg = prev.xorg // {
         xf86inputelographics =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-elographics";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
           in

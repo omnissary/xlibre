@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-dummy = final: prev: {
       xorg = prev.xorg // {
         xf86videodummy =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-dummy";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videodummy-overrideAttrs = prev.xorg.xf86videodummy.overrideAttrs (

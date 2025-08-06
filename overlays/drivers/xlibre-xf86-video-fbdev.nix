@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-fbdev = final: prev: {
       xorg = prev.xorg // {
         xf86videofbdev =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-fbdev";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videofbdev-overrideAttrs = prev.xorg.xf86videofbdev.overrideAttrs (

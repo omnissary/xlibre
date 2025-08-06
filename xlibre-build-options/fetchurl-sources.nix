@@ -1,5 +1,12 @@
 {
   xlibre = {
+    # xserver
+    xserver = {
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.8.tar.gz";
+      sha256 = "sha256-m+R/VfsSWK3cOLJKSDImR8Zejjj3hALhQl+CgucHNIM=";
+    };
+
+    # drivers
     xf86-input-elographics = {
       url = "https://github.com/X11Libre/xf86-input-elographics/archive/refs/tags/xlibre-xf86-input-elographics-1.4.4.1.tar.gz";
       sha256 = "sha256-ZnA90TjrbY+SVn7BMO2Oc7Ncon+REk4LBGB14gl+CJw=";

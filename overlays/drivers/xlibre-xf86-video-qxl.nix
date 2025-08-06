@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-qxl = final: prev: {
       xorg = prev.xorg // {
         xf86videoqxl =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-qxl";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoqxl-overrideAttrs = prev.xorg.xf86videoqxl.overrideAttrs (

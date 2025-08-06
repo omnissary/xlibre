@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-libinput = final: prev: {
       xorg = prev.xorg // {
         xf86inputlibinput =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-libinput";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputlibinput-overrideAttrs = prev.xorg.xf86inputlibinput.overrideAttrs (

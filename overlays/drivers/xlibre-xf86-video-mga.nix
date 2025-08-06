@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-mga = final: prev: {
       xorg = prev.xorg // {
         xf86videomga =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-mga";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videomga-overrideAttrs = prev.xorg.xf86videomga.overrideAttrs (

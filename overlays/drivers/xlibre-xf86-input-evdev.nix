@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-evdev = final: prev: {
       xorg = prev.xorg // {
         xf86inputevdev =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-evdev";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputevdev-overrideAttrs = prev.xorg.xf86inputevdev.overrideAttrs (

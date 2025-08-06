@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-joystick = final: prev: {
       xorg = prev.xorg // {
         xf86inputjoystick =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-joystick";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputjoystick-overrideAttrs = prev.xorg.xf86inputjoystick.overrideAttrs (

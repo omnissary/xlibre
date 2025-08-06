@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-amdgpu = final: prev: {
       xorg = prev.xorg // {
         xf86videoamdgpu =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-amdgpu";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoamdgpu-overrideAttrs = prev.xorg.xf86videoamdgpu.overrideAttrs (

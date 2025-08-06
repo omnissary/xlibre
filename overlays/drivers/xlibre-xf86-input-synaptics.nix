@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-synaptics = final: prev: {
       xorg = prev.xorg // {
         xf86inputsynaptics =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-synaptics";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputsynaptics-overrideAttrs = prev.xorg.xf86inputsynaptics.overrideAttrs (

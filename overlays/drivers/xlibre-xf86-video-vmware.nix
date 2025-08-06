@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-vmware = final: prev: {
       xorg = prev.xorg // {
         xf86videovmware =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-vmware";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videovmware-overrideAttrs = prev.xorg.xf86videovmware.overrideAttrs (

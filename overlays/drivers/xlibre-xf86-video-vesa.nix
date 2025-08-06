@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-vesa = final: prev: {
       xorg = prev.xorg // {
         xf86videovesa =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-vesa";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videovesa-overrideAttrs = prev.xorg.xf86videovesa.overrideAttrs (

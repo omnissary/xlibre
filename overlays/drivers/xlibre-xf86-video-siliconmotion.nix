@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-siliconmotion = final: prev: {
       xorg = prev.xorg // {
         xf86videosiliconmotion =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-siliconmotion";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videosiliconmotion-overrideAttrs = prev.xorg.xf86videosiliconmotion.overrideAttrs (

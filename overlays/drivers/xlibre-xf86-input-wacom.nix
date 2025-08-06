@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-wacom = final: prev: {
       # xf86_input_wacom located in /pkgs/by-name/xf/xf86_input_wacom, not in "xorg" attribute set
       xf86_input_wacom =
         let
-          sources = import ./sources.nix;
+          sources = import inputs.fetchurl-sources;
           basename = "xf86-input-wacom";
           xorgserver = self.packages.${prev.system}.xlibre-xserver;
           xf86_input_wacom-overrideAttrs = prev.xf86_input_wacom.overrideAttrs (

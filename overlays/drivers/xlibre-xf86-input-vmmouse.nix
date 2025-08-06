@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-vmmouse = final: prev: {
       xorg = prev.xorg // {
         xf86inputvmmouse =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-vmmouse";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputvmmouse-overrideAttrs = prev.xorg.xf86inputvmmouse.overrideAttrs (

@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-r128 = final: prev: {
       xorg = prev.xorg // {
         xf86videor128 =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-r128";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videor128-overrideAttrs = prev.xorg.xf86videor128.overrideAttrs (

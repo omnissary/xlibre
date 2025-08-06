@@ -26,6 +26,11 @@
       url = "path:./xlibre-build-options/xlibre-xserver-build-options.nix"; # set building with glamor
       flake = false;
     };
+    # User can override the source directly for testing
+    fetchurl-sources = {
+      url = "path:./xlibre-build-options/fetchurl-sources.nix";
+      flake = false;
+    };
   };
 
   outputs =

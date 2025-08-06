@@ -1,12 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-ast = final: prev: {
       xorg = prev.xorg // {
         xf86videoast =
           let
-            sources = import ./sources.nix;
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-ast";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoast-overrideAttrs = prev.xorg.xf86videoast.overrideAttrs (
