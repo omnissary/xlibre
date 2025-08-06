@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-joystick = final: prev: {
       xorg = prev.xorg // {
         xf86inputjoystick =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-joystick";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputjoystick-overrideAttrs = prev.xorg.xf86inputjoystick.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-joystick/archive/refs/tags/xlibre-xf86-input-joystick-1.6.4.1.tar.gz";
-                      sha256 = "sha256-WOqL1S8nc1kGzFhSbd6/VcZ3WpzwlCSwDvn5pGxhVzI=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-joystick
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-joystick/archive/refs/tags/xf86-input-joystick-1.6.4.tar.gz";
-                      sha256 = "sha256-WyPr0dt6sELIxJxUlhGs4nMjk3g0hPW7xcNL6Ubo69s=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-joystick;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

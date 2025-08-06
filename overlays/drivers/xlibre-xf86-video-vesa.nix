@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-vesa = final: prev: {
       xorg = prev.xorg // {
         xf86videovesa =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-vesa";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videovesa-overrideAttrs = prev.xorg.xf86videovesa.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-vesa/archive/refs/tags/xlibre-xf86-video-vesa-2.6.0.1.tar.gz";
-                      sha256 = "sha256-FfhY+jJfxjZld+CV+WhHDSV16NSl/u6vnp26+JFwO6k=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-vesa
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-vesa/archive/refs/tags/xf86-video-vesa-2.6.0.tar.gz";
-                      sha256 = "sha256-VQF3I00BptmjjBnnDhZX5DO1v3bZ6XDOnHML9myXsak=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-vesa;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

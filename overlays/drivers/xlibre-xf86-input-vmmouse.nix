@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-vmmouse = final: prev: {
       xorg = prev.xorg // {
         xf86inputvmmouse =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-vmmouse";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputvmmouse-overrideAttrs = prev.xorg.xf86inputvmmouse.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-vmmouse/archive/refs/tags/xlibre-xf86-input-vmmouse-13.2.0.1.tar.gz";
-                      sha256 = "sha256-ZqatVXZ9CjFpYztUIRGCA3Co6ayRi4/dHFXSQyDCFEo=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-vmmouse
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-vmmouse/archive/refs/tags/xf86-input-vmmouse-13.2.0.tar.gz";
-                      sha256 = "sha256-LP66258u5w5SwHNXluJjvRD+ylE26AJEEUw0HtPCJX8=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-vmmouse;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

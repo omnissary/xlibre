@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-vmware = final: prev: {
       xorg = prev.xorg // {
         xf86videovmware =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-vmware";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videovmware-overrideAttrs = prev.xorg.xf86videovmware.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-vmware/archive/refs/tags/xlibre-xf86-video-vmware-13.4.0.1.tar.gz";
-                      sha256 = "sha256-XYYaM25nhPEI1pBpw01LPALBrcYt8PDp2THA0m5LIug=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-vmware
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-vmware/archive/refs/tags/xf86-video-vmware-13.4.0.tar.gz";
-                      sha256 = "sha256-vYut4MiKSBJEdABnkCwTbU/HbG/J3VmdQWpm+lspUuQ=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-vmware;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

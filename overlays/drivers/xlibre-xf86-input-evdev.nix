@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-evdev = final: prev: {
       xorg = prev.xorg // {
         xf86inputevdev =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-evdev";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputevdev-overrideAttrs = prev.xorg.xf86inputevdev.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-evdev/archive/refs/tags/xlibre-xf86-input-evdev-2.11.0.1.tar.gz";
-                      sha256 = "sha256-lgwTwgLcsCncFYBt2c/5inc8vFqmwgocmlPjXtbXS+8=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-evdev
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-evdev/archive/refs/tags/xf86-input-evdev-2.11.0.tar.gz";
-                      sha256 = "sha256-u8PyA/5WDtKxjlPZTMRsKaGY/Sw+ME8lmAzaC+7exRw=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-evdev;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

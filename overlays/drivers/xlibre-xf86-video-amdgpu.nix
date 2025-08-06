@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-amdgpu = final: prev: {
       xorg = prev.xorg // {
         xf86videoamdgpu =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-amdgpu";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoamdgpu-overrideAttrs = prev.xorg.xf86videoamdgpu.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xlibre-xf86-video-amdgpu-23.0.0.1.tar.gz";
-                      sha256 = "sha256-wj5qUbzdFqRVhRzCQXVUsDLFRdMEZmh6T4wg8/po+Ws=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-amdgpu
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xf86-video-amdgpu-23.0.0.tar.gz";
-                      sha256 = "sha256-9ZPadeSfW8b1AGavA5Q7YiyAe5uHkcZUX00cYGb6FfE=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-amdgpu;
                 # outputs = [ "out" ];
                 nativeBuildInputs =
                   with prev;

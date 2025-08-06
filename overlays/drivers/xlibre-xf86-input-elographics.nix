@@ -11,6 +11,7 @@
       xorg = prev.xorg // {
         xf86inputelographics =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-elographics";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
           in
@@ -25,15 +26,9 @@
             builder = inputs.nixpkgs + /pkgs/servers/x11/xorg/builder.sh;
             src =
               if USE-XLIBRE-VERSION-DRIVER then
-                prev.fetchurl {
-                  url = "https://github.com/X11Libre/xf86-input-elographics/archive/refs/tags/xlibre-xf86-input-elographics-1.4.4.1.tar.gz";
-                  sha256 = "sha256-ZnA90TjrbY+SVn7BMO2Oc7Ncon+REk4LBGB14gl+CJw=";
-                }
+                prev.fetchurl sources.xlibre.xf86-input-elographics
               else
-                prev.fetchurl {
-                  url = "https://github.com/X11Libre/xf86-input-elographics/archive/refs/tags/xf86-input-elographics-1.4.4.tar.gz";
-                  sha256 = "sha256-u2AJQ/sFPBHqtyLgbOQrX9Qigs7yJsCcIpGSQfOgKBc=";
-                };
+                prev.fetchurl sources.legacy.xf86-input-elographics;
             hardeningDisable = [
               "bindnow"
               "relro"

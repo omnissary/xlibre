@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-mouse = final: prev: {
       xorg = prev.xorg // {
         xf86inputmouse =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-mouse";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputmouse-overrideAttrs = prev.xorg.xf86inputmouse.overrideAttrs (
@@ -20,15 +26,9 @@
                 # https://github.com/X11Libre/ports-gentoo/pull/10
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xlibre-xf86-input-mouse-1.9.5.1.tar.gz";
-                      sha256 = "sha256-930WP09cy1rNXMindEgvBQXQ2ECKTg2P8p8WXN5IvA4=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-mouse
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xf86-input-mouse-1.9.5.tar.gz";
-                      sha256 = "sha256-wdoX+pM/ErfU1dQDvaCzt8GR3FsjbmWU68vRJltrdKg=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-mouse;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

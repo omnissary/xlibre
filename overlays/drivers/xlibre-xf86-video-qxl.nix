@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-qxl = final: prev: {
       xorg = prev.xorg // {
         xf86videoqxl =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-qxl";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoqxl-overrideAttrs = prev.xorg.xf86videoqxl.overrideAttrs (
@@ -17,10 +23,7 @@
                   )
                 );
                 # Only xlibre tag is available.
-                src = prev.fetchurl {
-                  url = "https://github.com/X11Libre/xf86-video-qxl/archive/refs/tags/xlibre-xf86-video-qxl-0.1.6.1.tar.gz";
-                  sha256 = "sha256-qb2YyRJkKLCEqECfAehIb1m8jZG7OAKUU/SyNlMDxJg=";
-                };
+                src = prev.fetchurl sources.xlibre.xf86-video-qxl;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

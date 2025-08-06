@@ -17,7 +17,7 @@
   xlibre-xf86-input-keyboard = true; # patched back the linux support in both tags (true or false)
   xlibre-xf86-input-libinput = true;
   xlibre-xf86-input-mouse = true; # patch back the linux support in the latest tag (true)
-  xlibre-xf86-input-synaptics = true; # There is no xlibre tag for this driver, so true/false also point to the same latest tag for now
+  xlibre-xf86-input-synaptics = true;
   xlibre-xf86-input-vmmouse = true;
   xlibre-xf86-input-void = true;
   xlibre-xf86-input-wacom = true; # patch back the linux support in both tags (true or false)

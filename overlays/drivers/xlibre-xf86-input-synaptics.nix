@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-input-synaptics = final: prev: {
       xorg = prev.xorg // {
         xf86inputsynaptics =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-input-synaptics";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputsynaptics-overrideAttrs = prev.xorg.xf86inputsynaptics.overrideAttrs (
@@ -18,16 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    # no xlibre version for now
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xf86-input-synaptics-1.10.0.tar.gz";
-                      sha256 = "sha256-st/P+3qvraeb/Sjcz7seJf+ToVAMy0tx6ZW4+81RH+g=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-synaptics
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xf86-input-synaptics-1.10.0.tar.gz";
-                      sha256 = "sha256-st/P+3qvraeb/Sjcz7seJf+ToVAMy0tx6ZW4+81RH+g=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-synaptics;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-nouveau = final: prev: {
       xorg = prev.xorg // {
         xf86videonouveau =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-nouveau";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videonouveau-overrideAttrs = prev.xorg.xf86videonouveau.overrideAttrs (
@@ -18,15 +24,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-nouveau/archive/refs/tags/xlibre-xf86-video-nouveau-1.0.18.1.tar.gz";
-                      sha256 = "sha256-Xbine04kr3108uCLbrJ5WSMLIQzyuvSGxD8d78BAZhE=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-nouveau
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-nouveau/archive/refs/tags/xf86-video-nouveau-1.0.18.tar.gz";
-                      sha256 = "sha256-YEDjS7JM8gQRqjGL7EsBaFrdALUk+/ZmkTLf3xsMa0s=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-nouveau;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

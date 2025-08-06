@@ -1,11 +1,17 @@
 { USE-XLIBRE-VERSION-DRIVER }:
-{ lib, self, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     overlays.xlibre-xf86-video-siliconmotion = final: prev: {
       xorg = prev.xorg // {
         xf86videosiliconmotion =
           let
+            sources = import inputs.fetchurl-sources;
             basename = "xf86-video-siliconmotion";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videosiliconmotion-overrideAttrs = prev.xorg.xf86videosiliconmotion.overrideAttrs (
@@ -17,10 +23,7 @@
                   )
                 );
                 # older revision from xorg failed to build against xlibre-xserver.
-                src = prev.fetchurl {
-                  url = "https://github.com/X11Libre/xf86-video-siliconmotion/archive/refs/tags/xlibre-xf86-video-siliconmotion-1.7.10.1.tar.gz";
-                  sha256 = "sha256-lNhSde7BdEUWNeMgv7nfxJgldd9lBKKQLrbC8N28xD8=";
-                };
+                src = prev.fetchurl sources.xlibre.xf86-video-siliconmotion;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]
