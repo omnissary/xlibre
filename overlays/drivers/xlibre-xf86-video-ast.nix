@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videoast =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-ast";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoast-overrideAttrs = prev.xorg.xf86videoast.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-ast/archive/refs/tags/xf86-video-ast-1.2.0.tar.gz";
-                      sha256 = "sha256-8ttga6ZC22Q5uFJPp7BwHqBy1ZlLzU5BHHTTiA/X40k=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-ast
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-ast/archive/refs/tags/xf86-video-ast-1.2.0.tar.gz";
-                      sha256 = "sha256-8ttga6ZC22Q5uFJPp7BwHqBy1ZlLzU5BHHTTiA/X40k=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-ast;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

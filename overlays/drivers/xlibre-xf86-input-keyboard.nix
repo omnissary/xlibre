@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86inputkeyboard =
           let
+            sources = import ./sources.nix;
             basename = "xf86-input-keyboard";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputkeyboard-overrideAttrs = prev.xorg.xf86inputkeyboard.overrideAttrs (
@@ -20,15 +21,9 @@
                 # https://github.com/X11Libre/ports-gentoo/pull/10
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-keyboard/archive/refs/tags/xlibre-xf86-input-keyboard-2.1.0.1.tar.gz";
-                      sha256 = "sha256-qJN3w2GMCAuZFb/3R8E4kZFiISrouwAvnVZ4HcPWPQU=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-keyboard
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-keyboard/archive/refs/tags/xf86-input-keyboard-2.1.0.tar.gz";
-                      sha256 = "sha256-rWHZyoUx6UvLlUY91oSwZ/YtfuYKqTnPz7rBlIH1Ziw=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-keyboard;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

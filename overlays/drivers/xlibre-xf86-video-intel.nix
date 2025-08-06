@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videointel =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-intel";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videointel-overrideAttrs = prev.xorg.xf86videointel.overrideAttrs (
@@ -17,10 +18,7 @@
                   )
                 );
                 # older revision from xorg failed to build against xlibre-xserver.
-                src = prev.fetchurl {
-                  url = "https://github.com/X11Libre/xf86-video-intel/archive/refs/tags/xlibre-xf86-video-intel-3.0.0.1.tar.gz";
-                  sha256 = "sha256-hJeBZaw/Tj8G5AeI5iTBPOIViO2sSra1NFoaXHaHhfQ=";
-                };
+                src = prev.fetchurl sources.xlibre.xf86-video-intel;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

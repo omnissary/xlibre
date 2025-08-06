@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videor128 =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-r128";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videor128-overrideAttrs = prev.xorg.xf86videor128.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-r128/archive/refs/tags/xlibre-xf86-video-r128-6.13.0.1.tar.gz";
-                      sha256 = "sha256-CK3rYh92iBpcxAggb01EEgw4R+6JZHoWriRnRBXXAwE=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-r128
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-r128/archive/refs/tags/xf86-video-r128-6.13.0.tar.gz";
-                      sha256 = "sha256-aoyM8O8BUybpf2B3woKXMa6+lXc2VoVtJOAKr3/9ZIQ=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-r128;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

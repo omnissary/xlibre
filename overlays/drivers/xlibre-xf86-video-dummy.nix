@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videodummy =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-dummy";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videodummy-overrideAttrs = prev.xorg.xf86videodummy.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xlibre-xf86-video-dummy-0.4.1.1.tar.gz";
-                      sha256 = "sha256-vk1PUhM+2oG4xUgqEnx0iJS1ES7XCH1lY8SygenVBM0=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-dummy
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xf86-video-dummy-0.4.1.tar.gz";
-                      sha256 = "sha256-P1ydmQSw5Wg+3VRtfeKWAEXbybXjAdq9OrujwvH3G+o=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-dummy;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

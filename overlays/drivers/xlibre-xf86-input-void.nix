@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86inputvoid =
           let
+            sources = import ./sources.nix;
             basename = "xf86-input-void";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputvoid-overrideAttrs = prev.xorg.xf86inputvoid.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-void/archive/refs/tags/xlibre-xf86-input-void-1.4.2.1.tar.gz";
-                      sha256 = "sha256-jOVMyeS8qklzdCCBzE3pYVvJyP1TT04xuO/JLcFa3C4=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-void
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-void/archive/refs/tags/xf86-input-void-1.4.2.tar.gz";
-                      sha256 = "sha256-5fa8eW1hmds9HNKu5tnyaSOJdxgL0NNMLjv6JGZUfeY=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-void;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

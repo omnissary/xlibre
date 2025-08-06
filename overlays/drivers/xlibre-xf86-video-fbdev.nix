@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videofbdev =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-fbdev";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videofbdev-overrideAttrs = prev.xorg.xf86videofbdev.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-fbdev/archive/refs/tags/xlibre-xf86-video-fbdev-0.5.1.1.tar.gz";
-                      sha256 = "sha256-U6xJ+fqJJxnqFKSLATqNagbZa9XNgARtmewNzYnau18=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-fbdev
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-fbdev/archive/refs/tags/xf86-video-fbdev-0.5.1.tar.gz";
-                      sha256 = "sha256-aZ+TjHq//OFna481IM8BI08qX8Kzr37l0I5JgKgES0s=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-fbdev;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

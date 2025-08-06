@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86inputlibinput =
           let
+            sources = import ./sources.nix;
             basename = "xf86-input-libinput";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86inputlibinput-overrideAttrs = prev.xorg.xf86inputlibinput.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.0.1.tar.gz";
-                      sha256 = "08xlw7jk03a5b2xih948baqqhs5k45fnk64h6aw4n593fsqgiw91";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-input-libinput
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xf86-input-libinput-1.5.0.tar.gz";
-                      sha256 = "sha256-zLTtQLRMm5kdXeon+L71iq000Vv1kIR7SP79WYLH1Fw=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-input-libinput;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

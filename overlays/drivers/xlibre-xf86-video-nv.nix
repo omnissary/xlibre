@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videonv =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-nv";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videonv-overrideAttrs = prev.xorg.xf86videonv.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-nv/archive/refs/tags/xlibre-xf86-video-nv-2.1.23.1.tar.gz";
-                      sha256 = "sha256-VbhHhCo37EuqUqehd1mAaAGs2Z9B1s3tM6owdX8nZCE=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-nv
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-nv/archive/refs/tags/xf86-video-nv-2.1.23.tar.gz";
-                      sha256 = "sha256-bAa48eeOCRkHLqD5PSkRRWXpG0qpCS69UeyMyouDniE=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-nv;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

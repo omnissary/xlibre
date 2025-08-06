@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videomga =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-mga";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videomga-overrideAttrs = prev.xorg.xf86videomga.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-mga/archive/refs/tags/xlibre-xf86-video-mga-2.1.0.1.tar.gz";
-                      sha256 = "sha256-IG7jP7Dz2m7RPJ54GK5qb6SRlajZK7YGyRX1Rgvf0yI=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-mga
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-mga/archive/refs/tags/xf86-video-mga-2.1.0.tar.gz";
-                      sha256 = "sha256-hXZMtg3IkY52DBVjC8iU1Ovmp4KXojKnUDquFRJpx2M=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-mga;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

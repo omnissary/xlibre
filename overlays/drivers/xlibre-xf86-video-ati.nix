@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videoati =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-ati";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videoati-overrideAttrs = prev.xorg.xf86videoati.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xfree-xf86-video-ati-22.0.0.1.tar.gz";
-                      sha256 = "sha256-5nIzXmw9qqeGmuWXJBl6euK0PIBeZSg5XwRzAoYvZUE=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-ati
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xf86-video-ati-22.0.0.tar.gz";
-                      sha256 = "sha256-Ot26i+eR0JKdecATg3SPUg7EgdgNfKtnBXQak3Z22YY=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-ati;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

@@ -6,6 +6,7 @@
       xorg = prev.xorg // {
         xf86videogeode =
           let
+            sources = import ./sources.nix;
             basename = "xf86-video-geode";
             xorgserver = self.packages.${prev.system}.xlibre-xserver;
             xf86videogeode-overrideAttrs = prev.xorg.xf86videogeode.overrideAttrs (
@@ -18,15 +19,9 @@
                 );
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xlibre-xf86-video-geode-2.18.1.1.tar.gz";
-                      sha256 = "sha256-+ggm2jJYYiPIbd3s6Uaohsl2fRhrfcEVARxafnSVor4=";
-                    }
+                    prev.fetchurl sources.xlibre.xf86-video-geode
                   else
-                    prev.fetchurl {
-                      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xf86-video-geode-2.18.1.tar.gz";
-                      sha256 = "sha256-xCXKbHXb4KH90zfoF+XgSzCAYUs2HFdMBObCpOk3NIc=";
-                    };
+                    prev.fetchurl sources.legacy.xf86-video-geode;
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]

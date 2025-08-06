@@ -6,6 +6,7 @@
       # xf86_input_wacom located in /pkgs/by-name/xf/xf86_input_wacom, not in "xorg" attribute set
       xf86_input_wacom =
         let
+          sources = import ./sources.nix;
           basename = "xf86-input-wacom";
           xorgserver = self.packages.${prev.system}.xlibre-xserver;
           xf86_input_wacom-overrideAttrs = prev.xf86_input_wacom.overrideAttrs (
@@ -19,15 +20,9 @@
 
               src =
                 if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl {
-                    url = "https://github.com/X11Libre/xf86-input-wacom/archive/refs/tags/xlibre-xf86-input-wacom-1.2.3.1.tar.gz";
-                    sha256 = "1v87jajjybc3myaxw132fsih0b1raig3kgjrbfl8brbrkqi7n7wn";
-                  }
+                  prev.fetchurl sources.xlibre.xf86-input-wacom
                 else
-                  prev.fetchurl {
-                    url = "https://github.com/X11Libre/xf86-input-wacom/archive/refs/tags/xf86-input-wacom-1.2.3.tar.gz";
-                    sha256 = "sha256-hfBsUwQXpT83lJbRAbAFxH1721XSN0zqTE6OzfTdHus=";
-                  };
+                  prev.fetchurl sources.legacy.xf86-input-wacom;
               patches =
                 prevAttrs.patches or [ ]
                 # Both version require this patch for linux support
