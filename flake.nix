@@ -19,16 +19,16 @@
     # The true/false will pass into the "USE-XLIBRE-VERSION-DRIVER" variable in the drivers overlays in `./overlays/drivers`.
     # Browse through `./overlays/drivers` for more details of what revision it actually use.
     xlibre-drivers-overlay-choice = {
-      url = "path:./xlibre-build-options/xlibre-drivers-overlay-choice.nix";
+      url = "path:./consumer-overridable/xlibre-drivers-overlay-choice.nix";
       flake = false;
     };
     xlibre-xserver-build-options = {
-      url = "path:./xlibre-build-options/xlibre-xserver-build-options.nix"; # set building with glamor
+      url = "path:./consumer-overridable/xlibre-xserver-build-options.nix"; # set building with glamor
       flake = false;
     };
     # User can override the source directly for testing
     fetchurl-sources = {
-      url = "path:./xlibre-build-options/fetchurl-sources.nix";
+      url = "path:./consumer-overridable/fetchurl-sources.nix";
       flake = false;
     };
   };
