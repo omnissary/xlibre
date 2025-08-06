@@ -188,6 +188,7 @@
     # This failed to build against xlibre-xserver
     xf86-video-siliconmotion = {
       url = "https://github.com/X11Libre/xf86-video-siliconmotion/archive/refs/tags/xf86-video-siliconmotion-1.7.10.tar.gz";
+      sha256 = "";
     };
     xf86-video-vesa = {
       url = "https://github.com/X11Libre/xf86-video-vesa/archive/refs/tags/xf86-video-vesa-2.6.0.tar.gz";
