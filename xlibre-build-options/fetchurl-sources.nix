@@ -109,6 +109,11 @@
     };
   };
 
+  # This part is for legacy drivers (from tags before it become xlibre)
+  # This will only be used when the attribute in the flake input of "./xlibre-build-options/xlibre-drivers-overlay-choice.nix" is override to false
+  # Further usage, see README.md
+  #
+  # Don't touch below settings.
   legacy = {
     xf86-input-elographics = {
       url = "https://github.com/X11Libre/xf86-input-elographics/archive/refs/tags/xf86-input-elographics-1.4.4.tar.gz";
