@@ -49,13 +49,12 @@
                 # https://wiki.nixos.org/wiki/Packaging/Quirks_and_Caveats#Configure_Scripts_that_are_using_pkg-config
                 buildInputs = with prev; prevAttrs.buildInputs or [ ] ++ [ autoreconfHook ];
 
-                # configureFlags = prevAttrs.configureFlags or [ ] ++ [
-                # configureFlags = [
-                #   "--with-xorg-conf-dir=${placeholder "out"}/share/X11/xorg.conf.d"
-                #   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
-                #   # "--prefix=/usr"
-                #   # "--enable-glamor"
-                # ];
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-conf-dir=${placeholder "out"}/share/X11/xorg.conf.d"
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                  # "--prefix=/usr"
+                  "--enable-glamor"
+                ];
               }
             );
           in
