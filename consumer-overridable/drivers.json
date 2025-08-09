@@ -1,0 +1,102 @@
+[
+  {
+    "REPO": "xf86-input-elographics",
+    "PREFIX": "xlibre-xf86-input-elographics"
+  },
+  {
+    "REPO": "xf86-input-evdev",
+    "PREFIX": "xlibre-xf86-input-evdev"
+  },
+  {
+    "REPO": "xf86-input-joystick",
+    "PREFIX": "xlibre-xf86-input-joystick"
+  },
+  {
+    "REPO": "xf86-input-keyboard",
+    "PREFIX": "xlibre-xf86-input-keyboard"
+  },
+  {
+    "REPO": "xf86-input-libinput",
+    "PREFIX": "xlibre-xf86-input-libinput"
+  },
+  {
+    "REPO": "xf86-input-mouse",
+    "PREFIX": "xlibre-xf86-input-mouse"
+  },
+  {
+    "REPO": "xf86-input-synaptics",
+    "PREFIX": "xlibre-xf86-input-synaptics"
+  },
+  {
+    "REPO": "xf86-input-vmmouse",
+    "PREFIX": "xlibre-xf86-input-vmmouse"
+  },
+  {
+    "REPO": "xf86-input-void",
+    "PREFIX": "xlibre-xf86-input-void"
+  },
+  {
+    "REPO": "xf86-input-wacom",
+    "PREFIX": "xlibre-xf86-input-wacom"
+  },
+  {
+    "REPO": "xf86-video-amdgpu",
+    "PREFIX": "xlibre-xf86-video-amdgpu"
+  },
+  {
+    "REPO": "xf86-video-ast",
+    "PREFIX": "xf86-video-ast"
+  },
+  {
+    "REPO": "xf86-video-ati",
+    "PREFIX": "xfree-xf86-video-ati"
+  },
+  {
+    "REPO": "xf86-video-dummy",
+    "PREFIX": "xlibre-xf86-video-dummy"
+  },
+  {
+    "REPO": "xf86-video-fbdev",
+    "PREFIX": "xlibre-xf86-video-fbdev"
+  },
+  {
+    "REPO": "xf86-video-geode",
+    "PREFIX": "xlibre-xf86-video-geode"
+  },
+  {
+    "REPO": "xf86-video-intel",
+    "PREFIX": "xlibre-xf86-video-intel"
+  },
+  {
+    "REPO": "xf86-video-mga",
+    "PREFIX": "xlibre-xf86-video-mga"
+  },
+  {
+    "REPO": "xf86-video-nouveau",
+    "PREFIX": "xlibre-xf86-video-nouveau"
+  },
+  {
+    "REPO": "xf86-video-nv",
+    "PREFIX": "xlibre-xf86-video-nv"
+  },
+  {
+    "REPO": "xf86-video-qxl",
+    "PREFIX": "xlibre-xf86-video-qxl"
+  },
+  {
+    "REPO": "xf86-video-r128",
+    "PREFIX": "xlibre-xf86-video-r128"
+  },
+  {
+    "REPO": "xf86-video-siliconmotion",
+    "PREFIX": "xlibre-xf86-video-siliconmotion"
+  },
+  {
+    "REPO": "xf86-video-vesa",
+    "PREFIX": "xlibre-xf86-video-vesa"
+  },
+  {
+    "REPO": "xf86-video-vmware",
+    "PREFIX": "xlibre-xf86-video-vmware"
+  }
+]
