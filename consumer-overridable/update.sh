@@ -11,7 +11,7 @@ get_version() {
 get_sha256() {
   nix --extra-experimental-features nix-command store prefetch-file --json "https://github.com/X11Libre/$1/archive/refs/tags/$2-$3.tar.gz" | jq -r .hash
 }
-get_driver() {
+get_source() {
   VERSION="$(get_version "$1" "$2")"
   cat <<EOF
     $1 = {
@@ -36,7 +36,7 @@ EOF
   REPO="xserver"
   PREFIX="xlibre-xserver"
 
-  get_driver "$REPO" "$PREFIX"
+  get_source "$REPO" "$PREFIX"
 
   cat <<EOF
 
@@ -44,9 +44,9 @@ EOF
 EOF
 
   for ((i = 0; i < $(jq 'length' "$DRIVERS_JSON"); i++)); do
-    get_driver "$(jq -r ".[$i].REPO" "$DRIVERS_JSON")" "$(jq -r ".[$i].PREFIX" "$DRIVERS_JSON")"
     # Prevent github API rate limit exceed
     sleep 5
+    get_source "$(jq -r ".[$i].REPO" "$DRIVERS_JSON")" "$(jq -r ".[$i].PREFIX" "$DRIVERS_JSON")"
   done
 
   cat <<EOF
