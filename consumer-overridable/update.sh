@@ -138,7 +138,7 @@ EOF
       url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xf86-video-geode-\${version}.tar.gz";
       sha256 = "sha256-xCXKbHXb4KH90zfoF+XgSzCAYUs2HFdMBObCpOk3NIc=";
     };
-    xf86-video-intel = null;
+    xf86-video-intel = null; # Latest tag that is not xlibre is from 2014
     xf86-video-mga = rec {
       version = "2.1.0";
       url = "https://github.com/X11Libre/xf86-video-mga/archive/refs/tags/xf86-video-mga-\${version}.tar.gz";
