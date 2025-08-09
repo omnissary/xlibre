@@ -17,11 +17,11 @@
             xf86videovesa-overrideAttrs = prev.xorg.xf86videovesa.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version =
+                  if USE-XLIBRE-VERSION-DRIVER then
+                    sources.xlibre.xf86-video-vesa.version
+                  else
+                    sources.legacy.xf86-video-vesa.version;
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
                     prev.fetchurl sources.xlibre.xf86-video-vesa

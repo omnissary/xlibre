@@ -17,11 +17,7 @@
             xf86videoqxl-overrideAttrs = prev.xorg.xf86videoqxl.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version = sources.xlibre.xf86-video-qxl.version;
                 # Only xlibre tag is available.
                 src = prev.fetchurl sources.xlibre.xf86-video-qxl;
                 nativeBuildInputs =

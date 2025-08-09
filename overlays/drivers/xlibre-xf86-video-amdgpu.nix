@@ -17,11 +17,11 @@
             xf86videoamdgpu-overrideAttrs = prev.xorg.xf86videoamdgpu.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version =
+                  if USE-XLIBRE-VERSION-DRIVER then
+                    sources.xlibre.xf86-video-amdgpu.version
+                  else
+                    sources.legacy.xf86-video-amdgpu.version;
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
                     prev.fetchurl sources.xlibre.xf86-video-amdgpu
@@ -49,13 +49,12 @@
                 # https://wiki.nixos.org/wiki/Packaging/Quirks_and_Caveats#Configure_Scripts_that_are_using_pkg-config
                 buildInputs = with prev; prevAttrs.buildInputs or [ ] ++ [ autoreconfHook ];
 
-                # configureFlags = prevAttrs.configureFlags or [ ] ++ [
-                # configureFlags = [
-                #   "--with-xorg-conf-dir=${placeholder "out"}/share/X11/xorg.conf.d"
-                #   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
-                #   # "--prefix=/usr"
-                #   # "--enable-glamor"
-                # ];
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-conf-dir=${placeholder "out"}/share/X11/xorg.conf.d"
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                  # "--prefix=/usr"
+                  "--enable-glamor"
+                ];
               }
             );
           in

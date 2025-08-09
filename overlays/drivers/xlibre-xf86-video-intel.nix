@@ -17,11 +17,10 @@
             xf86videointel-overrideAttrs = prev.xorg.xf86videointel.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version = sources.xlibre.xf86-video-intel.version;
+                # This override the name set in /pkgs/servers/x11/xorg/overrides.nix in nikpkgs
+                name = "${finalAttrs.pname}-${finalAttrs.version}";
+
                 # older revision from xorg failed to build against xlibre-xserver.
                 src = prev.fetchurl sources.xlibre.xf86-video-intel;
                 nativeBuildInputs =
@@ -39,12 +38,6 @@
 
                   ];
                 patches =
-                  let
-                    # xorgserver.version not work, it shows the version from xorg with unknown reason
-                    xlibre-xserver-version = lib.strings.removeSuffix ".tar.gz" (
-                      lib.strings.removePrefix "${xorgserver.pname}-" xorgserver.src.name
-                    );
-                  in
                   prevAttrs.patches or [ ]
                   # Both version require this patch to bring back linux support
                   ++
@@ -52,8 +45,7 @@
                       (
                         # https://nix.dev/manual/nix/2.18/language/builtins#builtins-compareVersions
                         # xorgserver.version not work, it shows the version from xorg with unknown reason
-                        (builtins.compareVersions "${xlibre-xserver-version}" "25.0.0.7") == 1
-                        # I "think" next version of xf86-video-intel may not need this
+                        (builtins.compareVersions sources.xlibre.xserver.version "25.0.0.7") == 1
                         && (finalAttrs.version == "3.0.0.1")
                       )
                       [

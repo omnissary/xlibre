@@ -17,11 +17,11 @@
             xf86videovmware-overrideAttrs = prev.xorg.xf86videovmware.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version =
+                  if USE-XLIBRE-VERSION-DRIVER then
+                    sources.xlibre.xf86-video-vmware.version
+                  else
+                    sources.legacy.xf86-video-vmware.version;
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
                     prev.fetchurl sources.xlibre.xf86-video-vmware

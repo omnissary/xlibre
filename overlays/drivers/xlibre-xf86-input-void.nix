@@ -17,11 +17,11 @@
             xf86inputvoid-overrideAttrs = prev.xorg.xf86inputvoid.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version =
+                  if USE-XLIBRE-VERSION-DRIVER then
+                    sources.xlibre.xf86-input-void.version
+                  else
+                    sources.legacy.xf86-input-void.version;
                 src =
                   if USE-XLIBRE-VERSION-DRIVER then
                     prev.fetchurl sources.xlibre.xf86-input-void
