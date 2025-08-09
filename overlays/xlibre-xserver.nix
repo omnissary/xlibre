@@ -11,9 +11,7 @@
           xorgserver = prev.xorg.xorgserver.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "xlibre-xserver";
-              version = lib.strings.removeSuffix ".tar.gz" (
-                lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-              );
+              version = sources.xlibre.xserver.version;
               # use tarball because some packages assume this fetch tarball, e.g. tigervnc
               src = prev.fetchurl sources.xlibre.xserver;
               # src = prev.fetchurl {

@@ -17,11 +17,7 @@
             xf86videosiliconmotion-overrideAttrs = prev.xorg.xf86videosiliconmotion.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
-                version = lib.strings.removeSuffix ".tar.gz" (
-                  lib.strings.removePrefix "${basename}-" (
-                    lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-                  )
-                );
+                version = sources.xlibre.xf86-video-siliconmotion.version;
                 # older revision from xorg failed to build against xlibre-xserver.
                 src = prev.fetchurl sources.xlibre.xf86-video-siliconmotion;
                 nativeBuildInputs =

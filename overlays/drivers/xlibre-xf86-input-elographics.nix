@@ -18,11 +18,11 @@
           # This package does not exist in nixpkgs
           prev.stdenv.mkDerivation (finalAttrs: {
             pname = "xlibre-${basename}";
-            version = lib.strings.removeSuffix ".tar.gz" (
-              lib.strings.removePrefix "${basename}-" (
-                lib.strings.removePrefix "${finalAttrs.pname}-" finalAttrs.src.name
-              )
-            );
+            version =
+              if USE-XLIBRE-VERSION-DRIVER then
+                sources.xlibre.xf86-input-elographics.version
+              else
+                sources.legacy.xf86-input-elographics.version;
             builder = inputs.nixpkgs + /pkgs/servers/x11/xorg/builder.sh;
             src =
               if USE-XLIBRE-VERSION-DRIVER then
