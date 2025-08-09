@@ -86,11 +86,11 @@
     "xlibre-drivers-overlay-choice": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/xlibre-drivers-overlay-choice.nix",
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
         "type": "path"
       },
       "original": {
-        "path": "./consumer-overridable/xlibre-drivers-overlay-choice.nix",
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
         "type": "path"
       },
       "parent": []
@@ -98,11 +98,11 @@
     "xlibre-xserver-build-options": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/xlibre-xserver-build-options.nix",
+        "path": "./consumer-overridable/xserver-build-options.nix",
         "type": "path"
       },
       "original": {
-        "path": "./consumer-overridable/xlibre-xserver-build-options.nix",
+        "path": "./consumer-overridable/xserver-build-options.nix",
         "type": "path"
       },
       "parent": []

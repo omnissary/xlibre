@@ -53,7 +53,7 @@ EOF
   };
 
   # This part is for legacy drivers (from tags before it become xlibre)
-  # This will only be used when the attribute in the flake input of "./consumer-overridable/xlibre-drivers-overlay-choice.nix" is override to false
+  # This will only be used when the attribute in the flake input of "./consumer-overridable/drivers-overlay-choice.nix" is override to false
   # Further usage, see README.md
   #
   # Don't touch below settings.
