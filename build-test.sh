@@ -1,5 +1,5 @@
 #!/usr/bin/env nix
-#! nix shell nixpkgs#bash --command bash
+#! nix shell nixpkgs#bash nixpkgs#nix --command bash
 
 #https://nixos.org/manual/nix/stable/command-ref/new-cli/nix.html?highlight=shebang#shebang-interpreter
 

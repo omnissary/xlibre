@@ -1,13 +1,14 @@
 #!/usr/bin/env nix
-#! nix shell nixpkgs#bash nixpkgs#curl nixpkgs#jq nixpkgs#nix nixpkgs#gnused nixpkgs#gnugrep nixpkgs#git nixpkgs#miller nixpkgs#mktemp --command bash
+#! nix shell nixpkgs#bash nixpkgs#curl nixpkgs#jq nixpkgs#nix nixpkgs#gnused nixpkgs#gnugrep nixpkgs#git nixpkgs#miller --command bash
 
 #https://nixos.org/manual/nix/stable/command-ref/new-cli/nix.html?highlight=shebang#shebang-interpreter
 
-# This script is to generate consumer-overridable/fetchurl-sources.nix and sources.json
 
 set -euo pipefail
+
+# Below two files will be overwritten by this script
 SOURCE_FILE="consumer-overridable/fetchurl-sources.nix"
-JSON_FILE="sources.json"
+JSON_FILE="sources-info.json"
 
 SOURCE_FILE_INTERMEDIATE_ARRAY=()
 JSON_FILE_INTERMEDIATE=""
@@ -217,9 +218,9 @@ EOF
 )")
 
 if [ ${#UPDATED_INDEXES[@]} -eq 0 ]; then
-  printf "\n%s\n" "No package updated."
+  printf "\n%s\n" "No packages are updated."
 else
-  # commit message before generate new drivers.json
+  # Generating commit message before overwriting "$JSON_FILE"
   COMMIT_MESSAGE="$(
     printf "\n%s\n" "Updated packages:"
     for i in "${UPDATED_INDEXES[@]}"; do
@@ -239,7 +240,7 @@ else
     } | mlr --icsv --ojson cat | jq
   )"
 
-  # Write files
+  # Overwrite files
   printf "%s\n" "${SOURCE_FILE_INTERMEDIATE_ARRAY[@]}" >"$SOURCE_FILE"
   printf "%s\n" "$JSON_FILE_INTERMEDIATE" >"$JSON_FILE"
 
