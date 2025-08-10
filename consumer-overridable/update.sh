@@ -236,7 +236,7 @@ else
 
   # Write files
   printf "%s\n" "${SOURCE_FILE_INTERMEDIATE_ARRAY[@]}" >"$SOURCE_FILE"
-  printf "%s" "$JSON_FILE_INTERMEDIATE" >"$JSON_FILE"
+  printf "%s\n" "$JSON_FILE_INTERMEDIATE" >"$JSON_FILE"
 
   # git
   git add "$SOURCE_FILE" "$JSON_FILE"
