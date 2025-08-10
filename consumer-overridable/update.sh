@@ -4,13 +4,13 @@ set -euo pipefail
 SOURCE_FILE="fetchurl-sources.nix"
 JSON_FILE="sources.json"
 
-# SOURCE_FILE_INTERMEDIATE_ARRAY=()
-# JSON_FILE_INTERMEDIATE=""
-#
-# REPOS=()
-# PREFIXES=()
-# VERSIONS=()
-# UPDATED_INDEXES=()
+SOURCE_FILE_INTERMEDIATE_ARRAY=()
+JSON_FILE_INTERMEDIATE=""
+
+REPOS=()
+PREFIXES=()
+VERSIONS=()
+UPDATED_INDEXES=()
 
 get_version() {
   curl -sSL "https://api.github.com/repos/X11Libre/$1/tags" | jq -r '.[].name' | grep "$2" | sed -e "s/^.*$2-//" | sort -rn | head -1
@@ -49,7 +49,7 @@ for ((i = 0; i < "$(jq "length" "$JSON_FILE")"; i++)); do
   printf "[%s/%s]: Checking %s..." "$(("$i" + 1))" "$(jq 'length' "$JSON_FILE")" "$(jq -r ".[$i].REPO" "$JSON_FILE")" >&2
   if [ "$i" -ne 0 ]; then
     # Prevent github API rate limit exceed
-    sleep 8
+    sleep 10
   fi
 
   if [ "$i" -eq 0 ]; then
