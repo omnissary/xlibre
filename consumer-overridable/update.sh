@@ -1,5 +1,8 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p curl jq nix gnused gnugrep git miller mktemp
+#!/usr/bin/env nix
+#! nix shell nixpkgs#bash nixpkgs#curl nixpkgs#jq nixpkgs#nix nixpkgs#gnused nixpkgs#gnugrep nixpkgs#git nixpkgs#miller nixpkgs#mktemp --command bash
+
+#https://nixos.org/manual/nix/stable/command-ref/new-cli/nix.html?highlight=shebang#shebang-interpreter
+
 set -euo pipefail
 SOURCE_FILE="fetchurl-sources.nix"
 JSON_FILE="sources.json"
