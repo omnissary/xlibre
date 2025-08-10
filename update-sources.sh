@@ -3,8 +3,10 @@
 
 #https://nixos.org/manual/nix/stable/command-ref/new-cli/nix.html?highlight=shebang#shebang-interpreter
 
+# This script is to generate consumer-overridable/fetchurl-sources.nix and sources.json
+
 set -euo pipefail
-SOURCE_FILE="fetchurl-sources.nix"
+SOURCE_FILE="consumer-overridable/fetchurl-sources.nix"
 JSON_FILE="sources.json"
 
 SOURCE_FILE_INTERMEDIATE_ARRAY=()
