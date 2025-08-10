@@ -35,7 +35,7 @@ Other drivers overlay can be successfully build but untested.
 
 Other drivers overlay can be successfully build except some old or incompatible ones: `xlibre-xf86-video-intel`, `xlibre-xf86-video-vmware`, `xlibre-xf86-input-vmmouse`, `xlibre-xf86-video-ast`, `xlibre-xf86-video-vesa`, `xlibre-xf86-video-geode`, `xlibre-xf86-video-siliconmotion`
 
-All the available drivers overlay are listed in `./consumer-overridable/xlibre-drivers-overlay-choice.nix`.
+All the available drivers overlay are listed in `./consumer-overridable/drivers-overlay-choice.nix`.
 
 # Common usage
 Example of `flake.nix` configuration:
@@ -68,7 +68,7 @@ Example of `flake.nix` configuration:
           # Don't add this lines if you want to use drivers provided from nixpkgs
           inputs.xlibre-overlay.nixosModules.overlay-all-xlibre-drivers
           # Instead of `overlay-all-xlibre-drivers`, user can also choose the dirvers invidivually for overlay
-          # All available drivers are listed in `./consumer-overridable/xlibre-drivers-overlay-choice.nix`, just prepend them with "overlay-"
+          # All available drivers are listed in `./consumer-overridable/drivers-overlay-choice.nix`, just prepend them with "overlay-"
           # Examples:
           # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-evdev
           # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-libinput
@@ -97,7 +97,7 @@ You can put them in `imports = [ ];` section of `configuration.nix` or in `modul
 
 Instead of using `overlay-all-xlibre-drivers`, user can also choose the drivers individually for overlay.
 
-All the available drivers overlay are listed in `./consumer-overridable/xlibre-drivers-overlay-choice.nix`, just prepend "overlay-" of the desired drivers attribute name.
+All the available drivers overlay are listed in `./consumer-overridable/drivers-overlay-choice.nix`, just prepend "overlay-" of the desired drivers attribute name.
 
 Implementation of all the overlays are located in `./overlays` directory
 
@@ -143,13 +143,13 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
       # Step 1. Make the inputs "xlibre-drivers-overlay-choice" inside this flake to follow the users defined input
       inputs.xlibre-drivers-overlay-choice.follows = "my-xlibre-my-choice";
     };
-    # Step 2. User make a copy of ./consumer-overridable/xlibre-drivers-overlay-choice.nix file in this repo to their own repo.
-    # Step 3. User add an inputs, in this example "my-xlibre-my-choice" on their own flake, and import their own copy of xlibre-drivers-overlay-choice.nix as shown below
+    # Step 2. User make a copy of ./consumer-overridable/drivers-overlay-choice.nix file in this repo to their own repo.
+    # Step 3. User add an inputs, in this example "my-xlibre-my-choice" on their own flake, and import their own copy of drivers-overlay-choice.nix as shown below
     my-xlibre-my-choice = {
-      # Point the url of this input to your copy of `xlibre-drivers-overlay-choice.nix`
-      # Edit your own xlibre-drivers-overlay-choice.nix copy to choose your desire drivers revision.
+      # Point the url of this input to your copy of `drivers-overlay-choice.nix`
+      # Edit your own drivers-overlay-choice.nix copy to choose your desire drivers revision.
       # The true / false will pass into the "USE-XLIBRE-VERSION-DRIVER" variable in the drivers overlays in the `/overlays/drivers` directiory.
-      url = "path:./xlibre-drivers-overlay-choice.nix"; # This imply the copy is located in the root of your flake repo
+      url = "path:./drivers-overlay-choice.nix"; # This imply the copy is located in the root of your flake repo
       flake = false;
     };
     # ...
