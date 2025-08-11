@@ -39,7 +39,6 @@
                   ];
                 patches =
                   prevAttrs.patches or [ ]
-                  # Both version require this patch to bring back linux support
                   ++
                     lib.optionals
                       (
