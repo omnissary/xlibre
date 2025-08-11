@@ -23,6 +23,7 @@
 
                 # older revision from xorg failed to build against xlibre-xserver.
                 src = prev.fetchurl sources.xlibre.xf86-video-intel;
+
                 nativeBuildInputs =
                   with prev;
                   prevAttrs.nativeBuildInputs or [ ]
@@ -37,6 +38,7 @@
                     xorg.utilmacros
 
                   ];
+
                 patches =
                   prevAttrs.patches or [ ]
                   ++
@@ -51,6 +53,11 @@
                         # https://github.com/ONykyf/X11Libre-SlackBuild/blob/b079336ed7ee915d68213092d2cfcdf346b76469/patch/xlibre-video-intel/xf86-video-intel-maxclients.patch
                         (self + /overlays/patches/xlibre-xf86-video-intel/maxclients.patch)
                       ];
+
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  # "--with-xorg-conf-dir=${placeholder "out"}/share/X11/xorg.conf.d"
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
 
               }
             );
