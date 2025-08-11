@@ -52,7 +52,7 @@ EOF
 
 for ((i = 0; i < "$(jq "length" "$JSON_FILE")"; i++)); do
   # progress message:
-  printf "[%s/%s]: Checking %s..." "$(("$i" + 1))" "$(jq 'length' "$JSON_FILE")" "$(jq -r ".[$i].REPO" "$JSON_FILE")" >&2
+  printf "[%s/%s]: Checking %s..." "$(("$i" + 1))" "$(jq 'length' "$JSON_FILE")" "$(jq -r ".[$i].REPO" "$JSON_FILE")"
   if [ "$i" -ne 0 ]; then
     # Prevent github API rate limit exceed
     sleep 10
