@@ -42,7 +42,7 @@ if [ "$SYSTEM" == "x86_64-linux" ]; then
     "nix build .#packages.$SYSTEM.xlibre-xf86-input-vmmouse"
 
     # xf86-video-ast - ASpeed Technologies graphics driver for Xorg X server
-    # some intel thing
+    # Product of Taiwan Company
     # NOT in https://archlinuxarm.org/packages
     # "nix build nixpkgs\#xorg.xf86videoast" also build failed
     "nix build .#packages.$SYSTEM.xlibre-xf86-video-ast"
