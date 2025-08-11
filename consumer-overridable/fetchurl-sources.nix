@@ -90,9 +90,9 @@
       sha256 = "sha256-+ggm2jJYYiPIbd3s6Uaohsl2fRhrfcEVARxafnSVor4=";
     };
     xf86-video-intel = {
-      version = "3.0.0.1";
-      url = "https://github.com/X11Libre/xf86-video-intel/archive/refs/tags/xlibre-xf86-video-intel-3.0.0.1.tar.gz";
-      sha256 = "sha256-hJeBZaw/Tj8G5AeI5iTBPOIViO2sSra1NFoaXHaHhfQ=";
+      version = "3.0.0.2";
+      url = "https://github.com/X11Libre/xf86-video-intel/archive/refs/tags/xlibre-xf86-video-intel-3.0.0.2.tar.gz";
+      sha256 = "sha256-UNLO7dsp+z0QyuouyxjBwKz0ymhw1dH1ReFs/99yalw=";
     };
     xf86-video-mga = {
       version = "2.1.0.1";
