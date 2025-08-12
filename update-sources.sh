@@ -224,10 +224,10 @@ else
   COMMIT_MESSAGE="$(
     printf "\n%s\n" "Updated packages:"
     for i in "${UPDATED_INDEXES[@]}"; do
-      REPO="$(jq -r ".[$i].REPO" "$JSON_FILE")"
+      PREFIX="$(jq -r ".[$i].PREFIX" "$JSON_FILE")"
       OLD_VERSION="$(jq -r ".[$i].VERSION" "$JSON_FILE")"
       NEW_VERSION="${VERSIONS[$i]}"
-      printf "xlibre-%s: %s -> %s\n" "$REPO" "$OLD_VERSION" "$NEW_VERSION"
+      printf "%s: %s -> %s\n" "$PREFIX" "$OLD_VERSION" "$NEW_VERSION"
     done
   )"
 
