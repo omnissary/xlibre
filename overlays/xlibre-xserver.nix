@@ -48,6 +48,14 @@
                   (lib.mesonOption "localstatedir" "/var")
                   # "--with-os-name=Nix" # r13y, embeds the build machine's kernel version otherwise
                   # (lib.mesonOption "os_name" "Nix") # This is not available in meson_option
+
+                  # Other masonFlogs
+                  (lib.mesonBool "udev" true)
+                  (lib.mesonBool "udev_kms" true)
+                  (lib.mesonBool "libunwind" true)
+
+                  # Fix rootless support
+                  (lib.mesonBool "systemd_logind" true)
                 ]
                 # https://github.com/NixOS/nixpkgs/blob/140a6b4522f396cabf7d91b1ea2a11f063d02126/nixos/modules/services/x11/xserver.nix#L18-L33
                 ++ lib.optionals BUILD-WITH-GLAMOR [
