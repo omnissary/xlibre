@@ -47,7 +47,7 @@ Example of `flake.nix` configuration:
     # ...
     xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
     # Optional:
-    # inputs.nixpkgs.follows = "nixpkgs";
+    # xlibre-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # ...
   };
 
