@@ -68,7 +68,7 @@
         "nixpkgs": "nixpkgs",
         "systems": "systems",
         "xlibre-drivers-overlay-choice": "xlibre-drivers-overlay-choice",
-        "xlibre-xserver-build-options": "xlibre-xserver-build-options"
+        "xserver-meson-flags": "xserver-meson-flags"
       }
     },
     "systems": {
@@ -95,14 +95,14 @@
       },
       "parent": []
     },
-    "xlibre-xserver-build-options": {
+    "xserver-meson-flags": {
       "flake": false,
       "locked": {
-        "path": "./consumer-overridable/xserver-build-options.nix",
+        "path": "./consumer-overridable/xserver-meson-flags.nix",
         "type": "path"
       },
       "original": {
-        "path": "./consumer-overridable/xserver-build-options.nix",
+        "path": "./consumer-overridable/xserver-meson-flags.nix",
         "type": "path"
       },
       "parent": []

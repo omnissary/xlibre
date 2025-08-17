@@ -22,13 +22,12 @@
       url = "path:./consumer-overridable/drivers-overlay-choice.nix";
       flake = false;
     };
-    xlibre-xserver-build-options = {
-      url = "path:./consumer-overridable/xserver-build-options.nix"; # set building with glamor
-      flake = false;
-    };
-    # User can override the source directly for testing
     fetchurl-sources = {
       url = "path:./consumer-overridable/fetchurl-sources.nix";
+      flake = false;
+    };
+    xserver-meson-flags = {
+      url = "./consumer-overridable/xserver-meson-flags.nix";
       flake = false;
     };
   };
@@ -44,36 +43,32 @@
         inherit (inputs.nixpkgs) lib;
 
         if-use-xlibre-version-driver = import inputs.xlibre-drivers-overlay-choice;
-        xlibre-xserver-build-options = import inputs.xlibre-xserver-build-options;
         packages-reference = import ./packages-reference.nix;
 
         # Combination of the use of "lib.nameValuePair", and "lib.mapAttrs'"
         # https://github.com/NixOS/nixpkgs/blob/3ff0e34b1383648053bba8ed03f201d3466f90c9/lib/attrsets.nix#L1030-L1045
-        flakeModules =
-          lib.mapAttrs' (
-            name: value:
-            lib.nameValuePair ("overlay-${name}") (
-              importApply ./overlays/drivers/${name}.nix {
-                USE-XLIBRE-VERSION-DRIVER = value; # defined in ./drivers-overlay-choice.nix
-              }
-            )
-          ) if-use-xlibre-version-driver
-          # EQUIVALENT TO:
-          /*
-            flakeModules = {
-              overlay-xlibre-xf86-input-libinput = importApply ./overlays/drivers/xlibre-xf86-input-libinput.nix {
-                USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
-              };
-              overlay-xlibre-xf86-input-wacom = importApply ./overlays/drivers/xlibre-xf86-input-wacom.nix {
-                USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
-               };
-              ......
-              ......
+        flakeModules = lib.mapAttrs' (
+          name: value:
+          lib.nameValuePair ("overlay-${name}") (
+            importApply ./overlays/drivers/${name}.nix {
+              USE-XLIBRE-VERSION-DRIVER = value; # defined in ./drivers-overlay-choice.nix
             }
-          */
-          // {
-            overlay-xlibre-xserver = importApply ./overlays/xlibre-xserver.nix xlibre-xserver-build-options;
-          };
+          )
+        ) if-use-xlibre-version-driver
+        # EQUIVALENT TO:
+        /*
+          flakeModules = {
+            overlay-xlibre-xf86-input-libinput = importApply ./overlays/drivers/xlibre-xf86-input-libinput.nix {
+              USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
+            };
+            overlay-xlibre-xf86-input-wacom = importApply ./overlays/drivers/xlibre-xf86-input-wacom.nix {
+              USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
+             };
+            ......
+            ......
+          }
+        */
+        ;
       in
       {
         imports =
@@ -86,8 +81,7 @@
           [ ./packages.nix ]
           # Part 2.
           # These files just define how the packages should be overlayed.
-          # use above importApply method instead to pass build-options (BUILD-WITH-GLAMOR)
-          # ++ [ ./overlays/xlibre-xserver.nix ]
+          ++ [ ./overlays/xlibre-xserver.nix ]
           # Part 3
           # overlay drivers, all build against xlibre-xserver with above
           # overlay injected in it
@@ -96,9 +90,7 @@
           # Import the defined dogfoods in the let...in section above, and later
           # consume them in "flake" section (Part. 6) in this flake.nix
           ++ lib.forEach (lib.attrNames (
-            # don't exclude "xlibre-xserver" because it also in flakeModules now (to let user configure BUILD-WITH-GLAMOR)
-            # lib.filterAttrs (name: value: name != "xlibre-xserver") packages-reference
-            packages-reference
+            lib.filterAttrs (name: value: name != "xlibre-xserver") packages-reference
           )) (name: flakeModules."overlay-${name}")
           # This is EQUIVALENT TO:
           /*
