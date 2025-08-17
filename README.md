@@ -107,25 +107,29 @@ This is implemented in `./nixosModules/nvidia-ignore-ABI.nix`.
 
 # This part is optional
 
-## Replace the sources URL of xserver or drivers for further testing
+## Replace the sources URL of xserver or drivers as well as xserver meson flags for further testing
 All the sources of xserver and drivers are now located in `./consumer-overridable/fetchurl-sources.nix`.
 
-This file is now become a flake input "fetchurl-sources". Consumer can override the file by some inputs like:
+All the xserver meson build flags are now located in `./consumer-overridable/xserver-meson-flags.nix`.
+
+This two files are now become flake inputs `fetchurl-sources` and `xserver-meson-flags` respectivelay . Consumer can override the file by some inputs like:
 
 `inputs.xlibre-overlay.inputs.fetchurl-sources.follow = "your-own-flake-input-about-fetchurl-sources"`
 
-Example of configuration is in the below section.
+`inputs.xlibre-overlay.inputs.xserver-meson-flags.follow = "your-own-flake-input-about-xserver-meson-flags"`
 
-## Choose between two predefined drivers versions
-All the drivers overlays are defined in `./overlays/drivers`.
+Example of configuration is in the section below.
+
+## Choose between two predefined drivers versions (xlibre and legacy)
+All the sources of xserver and drivers are now located in `./consumer-overridable/fetchurl-sources.nix`.
 
 Most of the drivers there have two predefined version of overlay to choose from. I just do it for fun.
 
-One is from the latest tag on github (default), the other one is the latest tag right before the first xlibre tag was created (supposedly from xorg era) also from github.
+One is from the latest tag on github (default, xlibre), the other one is the latest tag right before the first xlibre tag was created (supposedly from xorg era) also from github. (legacy).
 
-It is optionl to choose between two predefined versions.
+It is optionl to choose between two predefined versions (xlibre and legacy).
 
-If it is untouched, it choose the latest tag on github by default (update manually by hand for now).
+If it is untouched, it choose the latest tag on github by default (xlibre).
 
 Extensive instructions of how to choose predefined version is located inside the comments section of `inputs` of `flake.nix`.
 
@@ -160,11 +164,6 @@ Example of NixOS `flake.nix` configuration for predefined drivers:
   };
 }
 ```
-
-(Since writing flakes is new to me, this is the only way I can think of to modify the things in the flake by users. I bet it must be other better way like options.)
-
-## Glamor
-Glamor is enabled by default. It can be disabled just with the method above ("Choose between two predefined drivers versions" section), but in this case to replace `xlibre-xserver-build-options` input in this flake with `xlibre-overlay.inputs.xlibre-xserver-build-options.follows` in user's flake.
 
 # Known issues
 It breaks some packages that were deeply integrated with Xorg.
