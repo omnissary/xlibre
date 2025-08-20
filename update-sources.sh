@@ -222,7 +222,7 @@ if [ ${#UPDATED_INDEXES[@]} -eq 0 ]; then
 else
   # Generating commit message before overwriting "$JSON_FILE"
   COMMIT_MESSAGE="$(
-    printf "\n%s\n" "Updated packages:"
+    printf "\n%s\n" "Updated package(s):"
     for i in "${UPDATED_INDEXES[@]}"; do
       PREFIX="$(jq -r ".[$i].PREFIX" "$JSON_FILE")"
       OLD_VERSION="$(jq -r ".[$i].VERSION" "$JSON_FILE")"
