@@ -40,6 +40,9 @@
                     # util-macros # provides xorg-macros
                     xorg.utilmacros
                   ];
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
               }
             );
           in

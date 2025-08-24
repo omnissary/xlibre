@@ -55,6 +55,9 @@
                       hash = "sha256-oVpGkjCrhXNx2xMJu05h9ddBpFzrrL/f6SnYrhRP7ak=";
                     })
                   ];
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
               }
             );
           in
