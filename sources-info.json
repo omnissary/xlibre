@@ -61,12 +61,12 @@
   },
   {
     "REPO": "xf86-video-ast",
-    "PREFIX": "xf86-video-ast",
+    "PREFIX": "xlibre-xf86-video-ast",
     "VERSION": "1.2.0"
   },
   {
     "REPO": "xf86-video-ati",
-    "PREFIX": "xfree-xf86-video-ati",
+    "PREFIX": "xlibre-xf86-video-ati",
     "VERSION": "22.0.0.1"
   },
   {
