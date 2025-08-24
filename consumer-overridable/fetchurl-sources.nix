@@ -25,19 +25,19 @@
       sha256 = "sha256-WOqL1S8nc1kGzFhSbd6/VcZ3WpzwlCSwDvn5pGxhVzI=";
     };
     xf86-input-keyboard = {
-      version = "2.1.0.1";
-      url = "https://github.com/X11Libre/xf86-input-keyboard/archive/refs/tags/xlibre-xf86-input-keyboard-2.1.0.1.tar.gz";
-      sha256 = "sha256-qJN3w2GMCAuZFb/3R8E4kZFiISrouwAvnVZ4HcPWPQU=";
+      version = "2.1.0.2";
+      url = "https://github.com/X11Libre/xf86-input-keyboard/archive/refs/tags/xlibre-xf86-input-keyboard-2.1.0.2.tar.gz";
+      sha256 = "sha256-bnLcW95iFdHappcDZ8qsJ6e49JHB6mswMJYKRzYWkRA=";
     };
     xf86-input-libinput = {
-      version = "1.5.0.1";
-      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.0.1.tar.gz";
-      sha256 = "sha256-IfH4sHYjFUu4MpCYaV0hs2iIsVqIJBi7WEUNMOXhtCM=";
+      version = "1.5.1.0";
+      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
+      sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
     };
     xf86-input-mouse = {
-      version = "1.9.5.1";
-      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xlibre-xf86-input-mouse-1.9.5.1.tar.gz";
-      sha256 = "sha256-930WP09cy1rNXMindEgvBQXQ2ECKTg2P8p8WXN5IvA4=";
+      version = "1.9.5.2";
+      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xlibre-xf86-input-mouse-1.9.5.2.tar.gz";
+      sha256 = "sha256-LbBo10H6tE0yOmnTCNdA5tjImlykN2VZ5kE07Scr1Sk=";
     };
     xf86-input-synaptics = {
       version = "1.10.0.1";
@@ -55,9 +55,9 @@
       sha256 = "sha256-jOVMyeS8qklzdCCBzE3pYVvJyP1TT04xuO/JLcFa3C4=";
     };
     xf86-input-wacom = {
-      version = "1.2.3.1";
-      url = "https://github.com/X11Libre/xf86-input-wacom/archive/refs/tags/xlibre-xf86-input-wacom-1.2.3.1.tar.gz";
-      sha256 = "sha256-lh97Ip555YWoW1m+OV5UOSwAo3ZiBN6Vr4MtL6WSB+0=";
+      version = "1.2.3.2";
+      url = "https://github.com/X11Libre/xf86-input-wacom/archive/refs/tags/xlibre-xf86-input-wacom-1.2.3.2.tar.gz";
+      sha256 = "sha256-jBlCy/kO6A1lBdEVurJ0YWgMYj16zd9r6TEiTqgXbDY=";
     };
     xf86-video-amdgpu = {
       version = "23.0.0.4";
@@ -65,14 +65,14 @@
       sha256 = "sha256-der76rdFpSJXQLdjZaeAU9ESTjkmjGJsfiC71ypEbek=";
     };
     xf86-video-ast = {
-      version = "1.2.0";
-      url = "https://github.com/X11Libre/xf86-video-ast/archive/refs/tags/xf86-video-ast-1.2.0.tar.gz";
-      sha256 = "sha256-8ttga6ZC22Q5uFJPp7BwHqBy1ZlLzU5BHHTTiA/X40k=";
+      version = "1.2.0.1";
+      url = "https://github.com/X11Libre/xf86-video-ast/archive/refs/tags/xlibre-xf86-video-ast-1.2.0.1.tar.gz";
+      sha256 = "sha256-FPLC6bjJWmFjq0AElZ+7tpC85Tq/SyJUJxz6H3IhgvA=";
     };
     xf86-video-ati = {
-      version = "22.0.0.1";
-      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xfree-xf86-video-ati-22.0.0.1.tar.gz";
-      sha256 = "sha256-5nIzXmw9qqeGmuWXJBl6euK0PIBeZSg5XwRzAoYvZUE=";
+      version = "22.0.0.2";
+      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xlibre-xf86-video-ati-22.0.0.2.tar.gz";
+      sha256 = "sha256-9rc21GL1mqXCOWDSV5/sV1IV+QxEVXfG+rJJBEehlXk=";
     };
     xf86-video-dummy = {
       version = "0.4.1.1";

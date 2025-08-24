@@ -61,6 +61,11 @@
                           hash = "sha256-Ya6GzxVlNRAcLwW/mNF7GLYMnSxeyegMbZhtLlSzajM=";
                         })
                       ];
+
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
+
                 # Bring back linux support.
                 # In nixpkgs it was overrided by "platforms = lib.platforms.freebsd ++ lib.platforms.netbsd ++ lib.platforms.openbsd;" in /pkgs/servers/x11/xorg/overrides.nix
                 meta.platform = prevAttrs.meta.platform ++ lib.platforms.linux;
