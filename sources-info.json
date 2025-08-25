@@ -7,12 +7,12 @@
   {
     "REPO": "xf86-input-elographics",
     "PREFIX": "xlibre-xf86-input-elographics",
-    "VERSION": "1.4.4.1"
+    "VERSION": "1.4.4.2"
   },
   {
     "REPO": "xf86-input-evdev",
     "PREFIX": "xlibre-xf86-input-evdev",
-    "VERSION": "2.11.0.1"
+    "VERSION": "2.11.0.2"
   },
   {
     "REPO": "xf86-input-joystick",
@@ -37,17 +37,17 @@
   {
     "REPO": "xf86-input-synaptics",
     "PREFIX": "xlibre-xf86-input-synaptics",
-    "VERSION": "1.10.0.1"
+    "VERSION": "1.10.0.2"
   },
   {
     "REPO": "xf86-input-vmmouse",
     "PREFIX": "xlibre-xf86-input-vmmouse",
-    "VERSION": "13.2.0.1"
+    "VERSION": "13.2.0.2"
   },
   {
     "REPO": "xf86-input-void",
     "PREFIX": "xlibre-xf86-input-void",
-    "VERSION": "1.4.2.1"
+    "VERSION": "1.4.2.2"
   },
   {
     "REPO": "xf86-input-wacom",
@@ -72,12 +72,12 @@
   {
     "REPO": "xf86-video-dummy",
     "PREFIX": "xlibre-xf86-video-dummy",
-    "VERSION": "0.4.1.1"
+    "VERSION": "0.4.1.2"
   },
   {
     "REPO": "xf86-video-fbdev",
     "PREFIX": "xlibre-xf86-video-fbdev",
-    "VERSION": "0.5.1.1"
+    "VERSION": "0.5.1.2"
   },
   {
     "REPO": "xf86-video-geode",
@@ -97,7 +97,7 @@
   {
     "REPO": "xf86-video-nouveau",
     "PREFIX": "xlibre-xf86-video-nouveau",
-    "VERSION": "1.0.18.1"
+    "VERSION": "1.0.18.2"
   },
   {
     "REPO": "xf86-video-nv",
@@ -107,7 +107,7 @@
   {
     "REPO": "xf86-video-qxl",
     "PREFIX": "xlibre-xf86-video-qxl",
-    "VERSION": "0.1.6.1"
+    "VERSION": "0.1.6.2"
   },
   {
     "REPO": "xf86-video-r128",
@@ -122,11 +122,11 @@
   {
     "REPO": "xf86-video-vesa",
     "PREFIX": "xlibre-xf86-video-vesa",
-    "VERSION": "2.6.0.1"
+    "VERSION": "2.6.0.2"
   },
   {
     "REPO": "xf86-video-vmware",
     "PREFIX": "xlibre-xf86-video-vmware",
-    "VERSION": "13.4.0.1"
+    "VERSION": "13.4.0.2"
   }
 ]
