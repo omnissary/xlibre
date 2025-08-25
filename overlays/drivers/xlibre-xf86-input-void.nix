@@ -47,7 +47,11 @@
                 # # > ./configure: line 20409: `XORG_DRIVER_CHECK_EXT(RANDR, randrproto)'
                 # # https://wiki.nixos.org/wiki/Packaging/Quirks_and_Caveats#Configure_Scripts_that_are_using_pkg-config
                 # buildInputs = with prev; prevAttrs.buildInputs or [ ] ++ [ autoreconfHook ];
-                #
+
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
+
               }
             );
           in

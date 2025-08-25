@@ -62,6 +62,11 @@
               ++ [
                 autoreconfHook
               ];
+
+            configureFlags = [
+              "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+            ];
+
             passthru.tests.pkg-config = prev.testers.testMetaPkgConfig finalAttrs.finalPackage;
             meta = {
               pkgConfigModules = [ "xorg-elographics" ];
