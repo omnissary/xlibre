@@ -11,6 +11,24 @@
     }:
     let
       packages-reference = import (self + /packages-reference.nix);
+
+      f1 = (
+        name: value:
+        if name != "xlibre-xf86-input-wacom" then # this pkgs not in xorg
+          lib.nameValuePair (name) (pkgs.xorg.${value})
+        else
+          lib.nameValuePair (name) (pkgs.${value})
+      );
+      # f2 = (name: value: lib.nameValuePair (value) (inputs'.nixpkgs.legacyPackages.xorg.${value}));
+      packages-unfiltered = {
+        default = pkgs.xorg.xorgserver; # overlayed as xlibre-xserver
+      }
+      // lib.mapAttrs' f1 packages-reference
+      # This is actually unnecessary. This only pull normal drivers from nixpkgs without overlay
+      # "xf86inputelographics" does not exist in nixpkgs
+      # // lib.mapAttrs' f2 (lib.filterAttrs (name: value: value != "xf86inputelographics") packages-reference)
+      #
+      ;
     in
     {
       # https://flake.parts/overlays.html#consuming-an-overlay
@@ -35,26 +53,12 @@
       };
 
       packages =
-        let
-          inherit (inputs.nixpkgs) lib;
-          f1 = (
-            name: value:
-            if name != "xlibre-xf86-input-wacom" then # this pkgs not in xorg
-              lib.nameValuePair (name) (pkgs.xorg.${value})
-            else
-              lib.nameValuePair (name) (pkgs.${value})
-          );
-          # f2 = (name: value: lib.nameValuePair (value) (inputs'.nixpkgs.legacyPackages.xorg.${value}));
-        in
-        {
-          default = self'.packages.xlibre-xserver;
-        }
-        // lib.mapAttrs' f1 packages-reference
-      # This is actually unnecessary. This only pull normal drivers from nixpkgs without overlay
-      # "xf86inputelographics" does not exist in nixpkgs
-      # // lib.mapAttrs' f2 (lib.filterAttrs (name: value: value != "xf86inputelographics") packages-reference)
-      #
-      ;
+        # Filter and only add to perSystem packages according to system ( when meta.unsupported = false;)
+        lib.filterAttrs (name: value: lib.isDerivation value && !value.meta.unsupported) packages-unfiltered;
+
+      checks =
+        # Filter and only add to perSystem packages according to system ( when meta.unsupported = false;)
+        lib.filterAttrs (name: value: lib.isDerivation value && !value.meta.unsupported) packages-unfiltered;
 
       # ABOVE EQUIVALENT TO:
       /*

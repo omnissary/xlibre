@@ -73,12 +73,12 @@
       {
         imports =
           # Part 1.
-          # The most important package in packages.nix is xlibre-xserver.
+          # The most important package in packages-and-checks.nix is xlibre-xserver.
           # Others just for build test. This expose the overlayed
           # xlibre-xserver package (defined in ./overlays/xlibre-xserver.nix (Part 2 below)).
           # It is injected into the rest of xlibre drivers overlay (by nixpkgs'
           # "override"), for them to build against xlibre-server in this flake.
-          [ ./packages.nix ]
+          [ ./packages-and-checks.nix ]
           # Part 2.
           # These files just define how the packages should be overlayed.
           ++ [ ./overlays/xlibre-xserver.nix ]

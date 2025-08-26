@@ -57,6 +57,10 @@
                     })
                   ];
 
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
+
               }
             );
           in
