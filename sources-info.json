@@ -112,12 +112,12 @@
   {
     "REPO": "xf86-video-r128",
     "PREFIX": "xlibre-xf86-video-r128",
-    "VERSION": "6.13.0.1"
+    "VERSION": "6.13.0.2"
   },
   {
     "REPO": "xf86-video-siliconmotion",
     "PREFIX": "xlibre-xf86-video-siliconmotion",
-    "VERSION": "1.7.10.1"
+    "VERSION": "1.7.10.2"
   },
   {
     "REPO": "xf86-video-vesa",
