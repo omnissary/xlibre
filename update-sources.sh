@@ -19,7 +19,12 @@ VERSIONS=()
 UPDATED_INDEXES=()
 
 get_version() {
-  curl -sSL "https://api.github.com/repos/X11Libre/$1/tags" | jq -r '.[].name' | grep "$2" | sed -e "s/^.*$2-//" | sort -rn | head -1
+  # https://stackoverflow.com/questions/4493205/unix-sort-of-version-numbers
+  #  use "sort -rV"
+  #  or use "sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr"
+  curl -sSL "https://api.github.com/repos/X11Libre/$1/tags" | jq -r '.[].name' | grep "$2" | sed -e "s/^.*$2-//" | \
+    sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr | \
+    head -1
 }
 
 get_sha256() {
