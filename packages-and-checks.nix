@@ -54,11 +54,15 @@
 
       packages =
         # Filter and only add to perSystem packages according to system ( when meta.unsupported = false;)
-        lib.filterAttrs (name: value: lib.isDerivation value && !value.meta.unsupported) packages-unfiltered;
+        lib.filterAttrs (
+          name: value: lib.isDerivation value && !value.meta.unsupported
+        ) packages-unfiltered;
 
       checks =
         # Filter and only add to perSystem packages according to system ( when meta.unsupported = false;)
-        lib.filterAttrs (name: value: lib.isDerivation value && !value.meta.unsupported) packages-unfiltered;
+        lib.filterAttrs (
+          name: value: lib.isDerivation value && !value.meta.unsupported
+        ) packages-unfiltered;
 
       # ABOVE EQUIVALENT TO:
       /*
