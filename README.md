@@ -4,6 +4,8 @@
 # Welcome
 This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
+`xlibre-xserver` and all the drivers in this flake are provided by [XLibre](https://github.com/X11Libre).
+
 Things might change at any time and breaking changes may happen.
 
 The code is not good I know. Feel free to help me improve this flake!
