@@ -1,4 +1,4 @@
-# 🏳️‍⚧️ XLibre-overlay: Transformation of the (already Trans) Xorg server in NixOS 💪
+# XLibre-overlay
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
 # Welcome
