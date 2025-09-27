@@ -2,7 +2,7 @@
   {
     "REPO": "xserver",
     "PREFIX": "xlibre-xserver",
-    "VERSION": "25.0.0.11"
+    "VERSION": "25.0.0.12"
   },
   {
     "REPO": "xf86-input-elographics",
@@ -57,7 +57,7 @@
   {
     "REPO": "xf86-video-amdgpu",
     "PREFIX": "xlibre-xf86-video-amdgpu",
-    "VERSION": "23.0.0.4"
+    "VERSION": "23.0.0.5"
   },
   {
     "REPO": "xf86-video-ast",
@@ -67,7 +67,7 @@
   {
     "REPO": "xf86-video-ati",
     "PREFIX": "xlibre-xf86-video-ati",
-    "VERSION": "22.0.0.2"
+    "VERSION": "22.0.0.3"
   },
   {
     "REPO": "xf86-video-dummy",
@@ -87,7 +87,7 @@
   {
     "REPO": "xf86-video-intel",
     "PREFIX": "xlibre-xf86-video-intel",
-    "VERSION": "3.0.0.2"
+    "VERSION": "3.0.0.4"
   },
   {
     "REPO": "xf86-video-mga",
@@ -97,7 +97,7 @@
   {
     "REPO": "xf86-video-nouveau",
     "PREFIX": "xlibre-xf86-video-nouveau",
-    "VERSION": "1.0.18.2"
+    "VERSION": "1.0.18.3"
   },
   {
     "REPO": "xf86-video-nv",
@@ -122,11 +122,11 @@
   {
     "REPO": "xf86-video-vesa",
     "PREFIX": "xlibre-xf86-video-vesa",
-    "VERSION": "2.6.0.2"
+    "VERSION": "2.6.0.3"
   },
   {
     "REPO": "xf86-video-vmware",
     "PREFIX": "xlibre-xf86-video-vmware",
-    "VERSION": "13.4.0.2"
+    "VERSION": "13.4.0.3"
   }
 ]
