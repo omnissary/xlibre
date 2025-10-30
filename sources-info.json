@@ -2,7 +2,7 @@
   {
     "REPO": "xserver",
     "PREFIX": "xlibre-xserver",
-    "VERSION": "25.0.0.12"
+    "VERSION": "25.0.0.14"
   },
   {
     "REPO": "xf86-input-elographics",
@@ -17,7 +17,7 @@
   {
     "REPO": "xf86-input-joystick",
     "PREFIX": "xlibre-xf86-input-joystick",
-    "VERSION": "1.6.4.1"
+    "VERSION": "1.6.4.2"
   },
   {
     "REPO": "xf86-input-keyboard",
@@ -92,7 +92,7 @@
   {
     "REPO": "xf86-video-mga",
     "PREFIX": "xlibre-xf86-video-mga",
-    "VERSION": "2.1.0.1"
+    "VERSION": "2.1.0.2"
   },
   {
     "REPO": "xf86-video-nouveau",
@@ -102,7 +102,7 @@
   {
     "REPO": "xf86-video-nv",
     "PREFIX": "xlibre-xf86-video-nv",
-    "VERSION": "2.1.23.1"
+    "VERSION": "2.1.23.2"
   },
   {
     "REPO": "xf86-video-qxl",
