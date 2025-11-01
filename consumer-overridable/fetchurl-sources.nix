@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.0.0.12";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.12.tar.gz";
-      sha256 = "sha256-MsV2BoHL+8O4pgWhhYjJxd1yGuz0CswUD76LT3ZcThM=";
+      version = "25.0.0.14";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.14.tar.gz";
+      sha256 = "sha256-7lNETZbbdsjB4ebuhsVAUMnADmBm+Lj6xIGc6SNppJ8=";
     };
 
     # drivers
@@ -20,9 +20,9 @@
       sha256 = "sha256-cKimXsVsznBXuEkfaHRMaIPevodQlIuykK57HD7Cjfw=";
     };
     xf86-input-joystick = {
-      version = "1.6.4.1";
-      url = "https://github.com/X11Libre/xf86-input-joystick/archive/refs/tags/xlibre-xf86-input-joystick-1.6.4.1.tar.gz";
-      sha256 = "sha256-WOqL1S8nc1kGzFhSbd6/VcZ3WpzwlCSwDvn5pGxhVzI=";
+      version = "1.6.4.2";
+      url = "https://github.com/X11Libre/xf86-input-joystick/archive/refs/tags/xlibre-xf86-input-joystick-1.6.4.2.tar.gz";
+      sha256 = "sha256-/dmUkV6X/lGlIXmK9b/fvj3V0vEASKZTWGF7TDR6WqE=";
     };
     xf86-input-keyboard = {
       version = "2.1.0.2";
@@ -95,9 +95,9 @@
       sha256 = "sha256-iSSC155eFqPjEqUuhjpcjVzYWGJtbpiKRZsr7CKyRy0=";
     };
     xf86-video-mga = {
-      version = "2.1.0.1";
-      url = "https://github.com/X11Libre/xf86-video-mga/archive/refs/tags/xlibre-xf86-video-mga-2.1.0.1.tar.gz";
-      sha256 = "sha256-IG7jP7Dz2m7RPJ54GK5qb6SRlajZK7YGyRX1Rgvf0yI=";
+      version = "2.1.0.2";
+      url = "https://github.com/X11Libre/xf86-video-mga/archive/refs/tags/xlibre-xf86-video-mga-2.1.0.2.tar.gz";
+      sha256 = "sha256-wqKqPDwxKw34eLKvExUVfsKwrZvH+AyQ6x9RwnOrMuo=";
     };
     xf86-video-nouveau = {
       version = "1.0.18.3";
@@ -105,9 +105,9 @@
       sha256 = "sha256-/dLRSS7JuAKYy2L8144BsZu1SlB3q363UQcm57yiiMQ=";
     };
     xf86-video-nv = {
-      version = "2.1.23.1";
-      url = "https://github.com/X11Libre/xf86-video-nv/archive/refs/tags/xlibre-xf86-video-nv-2.1.23.1.tar.gz";
-      sha256 = "sha256-VbhHhCo37EuqUqehd1mAaAGs2Z9B1s3tM6owdX8nZCE=";
+      version = "2.1.23.2";
+      url = "https://github.com/X11Libre/xf86-video-nv/archive/refs/tags/xlibre-xf86-video-nv-2.1.23.2.tar.gz";
+      sha256 = "sha256-0MVSiKHo/of2XquzBPXS635df66jwd5eZOrISJ3nixs=";
     };
     xf86-video-qxl = {
       version = "0.1.6.2";
