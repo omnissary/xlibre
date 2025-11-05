@@ -10,6 +10,12 @@ Things might change at any time and breaking changes may happen.
 
 The code is not good I know. Feel free to help me improve this flake!
 
+### Maintenance
+
+This project now is basically in maintenance mode: i.e. running the `update-sources.sh` script to get the latest release of xlibre-xserver or drivers when it is available and running `build-test.sh` and fix drivers that cannot be build.
+
+If I cannot catch up with the latest release, you can also do it yourself by forking the project.
+
 # Prerequisites
 Flake is an experimental feature and it is required to be enabled.
 
