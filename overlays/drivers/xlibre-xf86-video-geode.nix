@@ -48,6 +48,10 @@
                 # https://wiki.nixos.org/wiki/Packaging/Quirks_and_Caveats#Configure_Scripts_that_are_using_pkg-config
                 buildInputs = with prev; prevAttrs.buildInputs or [ ] ++ [ autoreconfHook ];
 
+                configureFlags = prevAttrs.configureFlags or [ ] ++ [
+                  "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
+                ];
+
                 meta = prevAttrs.meta // {
                   broken = false; # this is marked as broken in /pkgs/servers/x11/xorg/overrides.nix in nixpkgs
                 };
