@@ -45,9 +45,9 @@
       sha256 = "sha256-PmvIRT9flXB02yixLkgm72WrAX4N1eNKKdV2ks4Mf+U=";
     };
     xf86-input-vmmouse = {
-      version = "13.2.0.2";
-      url = "https://github.com/X11Libre/xf86-input-vmmouse/archive/refs/tags/xlibre-xf86-input-vmmouse-13.2.0.2.tar.gz";
-      sha256 = "sha256-hKyoSgy+P8u01RcbAxT+biv5iZKuM/xlfdChxDtI/rE=";
+      version = "13.2.0.3";
+      url = "https://github.com/X11Libre/xf86-input-vmmouse/archive/refs/tags/xlibre-xf86-input-vmmouse-13.2.0.3.tar.gz";
+      sha256 = "sha256-Mm6U5r/i/BOHwz9K4clkcpZGwZOeR0ivPQ4eUCTHzn8=";
     };
     xf86-input-void = {
       version = "1.4.2.2";
@@ -60,9 +60,9 @@
       sha256 = "sha256-jBlCy/kO6A1lBdEVurJ0YWgMYj16zd9r6TEiTqgXbDY=";
     };
     xf86-video-amdgpu = {
-      version = "23.0.0.5";
-      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xlibre-xf86-video-amdgpu-23.0.0.5.tar.gz";
-      sha256 = "sha256-olW/RGJyqHkH6goTJ0U23MZYmMIj+kKqmv1SAHrSMgk=";
+      version = "23.0.0.6";
+      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xlibre-xf86-video-amdgpu-23.0.0.6.tar.gz";
+      sha256 = "sha256-J8bMCo4CRRfM+cBEuE/vcOuaQ8MowUfd6yJR4wpa8Ew=";
     };
     xf86-video-ast = {
       version = "1.2.0.1";
@@ -85,9 +85,9 @@
       sha256 = "sha256-BRJ+9TS+928Q7qOtWD/TZCQ807uVZYSrIDyo/Fj7l5M=";
     };
     xf86-video-geode = {
-      version = "2.18.1.1";
-      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xlibre-xf86-video-geode-2.18.1.1.tar.gz";
-      sha256 = "sha256-+ggm2jJYYiPIbd3s6Uaohsl2fRhrfcEVARxafnSVor4=";
+      version = "2.18.1.2";
+      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xlibre-xf86-video-geode-2.18.1.2.tar.gz";
+      sha256 = "sha256-SRqZPWIz2tK751kTXe/B6VFB91QS+vZ7adKOJh/acmQ=";
     };
     xf86-video-intel = {
       version = "3.0.0.4";
@@ -115,9 +115,9 @@
       sha256 = "sha256-JVQrenI5ya8y2hkMkyUbyz5ZpHVQ8mZlGVuvNtbVHY4=";
     };
     xf86-video-r128 = {
-      version = "6.13.0.2";
-      url = "https://github.com/X11Libre/xf86-video-r128/archive/refs/tags/xlibre-xf86-video-r128-6.13.0.2.tar.gz";
-      sha256 = "sha256-Hl5q0RDaflHN+dRDkcGlXeKRBre5VCCm4bnWI0pg4yM=";
+      version = "6.13.0.3";
+      url = "https://github.com/X11Libre/xf86-video-r128/archive/refs/tags/xlibre-xf86-video-r128-6.13.0.3.tar.gz";
+      sha256 = "sha256-zLI1PFWwK6tBHSLduHOo2J8p37ywVAXotTX+X25Fe+g=";
     };
     xf86-video-siliconmotion = {
       version = "1.7.10.2";
@@ -125,9 +125,9 @@
       sha256 = "sha256-fMN51VXNLylZV1dC7uMF8XcnuIcy66Dn1EPcJdony00=";
     };
     xf86-video-vesa = {
-      version = "2.6.0.3";
-      url = "https://github.com/X11Libre/xf86-video-vesa/archive/refs/tags/xlibre-xf86-video-vesa-2.6.0.3.tar.gz";
-      sha256 = "sha256-cTfCvdnikK/4NWXXe4QqIJsTh3Z4XHRc98DRDJ8l/o8=";
+      version = "2.6.0.4";
+      url = "https://github.com/X11Libre/xf86-video-vesa/archive/refs/tags/xlibre-xf86-video-vesa-2.6.0.4.tar.gz";
+      sha256 = "sha256-yH6CGyqJyzxIfBMGvxksV/Pbt3XzQET8LjK5X9lXP90=";
     };
     xf86-video-vmware = {
       version = "13.4.0.3";
