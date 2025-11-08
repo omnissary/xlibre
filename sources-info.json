@@ -42,7 +42,7 @@
   {
     "REPO": "xf86-input-vmmouse",
     "PREFIX": "xlibre-xf86-input-vmmouse",
-    "VERSION": "13.2.0.2"
+    "VERSION": "13.2.0.3"
   },
   {
     "REPO": "xf86-input-void",
@@ -57,7 +57,7 @@
   {
     "REPO": "xf86-video-amdgpu",
     "PREFIX": "xlibre-xf86-video-amdgpu",
-    "VERSION": "23.0.0.5"
+    "VERSION": "23.0.0.6"
   },
   {
     "REPO": "xf86-video-ast",
@@ -82,7 +82,7 @@
   {
     "REPO": "xf86-video-geode",
     "PREFIX": "xlibre-xf86-video-geode",
-    "VERSION": "2.18.1.1"
+    "VERSION": "2.18.1.2"
   },
   {
     "REPO": "xf86-video-intel",
@@ -112,7 +112,7 @@
   {
     "REPO": "xf86-video-r128",
     "PREFIX": "xlibre-xf86-video-r128",
-    "VERSION": "6.13.0.2"
+    "VERSION": "6.13.0.3"
   },
   {
     "REPO": "xf86-video-siliconmotion",
@@ -122,7 +122,7 @@
   {
     "REPO": "xf86-video-vesa",
     "PREFIX": "xlibre-xf86-video-vesa",
-    "VERSION": "2.6.0.3"
+    "VERSION": "2.6.0.4"
   },
   {
     "REPO": "xf86-video-vmware",
