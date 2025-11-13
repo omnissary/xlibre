@@ -2,7 +2,7 @@
   {
     "REPO": "xserver",
     "PREFIX": "xlibre-xserver",
-    "VERSION": "25.0.0.14"
+    "VERSION": "25.0.0.15"
   },
   {
     "REPO": "xf86-input-elographics",
@@ -32,7 +32,7 @@
   {
     "REPO": "xf86-input-mouse",
     "PREFIX": "xlibre-xf86-input-mouse",
-    "VERSION": "1.9.5.2"
+    "VERSION": "1.9.5.3"
   },
   {
     "REPO": "xf86-input-synaptics",
