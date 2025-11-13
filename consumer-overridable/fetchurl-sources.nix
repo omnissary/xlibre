@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.0.0.14";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.14.tar.gz";
-      sha256 = "sha256-7lNETZbbdsjB4ebuhsVAUMnADmBm+Lj6xIGc6SNppJ8=";
+      version = "25.0.0.15";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.15.tar.gz";
+      sha256 = "sha256-zrvkgjKKPcBLjXTgyoH4SafvGj3UYnX1XzIY+11g5fM=";
     };
 
     # drivers
@@ -35,9 +35,9 @@
       sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
     };
     xf86-input-mouse = {
-      version = "1.9.5.2";
-      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xlibre-xf86-input-mouse-1.9.5.2.tar.gz";
-      sha256 = "sha256-LbBo10H6tE0yOmnTCNdA5tjImlykN2VZ5kE07Scr1Sk=";
+      version = "1.9.5.3";
+      url = "https://github.com/X11Libre/xf86-input-mouse/archive/refs/tags/xlibre-xf86-input-mouse-1.9.5.3.tar.gz";
+      sha256 = "sha256-iXXD9v+eUDPqcYCgX6zF+cs2bv+44HjcYkuytnOVuro=";
     };
     xf86-input-synaptics = {
       version = "1.10.0.2";
