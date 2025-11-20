@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-joystick";
-            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputjoystick-overrideAttrs = prev.xorg.xf86inputjoystick.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";

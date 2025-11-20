@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.0.0.15";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.15.tar.gz";
-      sha256 = "sha256-zrvkgjKKPcBLjXTgyoH4SafvGj3UYnX1XzIY+11g5fM=";
+      version = "25.0.0.16";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.0.0.16.tar.gz";
+      sha256 = "sha256-AYflczHa76dd3DOk+HjvTAhSa4PckdvFGiU3XS/zO4w=";
     };
 
     # drivers
@@ -75,9 +75,9 @@
       sha256 = "sha256-TZkldm8Y0kS45dLjyHN7nPuMhutIq3pqpkmZKsg2tE8=";
     };
     xf86-video-dummy = {
-      version = "0.4.1.2";
-      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xlibre-xf86-video-dummy-0.4.1.2.tar.gz";
-      sha256 = "sha256-hd8Jm0siq0GyXIUPRHQQkr5E0gGZSj2JY/2Zf23TZb4=";
+      version = "0.4.1.3";
+      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xlibre-xf86-video-dummy-0.4.1.3.tar.gz";
+      sha256 = "sha256-6PvpHlAwPzMh+dbuN0TTgW8KJlPhSckfi60Ns4yJdLM=";
     };
     xf86-video-fbdev = {
       version = "0.5.1.2";
@@ -85,9 +85,9 @@
       sha256 = "sha256-BRJ+9TS+928Q7qOtWD/TZCQ807uVZYSrIDyo/Fj7l5M=";
     };
     xf86-video-geode = {
-      version = "2.18.1.2";
-      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xlibre-xf86-video-geode-2.18.1.2.tar.gz";
-      sha256 = "sha256-SRqZPWIz2tK751kTXe/B6VFB91QS+vZ7adKOJh/acmQ=";
+      version = "2.18.1.3";
+      url = "https://github.com/X11Libre/xf86-video-geode/archive/refs/tags/xlibre-xf86-video-geode-2.18.1.3.tar.gz";
+      sha256 = "sha256-iFp7B+/Rs62J0+cXuZscr6SLFnW4A7VN/2vSJS+AqxE=";
     };
     xf86-video-intel = {
       version = "3.0.0.4";
@@ -110,9 +110,9 @@
       sha256 = "sha256-0MVSiKHo/of2XquzBPXS635df66jwd5eZOrISJ3nixs=";
     };
     xf86-video-qxl = {
-      version = "0.1.6.2";
-      url = "https://github.com/X11Libre/xf86-video-qxl/archive/refs/tags/xlibre-xf86-video-qxl-0.1.6.2.tar.gz";
-      sha256 = "sha256-JVQrenI5ya8y2hkMkyUbyz5ZpHVQ8mZlGVuvNtbVHY4=";
+      version = "0.1.6.3";
+      url = "https://github.com/X11Libre/xf86-video-qxl/archive/refs/tags/xlibre-xf86-video-qxl-0.1.6.3.tar.gz";
+      sha256 = "sha256-PgL4IlEPE1BI4U1CTclpxyRb44HDmEfQkq6iNgNItOo=";
     };
     xf86-video-r128 = {
       version = "6.13.0.3";

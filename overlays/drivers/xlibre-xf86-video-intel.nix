@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-intel";
-            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videointel-overrideAttrs = prev.xorg.xf86videointel.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";

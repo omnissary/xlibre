@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-keyboard";
-            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputkeyboard-overrideAttrs = prev.xorg.xf86inputkeyboard.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
