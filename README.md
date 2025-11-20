@@ -85,7 +85,8 @@ Example of `flake.nix` configuration:
 
           # Trying to solve the problem of Nvidia proprietary drivers (set `Option "IgnoreABI" "true"` in Xorg config)
           # This was also mentioned in X11Libre/xserver repo README.md
-          inputs.xlibre-overlay.nixosModules.nvidia-ignore-ABI
+          # Starting from xlibre-xserver version 25.0.0.16, this is no longer required
+          # inputs.xlibre-overlay.nixosModules.nvidia-ignore-ABI
         ];
         # ...
       };
