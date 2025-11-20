@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-geode";
-            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videogeode-overrideAttrs = prev.xorg.xf86videogeode.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";

@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-mga";
-            xorgserver = self.packages.${prev.system}.xlibre-xserver;
+            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videomga-overrideAttrs = prev.xorg.xf86videomga.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
