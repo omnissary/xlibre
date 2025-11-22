@@ -70,14 +70,14 @@
       sha256 = "sha256-FPLC6bjJWmFjq0AElZ+7tpC85Tq/SyJUJxz6H3IhgvA=";
     };
     xf86-video-ati = {
-      version = "22.0.0.3";
-      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xlibre-xf86-video-ati-22.0.0.3.tar.gz";
-      sha256 = "sha256-TZkldm8Y0kS45dLjyHN7nPuMhutIq3pqpkmZKsg2tE8=";
+      version = "22.0.0.4";
+      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xlibre-xf86-video-ati-22.0.0.4.tar.gz";
+      sha256 = "sha256-8jv/X5opnksifB7UYSRnlZKvJerLJouFhjInLSgW9Os=";
     };
     xf86-video-dummy = {
-      version = "0.4.1.3";
-      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xlibre-xf86-video-dummy-0.4.1.3.tar.gz";
-      sha256 = "sha256-6PvpHlAwPzMh+dbuN0TTgW8KJlPhSckfi60Ns4yJdLM=";
+      version = "0.4.1.4";
+      url = "https://github.com/X11Libre/xf86-video-dummy/archive/refs/tags/xlibre-xf86-video-dummy-0.4.1.4.tar.gz";
+      sha256 = "sha256-YcmDWEWxHIAA+2o+aQdROoxllLpZRLdYhypyQWvFeIs=";
     };
     xf86-video-fbdev = {
       version = "0.5.1.2";
@@ -100,9 +100,9 @@
       sha256 = "sha256-wqKqPDwxKw34eLKvExUVfsKwrZvH+AyQ6x9RwnOrMuo=";
     };
     xf86-video-nouveau = {
-      version = "1.0.18.3";
-      url = "https://github.com/X11Libre/xf86-video-nouveau/archive/refs/tags/xlibre-xf86-video-nouveau-1.0.18.3.tar.gz";
-      sha256 = "sha256-/dLRSS7JuAKYy2L8144BsZu1SlB3q363UQcm57yiiMQ=";
+      version = "1.0.18.4";
+      url = "https://github.com/X11Libre/xf86-video-nouveau/archive/refs/tags/xlibre-xf86-video-nouveau-1.0.18.4.tar.gz";
+      sha256 = "sha256-195o1P/29N1Ss5j+tBzdoZGgGsWUF6QiJP/9j1XFwC4=";
     };
     xf86-video-nv = {
       version = "2.1.23.2";

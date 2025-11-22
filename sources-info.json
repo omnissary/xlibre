@@ -67,12 +67,12 @@
   {
     "REPO": "xf86-video-ati",
     "PREFIX": "xlibre-xf86-video-ati",
-    "VERSION": "22.0.0.3"
+    "VERSION": "22.0.0.4"
   },
   {
     "REPO": "xf86-video-dummy",
     "PREFIX": "xlibre-xf86-video-dummy",
-    "VERSION": "0.4.1.3"
+    "VERSION": "0.4.1.4"
   },
   {
     "REPO": "xf86-video-fbdev",
@@ -97,7 +97,7 @@
   {
     "REPO": "xf86-video-nouveau",
     "PREFIX": "xlibre-xf86-video-nouveau",
-    "VERSION": "1.0.18.3"
+    "VERSION": "1.0.18.4"
   },
   {
     "REPO": "xf86-video-nv",
