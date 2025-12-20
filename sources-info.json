@@ -2,131 +2,131 @@
   {
     "REPO": "xserver",
     "PREFIX": "xlibre-xserver",
-    "VERSION": "25.0.0.16"
+    "VERSION": "25.0.0.18"
   },
   {
     "REPO": "xf86-input-elographics",
     "PREFIX": "xlibre-xf86-input-elographics",
-    "VERSION": "1.4.4.2"
+    "VERSION": "25.0.1"
   },
   {
     "REPO": "xf86-input-evdev",
     "PREFIX": "xlibre-xf86-input-evdev",
-    "VERSION": "2.11.0.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-joystick",
     "PREFIX": "xlibre-xf86-input-joystick",
-    "VERSION": "1.6.4.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-keyboard",
     "PREFIX": "xlibre-xf86-input-keyboard",
-    "VERSION": "2.1.0.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-libinput",
     "PREFIX": "xlibre-xf86-input-libinput",
-    "VERSION": "1.5.1.0"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-mouse",
     "PREFIX": "xlibre-xf86-input-mouse",
-    "VERSION": "1.9.5.3"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-synaptics",
     "PREFIX": "xlibre-xf86-input-synaptics",
-    "VERSION": "1.10.0.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-vmmouse",
     "PREFIX": "xlibre-xf86-input-vmmouse",
-    "VERSION": "13.2.0.3"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-void",
     "PREFIX": "xlibre-xf86-input-void",
-    "VERSION": "1.4.2.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-input-wacom",
     "PREFIX": "xlibre-xf86-input-wacom",
-    "VERSION": "1.2.3.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-amdgpu",
     "PREFIX": "xlibre-xf86-video-amdgpu",
-    "VERSION": "23.0.0.6"
+    "VERSION": "25.0.1"
   },
   {
     "REPO": "xf86-video-ast",
     "PREFIX": "xlibre-xf86-video-ast",
-    "VERSION": "1.2.0.1"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-ati",
     "PREFIX": "xlibre-xf86-video-ati",
-    "VERSION": "22.0.0.4"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-dummy",
     "PREFIX": "xlibre-xf86-video-dummy",
-    "VERSION": "0.4.1.4"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-fbdev",
     "PREFIX": "xlibre-xf86-video-fbdev",
-    "VERSION": "0.5.1.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-geode",
     "PREFIX": "xlibre-xf86-video-geode",
-    "VERSION": "2.18.1.3"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-intel",
     "PREFIX": "xlibre-xf86-video-intel",
-    "VERSION": "3.0.0.4"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-mga",
     "PREFIX": "xlibre-xf86-video-mga",
-    "VERSION": "2.1.0.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-nouveau",
     "PREFIX": "xlibre-xf86-video-nouveau",
-    "VERSION": "1.0.18.4"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-nv",
     "PREFIX": "xlibre-xf86-video-nv",
-    "VERSION": "2.1.23.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-qxl",
     "PREFIX": "xlibre-xf86-video-qxl",
-    "VERSION": "0.1.6.3"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-r128",
     "PREFIX": "xlibre-xf86-video-r128",
-    "VERSION": "6.13.0.3"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-siliconmotion",
     "PREFIX": "xlibre-xf86-video-siliconmotion",
-    "VERSION": "1.7.10.2"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-vesa",
     "PREFIX": "xlibre-xf86-video-vesa",
-    "VERSION": "2.6.0.4"
+    "VERSION": "25.0.0"
   },
   {
     "REPO": "xf86-video-vmware",
     "PREFIX": "xlibre-xf86-video-vmware",
-    "VERSION": "13.4.0.3"
+    "VERSION": "25.0.0"
   }
 ]
