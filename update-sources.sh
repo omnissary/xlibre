@@ -8,6 +8,7 @@ set -euo pipefail
 # These two files will be overwritten by this script
 SOURCE_FILE="consumer-overridable/fetchurl-sources.nix"
 JSON_FILE="sources-info.json"
+PIN_FILE="pin.json"
 
 SOURCE_FILE_INTERMEDIATE_ARRAY=()
 JSON_FILE_INTERMEDIATE=""
@@ -33,23 +34,15 @@ get_sha256() {
 get_source_pre() {
   REPO="$1"
   PREFIX="$2"
+  VERSION_GET=""
 
-  # PIN libinput
-  #  sources-info.json:
-  #  "REPO": "xf86-input-libinput",
-  #  "PREFIX": "xlibre-xf86-input-libinput",
-  #  "VERSION": "1.5.1.0"
-  #  
-  #  /consumer-overridable/fetchurl-sources.nix:
-  #  xf86-input-libinput = {
-  #    version = "1.5.1.0";
-  #    url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
-  #    sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
-  #  };
-
-  if [ "$REPO" = "xf86-input-libinput" ]; then
-    VERSION_GET="1.5.1.0"
-  else
+  # get VERSION from pin file
+  for ((j = 0; j < "$(jq "length" "$PIN_FILE")"; j++)); do
+    if [ "$REPO" = "$(jq -r ".[$j].REPO" "$PIN_FILE")" ]; then
+      VERSION_GET="$(jq -r ".[$j].VERSION" "$PIN_FILE")"
+    fi
+  done
+  if [ "$VERSION_GET" = "" ]; then
     VERSION_GET="$(get_version "$REPO" "$PREFIX")"
   fi
 
@@ -66,25 +59,18 @@ get_source() {
   REPO="$1"
   PREFIX="$2"
   VERSION_GET="$3"
+  SHA256=""
 
-  # PIN libinput
-  #  sources-info.json:
-  #  "REPO": "xf86-input-libinput",
-  #  "PREFIX": "xlibre-xf86-input-libinput",
-  #  "VERSION": "1.5.1.0"
-  #  
-  #  /consumer-overridable/fetchurl-sources.nix:
-  #  xf86-input-libinput = {
-  #    version = "1.5.1.0";
-  #    url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
-  #    sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
-  #  };
-
-  if [ "$REPO" = "xf86-input-libinput" ]; then
-    SHA256="sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg="
-  else
+  # get SHA256 from pin file
+  for ((j = 0; j < "$(jq "length" "$PIN_FILE")"; j++)); do
+    if [ "$REPO" = "$(jq -r ".[$j].REPO" "$PIN_FILE")" ]; then
+      SHA256="$(jq -r ".[$j].SHA256" "$PIN_FILE")"
+    fi
+  done
+  if [ "$SHA256" = "" ]; then
     SHA256="$(get_sha256 "$REPO" "$PREFIX" "$VERSION_GET")"
   fi
+
   cat <<EOF
     ${REPO} = {
       version = "${VERSION_GET}";
