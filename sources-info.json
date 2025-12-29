@@ -12,7 +12,7 @@
   {
     "REPO": "xf86-input-evdev",
     "PREFIX": "xlibre-xf86-input-evdev",
-    "VERSION": "25.0.0"
+    "VERSION": "2.11.0.2"
   },
   {
     "REPO": "xf86-input-joystick",
