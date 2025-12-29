@@ -30,9 +30,9 @@
       sha256 = "sha256-K8bYEJDOMFZF0kckJS6FEOgyzyUtThxT7Phv+M97204=";
     };
     xf86-input-libinput = {
-      version = "25.0.0";
-      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-25.0.0.tar.gz";
-      sha256 = "sha256-qnNpoKODSHa6EWWcxmMQWhURZR16wr4jOOXRlSg/vQA=";
+      version = "1.5.1.0";
+      url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
+      sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
     };
     xf86-input-mouse = {
       version = "25.0.0";

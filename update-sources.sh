@@ -3,7 +3,6 @@
 
 #https://nixos.org/manual/nix/stable/command-ref/new-cli/nix.html?highlight=shebang#shebang-interpreter
 
-
 set -euo pipefail
 
 # These two files will be overwritten by this script
@@ -22,8 +21,8 @@ get_version() {
   # https://stackoverflow.com/questions/4493205/unix-sort-of-version-numbers
   #  use "sort -rV"
   #  or use "sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr"
-  curl -sSL "https://api.github.com/repos/X11Libre/$1/tags" | jq -r '.[].name' | grep "$2" | sed -e "s/^.*$2-//" | \
-    sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr | \
+  curl -sSL "https://api.github.com/repos/X11Libre/$1/tags" | jq -r '.[].name' | grep "$2" | sed -e "s/^.*$2-//" |
+    sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr |
     head -1
 }
 
@@ -34,7 +33,25 @@ get_sha256() {
 get_source_pre() {
   REPO="$1"
   PREFIX="$2"
-  VERSION_GET="$(get_version "$REPO" "$PREFIX")"
+
+  # PIN libinput
+  #  sources-info.json:
+  #  "REPO": "xf86-input-libinput",
+  #  "PREFIX": "xlibre-xf86-input-libinput",
+  #  "VERSION": "1.5.1.0"
+  #  
+  #  /consumer-overridable/fetchurl-sources.nix:
+  #  xf86-input-libinput = {
+  #    version = "1.5.1.0";
+  #    url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
+  #    sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
+  #  };
+
+  if [ "$REPO" = "xf86-input-libinput" ]; then
+    VERSION_GET="1.5.1.0"
+  else
+    VERSION_GET="$(get_version "$REPO" "$PREFIX")"
+  fi
 
   REPOS+=("$REPO")
   PREFIXES+=("$PREFIX")
@@ -46,11 +63,33 @@ get_source_pre() {
 }
 
 get_source() {
+  REPO="$1"
+  PREFIX="$2"
+  VERSION_GET="$3"
+
+  # PIN libinput
+  #  sources-info.json:
+  #  "REPO": "xf86-input-libinput",
+  #  "PREFIX": "xlibre-xf86-input-libinput",
+  #  "VERSION": "1.5.1.0"
+  #  
+  #  /consumer-overridable/fetchurl-sources.nix:
+  #  xf86-input-libinput = {
+  #    version = "1.5.1.0";
+  #    url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
+  #    sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
+  #  };
+
+  if [ "$REPO" = "xf86-input-libinput" ]; then
+    SHA256="sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg="
+  else
+    SHA256="$(get_sha256 "$REPO" "$PREFIX" "$VERSION_GET")"
+  fi
   cat <<EOF
-    $1 = {
-      version = "$3";
-      url = "https://github.com/X11Libre/$1/archive/refs/tags/$2-$3.tar.gz";
-      sha256 = "$(get_sha256 "$1" "$2" "$3")";
+    ${REPO} = {
+      version = "${VERSION_GET}";
+      url = "https://github.com/X11Libre/${REPO}/archive/refs/tags/${PREFIX}-${VERSION_GET}.tar.gz";
+      sha256 = "${SHA256}";
     };
 EOF
 }
