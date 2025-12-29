@@ -12,7 +12,7 @@ The code is not good I know. Feel free to help me improve this flake!
 
 ### Note of 25.1-dev branch
 
-xlibre-xserver 25.1.0 entirely break my sddm with unknown reason, I am using lightdm instead. Please let me know if you know why.
+xlibre-xserver 25.1.0 entirely break my sddm with unknown reason, I am using lightdm instead. Please let me know if you know why here: https://github.com/orgs/X11Libre/discussions/457, or open an issue.
 
 ### Maintenance
 
