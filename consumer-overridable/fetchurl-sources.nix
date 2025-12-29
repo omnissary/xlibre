@@ -15,9 +15,9 @@
       sha256 = "sha256-DCqCiBGZoI7GI24TOPdpnqQtgsrS+vyZ6YaWROgkDps=";
     };
     xf86-input-evdev = {
-      version = "25.0.0";
-      url = "https://github.com/X11Libre/xf86-input-evdev/archive/refs/tags/xlibre-xf86-input-evdev-25.0.0.tar.gz";
-      sha256 = "sha256-yBDMLUumPukX9AsS6OCcPgRmU7rcqs5ol1Yd0wh5ROg=";
+      version = "2.11.0.2";
+      url = "https://github.com/X11Libre/xf86-input-evdev/archive/refs/tags/xlibre-xf86-input-evdev-2.11.0.2.tar.gz";
+      sha256 = "sha256-cKimXsVsznBXuEkfaHRMaIPevodQlIuykK57HD7Cjfw=";
     };
     xf86-input-joystick = {
       version = "25.0.0";
