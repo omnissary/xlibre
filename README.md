@@ -14,6 +14,8 @@ The code is not good I know. Feel free to help me improve this flake!
 
 xlibre-xserver 25.1.0 entirely break my sddm with unknown reason, I am using lightdm instead. Please let me know if you know why here: https://github.com/orgs/X11Libre/discussions/457, or open an issue.
 
+Update: It is solved by `services.xserver.terminateOnReset = false;`, and it is automatically set by [HERE(with explanation)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/ed2406cddad6c2a294d0b98286b6259b2328c202/nixosModules/apply-xlibre-xserver-and-drivers.nix#L32-L65) when xlibre-xserver version is greater or equal to 25.1.0.
+
 ### Maintenance
 
 This project now is basically in maintenance mode: i.e. running the `update-sources.sh` script to get the latest release of xlibre-xserver or drivers when it is available and running `build-test.sh` and fix drivers that cannot be build.
