@@ -10,11 +10,9 @@ Things might change at any time and breaking changes may happen.
 
 The code is not good I know. Feel free to help me improve this flake!
 
-### Note of 25.1-dev branch
+### Note of xlibre-xserver 25.1.0
 
-xlibre-xserver 25.1.0 entirely break my sddm with unknown reason, I am using lightdm instead. Please let me know if you know why.
-
-Update: It is solved by `services.xserver.terminateOnReset = false;`, and it is automatically set by [HERE(with explanation)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/ed2406cddad6c2a294d0b98286b6259b2328c202/nixosModules/apply-xlibre-xserver-and-drivers.nix#L32-L65) when xlibre-xserver version is greater or equal to 25.1.0.
+When updating to xlibre-xserver 25.1.0, for some display manager, like SDDM, it failed to start in NixOS. It is caused by the `services.xserver.terminateOnReset` default to `true` in NixOS (which introduced the `-terminate` flag for X server). Now, no intervention is required by regular users, because it has already been set in the overlay [HERE (with explanation)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/ed2406cddad6c2a294d0b98286b6259b2328c202/nixosModules/apply-xlibre-xserver-and-drivers.nix#L32-L65). However if you want to run another display manager like lightdm and want that `-terminate` flag back for some reason, you can set `services.xserver.terminateOnReset = lib.mkForce true` in your NixOS config, but it will not work for SDDM.
 
 ### Maintenance
 
