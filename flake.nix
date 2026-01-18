@@ -3,7 +3,19 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Bisect result:
+    # a9d226ccb705b0815620a97f4effaab257a1c1b9 is the first bad commit
+    # commit a9d226ccb705b0815620a97f4effaab257a1c1b9 (HEAD)
+    # Author: quantenzitrone <general@dev.quantenzitrone.eu>
+    # Date:   Sat Dec 13 05:16:15 2025 +0100
+    #
+    #     xf86-input-mouse: refactor, move to pkgs/by-name & rename from xorg.xf86inputmouse
+    #
+    #     relevant changes:
+    #     - switch to GitLab source instead of release tarball
+    #
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/d4815e6a6f767d60edfd2d3ee816d0e9c120fb27";
     systems = {
       url = "path:./systems.nix";
       flake = false;
