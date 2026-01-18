@@ -1,5 +1,8 @@
 # XLibre-overlay
-<!-- ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots") -->
+![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
+
+# Temporarily breakage fix
+On Jan 10, `nixos-unstable` branch of nixpkgs broke this repo, so I pinned it to the [latest working commit](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/60c80ee17332e3b2c54847eed8d87f3977ad77e0/flake.nix#L18). To use this working commit, user should NOT follows nixpkgs with their own nixpkgs (i.e. comment out `# inputs.xlibre-overlay.inputs.nixpkgs.follows = "nixos-unstable";` or something like that if you set it previously.)
 
 # Welcome
 This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
