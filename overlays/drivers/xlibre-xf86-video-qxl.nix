@@ -45,6 +45,13 @@
                   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
                 ];
 
+                # This is marked as broken for Aarch64 in nixpkgs commit "9b32dd8933e943f82e48a68cea2ecdc975a9b549", without explaining in the commit message,
+                # but it is still on archlinuxarm.org
+                # https://archlinuxarm.org/packages/aarch64/xf86-video-qxl
+                meta = prevAttrs.meta // {
+                  broken = false;
+                };
+
               }
             );
           in
