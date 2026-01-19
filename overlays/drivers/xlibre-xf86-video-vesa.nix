@@ -52,6 +52,13 @@
                   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
                 ];
 
+                # This is marked as broken for Aarch64 in nixpkgs commit "a5402171db87d50ae3ccd20f9b5299dfc9b30475", without explaining in the commit message,
+                # but it is still on archlinuxarm.org
+                # https://archlinuxarm.org/packages/aarch64/xf86-video-vesa
+                meta = prevAttrs.meta // {
+                  broken = false;
+                };
+
               }
             );
           in
