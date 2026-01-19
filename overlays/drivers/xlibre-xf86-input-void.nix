@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-void";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputvoid-overrideAttrs = prev.xorg.xf86inputvoid.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -55,7 +55,7 @@
               }
             );
           in
-          xf86inputvoid-overrideAttrs.override { inherit xorgserver; };
+          xf86inputvoid-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

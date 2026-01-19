@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-ati";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videoati-overrideAttrs = prev.xorg.xf86videoati.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -55,7 +55,7 @@
               }
             );
           in
-          xf86videoati-overrideAttrs.override { inherit xorgserver; };
+          xf86videoati-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

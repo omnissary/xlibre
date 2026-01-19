@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-qxl";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videoqxl-overrideAttrs = prev.xorg.xf86videoqxl.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -48,7 +48,7 @@
               }
             );
           in
-          xf86videoqxl-overrideAttrs.override { inherit xorgserver; };
+          xf86videoqxl-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-mouse";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputmouse-overrideAttrs = prev.xorg.xf86inputmouse.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -61,7 +61,7 @@
               }
             );
           in
-          xf86inputmouse-overrideAttrs.override { inherit xorgserver; };
+          xf86inputmouse-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-r128";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videor128-overrideAttrs = prev.xorg.xf86videor128.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -59,7 +59,7 @@
               }
             );
           in
-          xf86videor128-overrideAttrs.override { inherit xorgserver; };
+          xf86videor128-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-synaptics";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputsynaptics-overrideAttrs = prev.xorg.xf86inputsynaptics.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -55,7 +55,7 @@
               }
             );
           in
-          xf86inputsynaptics-overrideAttrs.override { inherit xorgserver; };
+          xf86inputsynaptics-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };
