@@ -52,10 +52,6 @@
                   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
                 ];
 
-                meta = prevAttrs.meta // {
-                  broken = false; # this is marked as broken in /pkgs/servers/x11/xorg/overrides.nix in nixpkgs
-                };
-
               }
             );
           in
