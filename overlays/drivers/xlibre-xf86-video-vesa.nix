@@ -52,9 +52,12 @@
                   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
                 ];
 
-                # This is marked as broken for Aarch64 in nixpkgs commit "a5402171db87d50ae3ccd20f9b5299dfc9b30475", without explaining in the commit message,
-                # but it is still on archlinuxarm.org
+                # This is marked as broken for Aarch64 in nixpkgs commit "afd4dcf86fcc1e26c65df17645432277b12a2078" with explanation in commit message,
+                # but it is still on other platforms like archlinuxarm.org and freshports.org and alpinelinux, etc
                 # https://archlinuxarm.org/packages/aarch64/xf86-video-vesa
+                # https://www.freshports.org/x11-drivers/xf86-video-vesa/
+                # https://packages.gentoo.org/packages/x11-drivers/xf86-video-vesa
+                # https://pkgs.alpinelinux.org/package/edge/community/aarch64/xf86-video-vesa
                 meta = prevAttrs.meta // {
                   broken = false;
                 };
