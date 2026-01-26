@@ -1,10 +1,30 @@
 # XLibre-overlay
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
-# nixpkgs breakage temporary workaround
-On Jan 10, `nixos-unstable` branch of nixpkgs broke this repo, so I pinned it to the [latest working commit (d4815e6a6f767d60edfd2d3ee816d0e9c120fb27)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/60c80ee17332e3b2c54847eed8d87f3977ad77e0/flake.nix#L18). To use this working commit, user should NOT follows nixpkgs with their own nixpkgs (i.e. comment out `# inputs.xlibre-overlay.inputs.nixpkgs.follows = "nixos-unstable";` or something like that if you set it previously.)
+# Recent nixpkgs breakage temporary workaround
+### TLDR;
+1. For users using stable nixpkgs (25.11), please use `main` or `dev` branch of this repo, like this:
+```
+xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
+```
+or
+```
+xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev";
+```
+2. For users using unstable nixpkgs (26.05), please use `dev-for-26.05` branch of this repo, like this:
+```
+xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev-for-25.05";
+```
+3. Don't let nixpkgs input of this repo follows your own nixpkgs inputs. It may cause breakage.
+4. I am personally using stable nixpkgs (25.11), and I have no machine for testing `dev-for-26.05`. Please open an issue if you encounter any problems of even better open a PR. Thansk!
 
-After some investigation, I found that the breakage was caused by nixpkgs maintainers gradually renaming some drivers' dependency from `xorgserver` to `xorg-server` [like this](https://github.com/NixOS/nixpkgs/blob/a9d226ccb705b0815620a97f4effaab257a1c1b9/pkgs/by-name/xf/xf86-input-mouse/package.nix#L9). Also, maintainers in nixpkgs have decided to [phase out the xorg namespace](https://github.com/NixOS/nixpkgs/issues/479553), which should entirely break the structure of this repo. I guess the best way for now is to pin nixpkgs to that working commit until all the things settled and merged.
+### Details:
+On Jan 10, `nixos-unstable` branch of nixpkgs broke this repo. After some investigation, I found that the breakage was caused by nixpkgs maintainers gradually renaming some drivers' dependency from `xorgserver` to `xorg-server` [like this](https://github.com/NixOS/nixpkgs/blob/a9d226ccb705b0815620a97f4effaab257a1c1b9/pkgs/by-name/xf/xf86-input-mouse/package.nix#L9). Also, maintainers in nixpkgs have decided to [phase out the xorg namespace](https://github.com/NixOS/nixpkgs/issues/479553), which should entirely break the structure of this repo.
+
+After recent update of this repo, I found that I can no longer use the most update nixpkgs because I am using 25.11 for my NixOS. So I split it into two different branches:
+1. For `main` / `dev` branch (For 25.11), I pinned nixpkgs of this repo to the [latest working commit (d4815e6a6f767d60edfd2d3ee816d0e9c120fb27)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/60c80ee17332e3b2c54847eed8d87f3977ad77e0/flake.nix#L18) which have not rename `xorgserver`.
+2. For `dev-for-26.05` branch (For unstable, i.e. 26.05), I will try keep updating the nixpkgs periodically and fix build errors. However I have no NixOS running `nixos-unstable` to test this repo. If something breaks on your end please raise an issue or ever better open a PR. Thanks!
+
 
 # Welcome
 This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
@@ -63,7 +83,7 @@ Example of `flake.nix` configuration:
   inputs = {
     # ...
     xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
-    # Optional:
+    # Optional: # Not prefered because this may break this repo after 2026 Jan 10, because nixpkgs maintainers is changing xorg related code of nixpkgs
     # xlibre-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # ...
   };
