@@ -23,7 +23,6 @@
                 sources.xlibre.xf86-input-elographics.version
               else
                 sources.legacy.xf86-input-elographics.version;
-            builder = inputs.nixpkgs + /pkgs/servers/x11/xorg/builder.sh;
             src =
               if USE-XLIBRE-VERSION-DRIVER then
                 prev.fetchurl sources.xlibre.xf86-input-elographics

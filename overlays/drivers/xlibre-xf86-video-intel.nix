@@ -24,20 +24,32 @@
                 # older revision from xorg failed to build against xlibre-xserver.
                 src = prev.fetchurl sources.xlibre.xf86-video-intel;
 
-                nativeBuildInputs =
-                  with prev;
-                  prevAttrs.nativeBuildInputs or [ ]
-                  # referece to /pkgs/by-name/xf/xf86_input_wacom/package.nix in nixpkgs
-                  ++ [
-                    autoreconfHook
-                    # pkg-config #already in /pkgs/servers/x11/xorg/default.nix in nixpkgs
+                # nativeBuildInputs =
+                #   with prev;
+                #   prevAttrs.nativeBuildInputs or [ ]
+                #   # referece to /pkgs/by-name/xf/xf86_input_wacom/package.nix in nixpkgs
+                #   ++ [
+                #     autoreconfHook
+                #     # pkg-config #already in /pkgs/servers/x11/xorg/default.nix in nixpkgs
+                #
+                #     # solve error message
+                #     # configure.ac:41: error: must install xorg-macros 1.8 or later before running autoconf/autogen
+                #     # util-macros # provides xorg-macros
+                #     xorg.utilmacros
+                #
+                #     xorg-server
+                #   ];
 
-                    # solve error message
-                    # configure.ac:41: error: must install xorg-macros 1.8 or later before running autoconf/autogen
-                    # util-macros # provides xorg-macros
-                    xorg.utilmacros
+                # In nixpkgs from commit "875c3ada5d65a27d6aeace6fdaf08f4f3667a2a2", it started to build with meson and ninja, which failed to build in this setup
+                nativeBuildInputs = with prev; [
+                  # meson
+                  # ninja
+                  pkg-config
 
-                  ];
+                  autoreconfHook
+                  xorg.utilmacros
+                  xorg-server
+                ];
 
                 patches =
                   prevAttrs.patches or [ ]
