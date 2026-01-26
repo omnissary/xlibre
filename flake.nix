@@ -14,9 +14,8 @@
     #     relevant changes:
     #     - switch to GitLab source instead of release tarball
     #
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; #flake.lock commit: c5296fdd05cfa2c187990dd909864da9658df755
     # nixpkgs.url = "github:NixOS/nixpkgs/d4815e6a6f767d60edfd2d3ee816d0e9c120fb27"; # latest working commit without changing xorgserver to xorg-server
-    nixpkgs.url = "github:NixOS/nixpkgs/e4bae1bd10c9c57b2cf517953ab70060a828ee6f";
     systems = {
       url = "path:./systems.nix";
       flake = false;

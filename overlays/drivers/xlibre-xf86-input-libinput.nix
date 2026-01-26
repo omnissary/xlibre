@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-libinput";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86inputlibinput-overrideAttrs = prev.xorg.xf86inputlibinput.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -46,7 +46,7 @@
               }
             );
           in
-          xf86inputlibinput-overrideAttrs.override { inherit xorgserver; };
+          xf86inputlibinput-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

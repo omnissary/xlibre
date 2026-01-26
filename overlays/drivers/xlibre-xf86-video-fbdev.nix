@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-fbdev";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videofbdev-overrideAttrs = prev.xorg.xf86videofbdev.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -55,7 +55,7 @@
               }
             );
           in
-          xf86videofbdev-overrideAttrs.override { inherit xorgserver; };
+          xf86videofbdev-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

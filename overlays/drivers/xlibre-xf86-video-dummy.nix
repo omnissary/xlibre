@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-dummy";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videodummy-overrideAttrs = prev.xorg.xf86videodummy.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -55,7 +55,7 @@
               }
             );
           in
-          xf86videodummy-overrideAttrs.override { inherit xorgserver; };
+          xf86videodummy-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

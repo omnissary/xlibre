@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-amdgpu";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videoamdgpu-overrideAttrs = prev.xorg.xf86videoamdgpu.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -58,7 +58,7 @@
               }
             );
           in
-          xf86videoamdgpu-overrideAttrs.override { inherit xorgserver; };
+          xf86videoamdgpu-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };

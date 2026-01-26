@@ -13,7 +13,7 @@
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-video-siliconmotion";
-            xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+            xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
             xf86videosiliconmotion-overrideAttrs = prev.xorg.xf86videosiliconmotion.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
@@ -64,7 +64,7 @@
               }
             );
           in
-          xf86videosiliconmotion-overrideAttrs.override { inherit xorgserver; };
+          xf86videosiliconmotion-overrideAttrs.override { inherit xorg-server; };
       };
     };
   };
