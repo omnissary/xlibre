@@ -13,7 +13,7 @@
         let
           sources = import inputs.fetchurl-sources;
           basename = "xf86-input-wacom";
-          xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+          xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86_input_wacom-overrideAttrs = prev.xf86_input_wacom.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "xlibre-${basename}";
@@ -54,7 +54,7 @@
             }
           );
         in
-        xf86_input_wacom-overrideAttrs.override { inherit xorgserver; };
+        xf86_input_wacom-overrideAttrs.override { inherit xorg-server; };
     };
   };
 }
