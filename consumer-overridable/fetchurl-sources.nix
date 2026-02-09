@@ -15,7 +15,7 @@
       sha256 = "sha256-DCqCiBGZoI7GI24TOPdpnqQtgsrS+vyZ6YaWROgkDps=";
     };
     xf86-input-evdev = {
-      version = "2.11.0.2";
+      version = "25.0.0";
       url = "https://github.com/X11Libre/xf86-input-evdev/archive/refs/tags/xlibre-xf86-input-evdev-2.11.0.2.tar.gz";
       sha256 = "sha256-cKimXsVsznBXuEkfaHRMaIPevodQlIuykK57HD7Cjfw=";
     };
@@ -30,7 +30,7 @@
       sha256 = "sha256-K8bYEJDOMFZF0kckJS6FEOgyzyUtThxT7Phv+M97204=";
     };
     xf86-input-libinput = {
-      version = "1.5.1.0";
+      version = "25.0.1";
       url = "https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/xlibre-xf86-input-libinput-1.5.1.0.tar.gz";
       sha256 = "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg=";
     };
