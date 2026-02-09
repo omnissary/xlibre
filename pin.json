@@ -1,12 +1,2 @@
 [
-  {
-    "REPO": "xf86-input-evdev",
-    "VERSION": "2.11.0.2",
-    "SHA256": "sha256-cKimXsVsznBXuEkfaHRMaIPevodQlIuykK57HD7Cjfw="
-  },
-  {
-    "REPO": "xf86-input-libinput",
-    "VERSION": "1.5.1.0",
-    "SHA256": "sha256-8b5aRDr3gwevGBA6a7YUAh/hYzgLDrQ97IIKI4n71sg="
-  }
 ]
