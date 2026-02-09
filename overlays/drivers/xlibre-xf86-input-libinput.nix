@@ -8,13 +8,12 @@
 {
   flake = {
     overlays.xlibre-xf86-input-libinput = final: prev: {
-      xorg = prev.xorg // {
-        xf86inputlibinput =
+        xf86-input-libinput =
           let
             sources = import inputs.fetchurl-sources;
             basename = "xf86-input-libinput";
             xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
-            xf86inputlibinput-overrideAttrs = prev.xorg.xf86inputlibinput.overrideAttrs (
+            xf86-input-libinput-overrideAttrs = prev.xf86-input-libinput.overrideAttrs (
               finalAttrs: prevAttrs: {
                 pname = "xlibre-${basename}";
                 version =
@@ -38,7 +37,7 @@
                     # solve error message
                     # configure.ac:41: error: must install xorg-macros 1.8 or later before running autoconf/autogen
                     # util-macros # provides xorg-macros
-                    xorg.utilmacros
+                    util-macros
                   ];
                 configureFlags = prevAttrs.configureFlags or [ ] ++ [
                   "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
@@ -46,8 +45,7 @@
               }
             );
           in
-          xf86inputlibinput-overrideAttrs.override { inherit xorg-server; };
-      };
+          xf86-input-libinput-overrideAttrs.override { inherit xorg-server; };
     };
   };
 }

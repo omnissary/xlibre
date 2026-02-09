@@ -7,8 +7,7 @@
     in
     {
       overlays.xlibre-xserver = final: prev: {
-        xorg = prev.xorg // {
-          xorgserver = prev.xorg.xorgserver.overrideAttrs (
+          xorg-server = prev.xorg-server.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "xlibre-xserver";
               version = sources.xlibre.xserver.version;
@@ -47,7 +46,6 @@
 
             }
           );
-        };
       };
     };
 }
