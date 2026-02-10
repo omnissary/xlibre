@@ -40,6 +40,10 @@
                     # configure.ac:41: error: must install xorg-macros 1.8 or later before running autoconf/autogen
                     # util-macros # provides xorg-macros
                     xorg.utilmacros
+
+                    # fix build by using meson and ninja after upgrade to xlibre-xf86-video-amdgpu 25.1.0
+                    meson
+                    ninja
                   ];
 
                 # also need autoreconfHook in buildInputs.
