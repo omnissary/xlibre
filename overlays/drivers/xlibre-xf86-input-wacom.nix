@@ -8,13 +8,12 @@
 {
   flake = {
     overlays.xlibre-xf86-input-wacom = final: prev: {
-      # xf86_input_wacom located in /pkgs/by-name/xf/xf86_input_wacom, not in "xorg" attribute set
-      xf86_input_wacom =
+      xf86-input-wacom =
         let
           sources = import inputs.fetchurl-sources;
           basename = "xf86-input-wacom";
           xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
-          xf86_input_wacom-overrideAttrs = prev.xf86_input_wacom.overrideAttrs (
+          xf86-input-wacom-overrideAttrs = prev.xf86-input-wacom.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "xlibre-${basename}";
               version =
@@ -54,7 +53,7 @@
             }
           );
         in
-        xf86_input_wacom-overrideAttrs.override { inherit xorgserver; };
+        xf86-input-wacom-overrideAttrs.override { inherit xorgserver; };
     };
   };
 }
