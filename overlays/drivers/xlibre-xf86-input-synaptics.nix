@@ -15,7 +15,7 @@
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-input-synaptics-overrideAttrs = prev.xf86-input-synaptics.overrideAttrs (
             finalAttrs: prevAttrs: {
-              pname = "xlibre-${basename}";
+              pname = "${basename}";
               version =
                 if USE-XLIBRE-VERSION-DRIVER then
                   sources.xlibre.xf86-input-synaptics.version

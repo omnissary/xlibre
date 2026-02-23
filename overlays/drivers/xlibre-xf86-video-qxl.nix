@@ -15,7 +15,7 @@
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-video-qxl-overrideAttrs = prev.xf86-video-qxl.overrideAttrs (
             finalAttrs: prevAttrs: {
-              pname = "xlibre-${basename}";
+              pname = "${basename}";
               version = sources.xlibre.xf86-video-qxl.version;
               # Only xlibre tag is available.
               src = prev.fetchurl sources.xlibre.xf86-video-qxl;

@@ -16,7 +16,7 @@
         in
         # This package does not exist in nixpkgs
         prev.stdenv.mkDerivation (finalAttrs: {
-          pname = "xlibre-${basename}";
+          pname = "${basename}";
           version =
             if USE-XLIBRE-VERSION-DRIVER then
               sources.xlibre.xf86-input-elographics.version

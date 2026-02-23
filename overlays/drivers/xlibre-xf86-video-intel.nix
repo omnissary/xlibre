@@ -15,7 +15,7 @@
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-video-intel-overrideAttrs = prev.xf86-video-intel.overrideAttrs (
             finalAttrs: prevAttrs: {
-              pname = "xlibre-${basename}";
+              pname = "${basename}";
               version = sources.xlibre.xf86-video-intel.version;
               # This override the name set in /pkgs/servers/x11/xorg/overrides.nix in nikpkgs
               name = "${finalAttrs.pname}-${finalAttrs.version}";

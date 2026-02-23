@@ -15,7 +15,7 @@
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-video-siliconmotion-overrideAttrs = prev.xf86-video-siliconmotion.overrideAttrs (
             finalAttrs: prevAttrs: {
-              pname = "xlibre-${basename}";
+              pname = "${basename}";
               version = sources.xlibre.xf86-video-siliconmotion.version;
               # older revision from xorg failed to build against xlibre-xserver.
               src = prev.fetchurl sources.xlibre.xf86-video-siliconmotion;
