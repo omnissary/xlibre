@@ -41,6 +41,9 @@
                 "--with-xorg-module-dir=${placeholder "out"}/lib/xorg/modules"
               ];
 
+              # Avoid applying downstream patches (e.g. xpra's) that do not apply
+              # to the xlibre driver sources.
+              dontPatch = true;
             }
           );
         in
