@@ -12,10 +12,7 @@
     let
       packages-reference = import (self + /packages-reference.nix);
 
-      f1 = (
-        name: value:
-          lib.nameValuePair (name) (pkgs.${value})
-      );
+      f1 = (name: value: lib.nameValuePair (name) (pkgs.${value}));
       # f2 = (name: value: lib.nameValuePair (value) (inputs'.nixpkgs.legacyPackages.xorg.${value}));
       packages-unfiltered = {
         default = pkgs.xorg-server; # overlayed as xlibre-xserver
@@ -24,6 +21,10 @@
       # This is actually unnecessary. This only pull normal drivers from nixpkgs without overlay
       # "xf86inputelographics" does not exist in nixpkgs
       # // lib.mapAttrs' f2 (lib.filterAttrs (name: value: value != "xf86inputelographics") packages-reference)
+      #
+      // {
+        xvfb = pkgs.xvfb;
+      }
       #
       ;
     in

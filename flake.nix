@@ -38,10 +38,6 @@
       url = "path:./consumer-overridable/fetchurl-sources.nix";
       flake = false;
     };
-    xserver-meson-flags = {
-      url = "./consumer-overridable/xserver-meson-flags.nix";
-      flake = false;
-    };
   };
 
   outputs =
@@ -93,7 +89,7 @@
           [ ./packages-and-checks.nix ]
           # Part 2.
           # These files just define how the packages should be overlayed.
-          ++ [ ./overlays/xlibre-xserver.nix ]
+          ++ [ ./overlays/xlibre-xserver-and-xvfb.nix ]
           # Part 3
           # overlay drivers, all build against xlibre-xserver with above
           # overlay injected in it
