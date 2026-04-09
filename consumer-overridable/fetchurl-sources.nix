@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.1.2";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.1.2.tar.gz";
-      sha256 = "sha256-pewjGueNAKq37arwbWwi+68gcur21mmof0kcRF789X0=";
+      version = "25.1.3";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.1.3.tar.gz";
+      sha256 = "sha256-aorVfnwrOYqOhMYgwCIbH3pqmiYl4QFqh0ogpxYDO38=";
     };
 
     # drivers
@@ -60,9 +60,9 @@
       sha256 = "sha256-EoeFR7Jx9OWezVCY+TXUwL1FYNDCo6ZnOF2Ra8Y9AK8=";
     };
     xf86-video-amdgpu = {
-      version = "25.1.0";
-      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xlibre-xf86-video-amdgpu-25.1.0.tar.gz";
-      sha256 = "sha256-L9tB+0L59oQuguN53fQSCq2kqPFUJePVYUfEb52URE0=";
+      version = "25.1.1";
+      url = "https://github.com/X11Libre/xf86-video-amdgpu/archive/refs/tags/xlibre-xf86-video-amdgpu-25.1.1.tar.gz";
+      sha256 = "sha256-NF66PXAbDdO+JAA47owFxzBvGfZDwr2NCCMnUoYqwmQ=";
     };
     xf86-video-ast = {
       version = "25.0.0";
@@ -70,9 +70,9 @@
       sha256 = "sha256-zrBz+52ss1IU8qAIzIMXVFrvkClGFUJB+NUCZNzTIpM=";
     };
     xf86-video-ati = {
-      version = "25.0.0";
-      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xlibre-xf86-video-ati-25.0.0.tar.gz";
-      sha256 = "sha256-WX6bP5sbT15A/W0XBvT/5tMbvClV1PQ10eMBTy4Im94=";
+      version = "25.0.1";
+      url = "https://github.com/X11Libre/xf86-video-ati/archive/refs/tags/xlibre-xf86-video-ati-25.0.1.tar.gz";
+      sha256 = "sha256-NcliIv286BEvOkS2PQmKilnFlQJlzPQAVh5JuAEPsPY=";
     };
     xf86-video-dummy = {
       version = "25.0.0";
