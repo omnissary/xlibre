@@ -3,6 +3,7 @@
   flake =
     let
       sources = import inputs.fetchurl-sources;
+      xserver-meson-flags = import inputs.xserver-meson-flags;
     in
     {
       overlays.xlibre-xserver = final: prev: {
@@ -12,6 +13,10 @@
             version = sources.xlibre.xserver.version;
             # use tarball because some packages assume this fetch tarball, e.g. tigervnc
             src = prev.fetchurl sources.xlibre.xserver;
+
+            mesonFlags =
+              prevAttrs.mesonFlags or [ ]
+              ++ lib.optionals prev.stdenv.hostPlatform.isLinux xserver-meson-flags { inherit lib prev; };
           }
         );
         # X virtual framebuffer
