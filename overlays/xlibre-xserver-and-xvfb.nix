@@ -44,6 +44,9 @@
         #     ];
         #   }
         # );
+        #
+        # If xvfb use xlibre code, it trigger massive packages rebuilds expecially python packages and some of them might failed to build
+        # To avoid it, xvfb just use xorg-server source from nixpkgs.
         xvfb = prev.xvfb.override { xorg-server = prev.xorg-server; };
       };
     };
