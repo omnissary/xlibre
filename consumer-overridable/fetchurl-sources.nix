@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.1.5";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.1.5.tar.gz";
-      sha256 = "sha256-fuNhLnZ0WV187zN9aVX93wLmNxnLwmB7KdgKF4keyg4=";
+      version = "25.1.6";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.1.6.tar.gz";
+      sha256 = "sha256-8D/kp7GgYMpRALbnFTe8/oipmO+fejqMCU4wBdcgMnY=";
     };
 
     # drivers
@@ -90,9 +90,9 @@
       sha256 = "sha256-hgaWpz7fC7F/CoI/m30rjUE5/9GbRxrqFwhIkVXJ0HI=";
     };
     xf86-video-intel = {
-      version = "25.0.1";
-      url = "https://github.com/X11Libre/xf86-video-intel/archive/refs/tags/xlibre-xf86-video-intel-25.0.1.tar.gz";
-      sha256 = "sha256-m2/4QaepIdzKULP24B6E+rT/unFne4P46C0QaVv1n10=";
+      version = "25.0.2";
+      url = "https://github.com/X11Libre/xf86-video-intel/archive/refs/tags/xlibre-xf86-video-intel-25.0.2.tar.gz";
+      sha256 = "sha256-5FE8+HE3TMXfTQrl3NJ4dTnDiAEpWrWps0cM8N0ZOkM=";
     };
     xf86-video-mga = {
       version = "25.0.0";
