@@ -3,9 +3,9 @@
   xlibre = {
     # xserver
     xserver = {
-      version = "25.1.7";
-      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.1.7.tar.gz";
-      sha256 = "sha256-8ck985c+HdwK7PSYZmyNMIWEcoqbXNdlUbUyiMTun38=";
+      version = "25.2.0";
+      url = "https://github.com/X11Libre/xserver/archive/refs/tags/xlibre-xserver-25.2.0.tar.gz";
+      sha256 = "sha256-kZi0x4MyvzHOpyVMplOuZ1MFVnkq3aGKbsa1EMaVPGA=";
     };
 
     # drivers
