@@ -93,7 +93,9 @@
           [ ./packages-and-checks.nix ]
           # Part 2.
           # These files just define how the packages should be overlayed.
-          ++ [ ./overlays/xlibre-xserver-and-xvfb.nix ]
+          ++ [
+            ./overlays/xlibre-xserver-and-xvfb-xrdp.nix
+          ]
           # Part 3
           # overlay drivers, all build against xlibre-xserver with above
           # overlay injected in it
