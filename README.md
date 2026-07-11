@@ -1,26 +1,67 @@
 # XLibre-overlay
 ![logo](https://codeberg.org/takagemacoed/Screenshots/raw/branch/main/7dcfb685-cb14-4e2f-ba22-4870a131f2e2.jpg "Screenshots")
 
-# Recent nixpkgs breakage temporary workaround
 ### TLDR;
-1. For users using stable NixOS (nixos-25.11), please use `main` branch of this repo, like this:
+## Update of 2026-07-11
+1. For users using stable NixOS (nixos-26.05), please use `main` or `dev-for-26.05` branch of this repo, like this:
 ```
 inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
-```
-2. For users using unstable NixOS (nixos-unstable, or 26.05), please use `dev-for-26.05` branch of this repo, like this:
-```
+or
 inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev-for-26.05";
 ```
-3. Don't let nixpkgs input of this repo follows your own nixpkgs inputs. It may cause breakage.
-4. I am personally using `nixos-25.11` on my NixOS and I have no machine for testing `dev-for-26.05`. Please open an issue if you encounter any problems of even better open a PR. Thansk!
+2. For users using unstable NixOS (nixos-unstable, or 26.11), please use `dev-26.11` branch of this repo, like this:
+```
+inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev-26.11";
+```
+3. For users still using deprecated nixos-25.11, please use `dev` branch of this repo, like this:
+```
+inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev";
+```
+4. I am personally using `nixos-26.05` on my NixOS and I only have a VM for testing `dev-26.11`. Please open an issue if you encounter any problems of even better open a PR. Thanks!
 
-### Details:
-On Jan 10, `nixos-unstable` branch of nixpkgs broke this repo. After some investigation, I found that the breakage was caused by nixpkgs maintainers gradually renaming some drivers' dependency from `xorgserver` to `xorg-server` [like this](https://github.com/NixOS/nixpkgs/blob/a9d226ccb705b0815620a97f4effaab257a1c1b9/pkgs/by-name/xf/xf86-input-mouse/package.nix#L9). Also, maintainers in nixpkgs have decided to [phase out the xorg namespace](https://github.com/NixOS/nixpkgs/issues/479553), which should entirely break the structure of this repo in the forseeable future.
+5. I am cleaning up some old code and old features. If you want that features, please let me know.
 
-After recent update of this repo, I found that I can no longer use the most update `nixos-unstable` of nixpkgs because I am using `nixos-25.11` my NixOS. So I splitted it into two different branches:
-1. For `main` branch (For 25.11), I pinned nixpkgs of this repo to the [latest working commit (d4815e6a6f767d60edfd2d3ee816d0e9c120fb27)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/60c80ee17332e3b2c54847eed8d87f3977ad77e0/flake.nix#L18) which have not rename `xorgserver`.
-2. For `dev-for-26.05` branch (For unstable, i.e. 26.05), I will try keep updating the nixpkgs periodically and fix build errors. However I have no NixOS running `nixos-unstable` to test this repo. If something breaks on your end please raise an issue or ever better open a PR. Thanks!
+6. Example of usage in flake.nix:
+```nix
+{
+  # ...
+  inputs = {
+    ...
+    xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
+    # Optional:
+    # xlibre-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    ...
+  };
 
+  # usual flake output for NixOS here...
+  outputs =
+    inputs@{ nixpkgs, ... }:
+    {
+      nixosConfigurations."yourhostname" = nixpkgs.lib.nixosSystem {
+        # ...
+        modules = [
+          ./configuration.nix
+          { nix.settings.experimental-features = [ "nix-command" "flakes" ]; }
+
+          # overlay `xorg.xorgserver` to `xlibre-xserver`
+          inputs.xlibre-overlay.nixosModules.overlay-xlibre-xserver
+
+          # Overlay all drivers in this repo
+          inputs.xlibre-overlay.nixosModules.overlay-all-xlibre-drivers
+          # Instead of `overlay-all-xlibre-drivers` above, user can also choose the drivers invidivually for overlay if something breaks
+          # All available drivers are listed in `./packages-reference.nix`, just prepend the key with "overlay-" like below
+          # Examples:
+          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-evdev
+          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-libinput
+          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-video-amdgpu
+          # ...
+        ];
+        # ...
+      };
+      #...
+    };
+}
+```
 
 # Welcome
 This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
@@ -29,15 +70,9 @@ This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref
 
 Things might change at any time and breaking changes may happen.
 
-The code is not good I know. Feel free to help me improve this flake!
-
-### Note of xlibre-xserver 25.1.0
-
-When updating to xlibre-xserver 25.1.0, for some display manager, like SDDM, it failed to start in NixOS. It is caused by the `services.xserver.terminateOnReset` default to `true` in NixOS (which introduced the `-terminate` flag for X server). Now, no intervention is required by regular users, because it has already been set in the overlay [HERE (with explanation)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/ed2406cddad6c2a294d0b98286b6259b2328c202/nixosModules/apply-xlibre-xserver-and-drivers.nix#L32-L65). However if you want to run another display manager like lightdm and want that `-terminate` flag back for some reason, you can set `services.xserver.terminateOnReset = lib.mkForce true` in your NixOS config, but it will not work for SDDM.
-
 ### Maintenance
 
-This project now is basically in maintenance mode: i.e. running the `update-sources.sh` script to get the latest release of xlibre-xserver or drivers when it is available and running `build-test.sh` and fix drivers that cannot be build.
+This project now is basically in maintenance mode: i.e. I just periodically runn the `update-sources.sh` script to get the latest release of xlibre-xserver or drivers when it is available and running `build-test.sh` and fix drivers that cannot be build.
 
 If I cannot catch up with the latest release, you can also do it yourself by forking the project.
 
@@ -71,54 +106,7 @@ Other drivers overlay can be successfully build except some old or incompatible 
 All the available drivers overlay are listed in `packages-reference.nix`.
 
 # Common usage
-Example of `flake.nix` configuration:
-
-```nix
-{
-  # ...
-  inputs = {
-    # ...
-    xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overlay";
-    # Optional: # Not prefered because this may break this repo after 2026 Jan 10, because nixpkgs maintainers is changing xorg related code of nixpkgs
-    # xlibre-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    # ...
-  };
-
-  # usual flake output for NixOS here...
-  outputs =
-    inputs@{ nixpkgs, ... }:
-    {
-      nixosConfigurations."yourhostname" = nixpkgs.lib.nixosSystem {
-        # ...
-        modules = [
-          ./configuration.nix
-
-          # Here is the location to consume this flake
-          #
-          # overlay `xorg.xorgserver` to `xlibre-xserver`
-          inputs.xlibre-overlay.nixosModules.overlay-xlibre-xserver
-
-          # Don't add this lines if you want to use drivers provided from nixpkgs (which may not work, so recommend use below)
-          inputs.xlibre-overlay.nixosModules.overlay-all-xlibre-drivers
-          # Instead of `overlay-all-xlibre-drivers`, user can also choose the dirvers invidivually for overlay
-          # All available drivers are listed in `./packages-reference.nix`, just prepend them with "overlay-"
-          # Examples:
-          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-evdev
-          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-libinput
-          # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-video-amdgpu
-          # ...
-
-          # Trying to solve the problem of Nvidia proprietary drivers (set `Option "IgnoreABI" "true"` in Xorg config)
-          # This was also mentioned in X11Libre/xserver repo README.md
-          # Starting from xlibre-xserver version 25.0.0.16, this is no longer required and have no effect if enabled
-          # inputs.xlibre-overlay.nixosModules.nvidia-ignore-ABI
-        ];
-        # ...
-      };
-      #...
-    };
-}
-```
+Example of `flake.nix` configuration is moved to TL,DR; section:
 
 It triggers building all the packages depending on `xorg.xorgserver` after you run `nixos-rebuild`.
 
@@ -148,6 +136,7 @@ This file is now become flake inputs `fetchurl-sources` . Consumer can override 
 
 `inputs.xlibre-overlay.inputs.fetchurl-sources.follow = "your-own-flake-input-about-fetchurl-sources"`
 
+
 # Known issues
 It breaks some packages that were deeply integrated with Xorg.
 
@@ -155,10 +144,17 @@ It breaks some packages that were deeply integrated with Xorg.
 
 2. Anything pull `xpra` as dependences (e.g. `x11docker`) will also be failed to build when `xlibre-xf86-video-dummy` is used. Further information and the workaround can be found [here](https://codeberg.org/takagemacoed/xlibre-overlay/issues/2).
 
-# TODO
-1. Xnamespace `NixosModule` (After figured it out how to configure).
+3. `xvfb` and `xrdp` is failed to build against xlibre-xserevre, so now it is just build against xorg-server from nixpkgs. For details see [here](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/83bf43bd48e4b50661be3a929a8c3f09cdcd8aef/overlays/xlibre-xserver-and-xvfb-xrdp.nix#L78-L110).
 
-# Note
-The overlays mostly use the nixpkgs functionality `overrideAttrs` to modify the original package if the xorg counterpart is available in nixpkgs. Therefore this flake's overlay is not the whole packaging of the packages, just some modification of them (in nixpkgs) to make them become xlibre. If the corresponding packages change/removed in nixpkgs, it would also affect this flakes' overlay.
 
-I do it that way (for now) because xorg in nixpkgs does not always change. Also nixpkgs have a file in `pkgs/servers/x11/xorg/overrides.nix` that take care of multiple architectures or build cases. Overlaying with `overrideAttrs` affect it less and require less code, so it might help building them in other architectures running NixOS. If some big change happens in nixpkgs' xorg, I may also bring those code into this flake and make it a true packages (like `xlibre-xf86-input-elographics`).
+## nixpkgs breakage temporary workaround on January 2026
+### Details:
+On Jan 10, `nixos-unstable` branch of nixpkgs broke this repo. After some investigation, I found that the breakage was caused by nixpkgs maintainers gradually renaming some drivers' dependency from `xorgserver` to `xorg-server` [like this](https://github.com/NixOS/nixpkgs/blob/a9d226ccb705b0815620a97f4effaab257a1c1b9/pkgs/by-name/xf/xf86-input-mouse/package.nix#L9). Also, maintainers in nixpkgs have decided to [phase out the xorg namespace](https://github.com/NixOS/nixpkgs/issues/479553), which should entirely break the structure of this repo in the forseeable future.
+
+After recent update of this repo, I found that I can no longer use the most update `nixos-unstable` of nixpkgs because I am using `nixos-25.11` my NixOS. So I splitted it into two different branches:
+1. For `main` branch (For 25.11), I pinned nixpkgs of this repo to the [latest working commit (d4815e6a6f767d60edfd2d3ee816d0e9c120fb27)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/60c80ee17332e3b2c54847eed8d87f3977ad77e0/flake.nix#L18) which have not rename `xorgserver`.
+2. For `dev-for-26.05` branch (For unstable, i.e. 26.05), I will try keep updating the nixpkgs periodically and fix build errors. However I have no NixOS running `nixos-unstable` to test this repo. If something breaks on your end please raise an issue or ever better open a PR. Thanks!
+
+### Note of xlibre-xserver 25.1.0
+
+When updating to xlibre-xserver 25.1.0, for some display manager, like SDDM, it failed to start in NixOS. It is caused by the `services.xserver.terminateOnReset` default to `true` in NixOS (which introduced the `-terminate` flag for X server). Now, no intervention is required by regular users, because it has already been set in the overlay [HERE (with explanation)](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/ed2406cddad6c2a294d0b98286b6259b2328c202/nixosModules/apply-xlibre-xserver-and-drivers.nix#L32-L65). However if you want to run another display manager like lightdm and want that `-terminate` flag back for some reason, you can set `services.xserver.terminateOnReset = lib.mkForce true` in your NixOS config, but it will not work for SDDM.
