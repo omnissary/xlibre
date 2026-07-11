@@ -43,7 +43,7 @@ inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overla
           ./configuration.nix
           { nix.settings.experimental-features = [ "nix-command" "flakes" ]; }
 
-          # overlay `xorg.xorgserver` to `xlibre-xserver`
+          # overlay `xorg-server` to `xlibre-xserver`
           inputs.xlibre-overlay.nixosModules.overlay-xlibre-xserver
 
           # Overlay all drivers in this repo
@@ -64,7 +64,7 @@ inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overla
 ```
 
 # Welcome
-This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg.xorgserver` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
+This is a third-party [experimental](https://nix.dev/manual/nix/2.30/command-ref/new-cli/nix3-flake.html) work-in-progress [flake](https://wiki.nixos.org/wiki/Flake) to [overlay](https://wiki.nixos.org/wiki/Overlay) the package `xorg-server` with `xlibre-xserver`. It also inculde some X11 drivers overlay.
 
 `xlibre-xserver` and all the drivers in this flake are provided by [XLibre](https://github.com/X11Libre).
 
@@ -108,7 +108,7 @@ All the available drivers overlay are listed in `packages-reference.nix`.
 # Common usage
 Example of `flake.nix` configuration is moved to TL,DR; section:
 
-It triggers building all the packages depending on `xorg.xorgserver` after you run `nixos-rebuild`.
+It triggers building all the packages depending on `xorg-server` after you run `nixos-rebuild`.
 
 # Flake structure
 As described above, this flake expose some `nixosModules` for user to apply overlays easily into their own NixOS flake configuration.
@@ -140,7 +140,7 @@ This file is now become flake inputs `fetchurl-sources` . Consumer can override 
 # Known issues
 It breaks some packages that were deeply integrated with Xorg.
 
-1. For example `tigervnc`, the way it was packaged included [some hardcoded xorg paths](https://github.com/NixOS/nixpkgs/blob/fa0ef8a6bb1651aa26c939aeb51b5f499e86b0ec/pkgs/by-name/ti/tigervnc/package.nix#L69-L92). It assumed the source of `xorg.xorgserver` is a tarball, so `fetchFromGitHub` cannot be used. It failed to build against xlibre-xserver without modification.
+1. For example `tigervnc`, the way it was packaged included [some hardcoded xorg paths](https://github.com/NixOS/nixpkgs/blob/fa0ef8a6bb1651aa26c939aeb51b5f499e86b0ec/pkgs/by-name/ti/tigervnc/package.nix#L69-L92). It assumed the source of `xorg-server` is a tarball, so `fetchFromGitHub` cannot be used. It failed to build against xlibre-xserver without modification.
 
 2. Anything pull `xpra` as dependences (e.g. `x11docker`) will also be failed to build when `xlibre-xf86-video-dummy` is used. Further information and the workaround can be found [here](https://codeberg.org/takagemacoed/xlibre-overlay/issues/2).
 
