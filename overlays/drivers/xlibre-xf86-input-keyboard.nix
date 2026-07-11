@@ -1,7 +1,6 @@
 {
   lib,
   self,
-  inputs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     overlays.xlibre-xf86-input-keyboard = final: prev: {
       xf86-input-keyboard =
         let
-          sources = import inputs.fetchurl-sources;
+          sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-input-keyboard";
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-input-keyboard-overrideAttrs = prev.xf86-input-keyboard.overrideAttrs (

@@ -1,7 +1,6 @@
 {
   lib,
   self,
-  inputs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     overlays.xlibre-xf86-input-mouse = final: prev: {
       xf86-input-mouse =
         let
-          sources = import inputs.fetchurl-sources;
+          sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-input-mouse";
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-input-mouse-overrideAttrs = prev.xf86-input-mouse.overrideAttrs (

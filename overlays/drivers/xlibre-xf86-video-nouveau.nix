@@ -1,7 +1,6 @@
 {
   lib,
   self,
-  inputs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     overlays.xlibre-xf86-video-nouveau = final: prev: {
       xf86-video-nouveau =
         let
-          sources = import inputs.fetchurl-sources;
+          sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-video-nouveau";
           xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
           xf86-video-nouveau-overrideAttrs = prev.xf86-video-nouveau.overrideAttrs (

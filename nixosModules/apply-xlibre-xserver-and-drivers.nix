@@ -3,7 +3,7 @@
   flake = {
     nixosModules =
       let
-        sources = import inputs.fetchurl-sources;
+        sources = import (self + /fetchurl-sources.nix);
 
         packages-reference = import (self + /packages-reference.nix);
         inherit (inputs.nixpkgs) lib;
