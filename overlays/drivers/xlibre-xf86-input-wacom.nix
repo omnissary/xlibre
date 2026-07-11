@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -8,26 +7,16 @@
 {
   flake = {
     overlays.xlibre-xf86-input-wacom = final: prev: {
-      # xf86_input_wacom located in /pkgs/by-name/xf/xf86_input_wacom, not in "xorg" attribute set
-      xf86_input_wacom =
+      xf86-input-wacom =
         let
           sources = import inputs.fetchurl-sources;
           basename = "xf86-input-wacom";
-          xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
-          xf86_input_wacom-overrideAttrs = prev.xf86_input_wacom.overrideAttrs (
+          xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+          xf86-input-wacom-overrideAttrs = prev.xf86-input-wacom.overrideAttrs (
             finalAttrs: prevAttrs: {
-              pname = "xlibre-${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-wacom.version
-                else
-                  sources.legacy.xf86-input-wacom.version;
-
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-wacom
-                else
-                  prev.fetchurl sources.legacy.xf86-input-wacom;
+              pname = "${basename}";
+              version = sources.xlibre.xf86-input-wacom.version;
+              src = prev.fetchurl sources.xlibre.xf86-input-wacom;
               patches =
                 prevAttrs.patches or [ ]
                 # Both version require this patch for linux support
@@ -54,7 +43,7 @@
             }
           );
         in
-        xf86_input_wacom-overrideAttrs.override { inherit xorgserver; };
+        xf86-input-wacom-overrideAttrs.override { inherit xorg-server; };
     };
   };
 }

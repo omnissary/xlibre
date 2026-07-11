@@ -14,32 +14,14 @@
     #     relevant changes:
     #     - switch to GitLab source instead of release tarball
     #
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/d4815e6a6f767d60edfd2d3ee816d0e9c120fb27";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # flake.lock commit: c5296fdd05cfa2c187990dd909864da9658df755
+    # nixpkgs.url = "github:NixOS/nixpkgs/d4815e6a6f767d60edfd2d3ee816d0e9c120fb27"; # latest working commit without changing xorgserver to xorg-server
     systems = {
       url = "path:./systems.nix";
       flake = false;
     };
-
-    # https://github.com/nix-systems/nix-systems
-    # This make it possible for user to choose predefined drivers revision
-    # This is totally optional. You can omit this part to get the latest drivers from xlibre
-    # Step 1. User make a copy of ./drivers-overlay-choice.nix file in this flake to their own flake repo.
-    # Step 2. User add an inputs, say "my-xlibre-my-choice" on their own flake, and import their own copy of drivers-overlay-choice.nix just like below in this flake.
-    # Step 3. Add 'inputs.xlibre-overlay.inputs.xlibre-drivers-overlay-choice.follow = "my-xlibre-my-choice"' in users flake.
-    # Step 4. Edit your own drivers-overlay-choice.nix to choose your desire drivers revision.
-    # The true/false will pass into the "USE-XLIBRE-VERSION-DRIVER" variable in the drivers overlays in `./overlays/drivers`.
-    # Browse through `./overlays/drivers` for more details of what revision it actually use.
-    xlibre-drivers-overlay-choice = {
-      url = "path:./consumer-overridable/drivers-overlay-choice.nix";
-      flake = false;
-    };
     fetchurl-sources = {
       url = "path:./consumer-overridable/fetchurl-sources.nix";
-      flake = false;
-    };
-    xserver-meson-flags = {
-      url = "./consumer-overridable/xserver-meson-flags.nix";
       flake = false;
     };
   };
@@ -54,28 +36,18 @@
         inherit (flake-parts-lib) importApply;
         inherit (inputs.nixpkgs) lib;
 
-        if-use-xlibre-version-driver = import inputs.xlibre-drivers-overlay-choice;
         packages-reference = import ./packages-reference.nix;
 
         # Combination of the use of "lib.nameValuePair", and "lib.mapAttrs'"
         # https://github.com/NixOS/nixpkgs/blob/3ff0e34b1383648053bba8ed03f201d3466f90c9/lib/attrsets.nix#L1030-L1045
         flakeModules = lib.mapAttrs' (
-          name: value:
-          lib.nameValuePair ("overlay-${name}") (
-            importApply ./overlays/drivers/${name}.nix {
-              USE-XLIBRE-VERSION-DRIVER = value; # defined in ./drivers-overlay-choice.nix
-            }
-          )
-        ) if-use-xlibre-version-driver
+          name: value: lib.nameValuePair "overlay-${name}" (importApply ./overlays/drivers/${name}.nix)
+        ) (lib.filterAttrs (name: value: name != "xlibre-xserver") packages-reference)
         # EQUIVALENT TO:
         /*
           flakeModules = {
-            overlay-xlibre-xf86-input-libinput = importApply ./overlays/drivers/xlibre-xf86-input-libinput.nix {
-              USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
-            };
-            overlay-xlibre-xf86-input-wacom = importApply ./overlays/drivers/xlibre-xf86-input-wacom.nix {
-              USE-XLIBRE-VERSION-DRIVER = true; # defined in ./drivers-overlay-choice.nix
-             };
+            overlay-xlibre-xf86-input-libinput = importApply ./overlays/drivers/xlibre-xf86-input-libinput.nix;
+            overlay-xlibre-xf86-input-wacom = importApply ./overlays/drivers/xlibre-xf86-input-wacom.nix;
             ......
             ......
           }
@@ -93,7 +65,9 @@
           [ ./packages-and-checks.nix ]
           # Part 2.
           # These files just define how the packages should be overlayed.
-          ++ [ ./overlays/xlibre-xserver.nix ]
+          ++ [
+            ./overlays/xlibre-xserver-and-xvfb-xrdp.nix
+          ]
           # Part 3
           # overlay drivers, all build against xlibre-xserver with above
           # overlay injected in it

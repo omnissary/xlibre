@@ -17,11 +17,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1768135262,
-        "narHash": "sha256-PVvu7OqHBGWN16zSi6tEmPwwHQ4rLPU9Plvs8/1TUBY=",
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "80daad04eddbbf5a4d883996a73f3f542fa437ac",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
         "type": "github"
       },
       "original": {
@@ -32,27 +32,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1767996987,
-        "narHash": "sha256-/CF5vSpXfjX4Obn1byOuIBirki0U/JDtvVCn6U/HQew=",
+        "lastModified": 1783522502,
+        "narHash": "sha256-iffAls3iaNTyJC2faYcUXSI+Gp02cDjYl+MygxKl2GI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d4815e6a6f767d60edfd2d3ee816d0e9c120fb27",
+        "rev": "0bb7ec54c8483066ec9d7720e780a5caa71f8612",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "rev": "d4815e6a6f767d60edfd2d3ee816d0e9c120fb27",
         "type": "github"
       }
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1765674936,
-        "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
+        "lastModified": 1782614948,
+        "narHash": "sha256-ePjCwr1sNm9NYUqywL7QfK3JnlS015msC+eBu2zKlp8=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "2075416fcb47225d9b68ac469a5c4801a9c4dd85",
+        "rev": "db3f255737b94216eb71cce308e2912cf6bc2d7c",
         "type": "github"
       },
       "original": {
@@ -66,9 +66,7 @@
         "fetchurl-sources": "fetchurl-sources",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
-        "systems": "systems",
-        "xlibre-drivers-overlay-choice": "xlibre-drivers-overlay-choice",
-        "xserver-meson-flags": "xserver-meson-flags"
+        "systems": "systems"
       }
     },
     "systems": {
@@ -79,30 +77,6 @@
       },
       "original": {
         "path": "./systems.nix",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "xlibre-drivers-overlay-choice": {
-      "flake": false,
-      "locked": {
-        "path": "./consumer-overridable/drivers-overlay-choice.nix",
-        "type": "path"
-      },
-      "original": {
-        "path": "./consumer-overridable/drivers-overlay-choice.nix",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "xserver-meson-flags": {
-      "flake": false,
-      "locked": {
-        "path": "./consumer-overridable/xserver-meson-flags.nix",
-        "type": "path"
-      },
-      "original": {
-        "path": "./consumer-overridable/xserver-meson-flags.nix",
         "type": "path"
       },
       "parent": []
