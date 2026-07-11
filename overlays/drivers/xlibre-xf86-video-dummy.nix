@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-video-dummy-overrideAttrs = prev.xf86-video-dummy.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-video-dummy.version
-                else
-                  sources.legacy.xf86-video-dummy.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-video-dummy
-                else
-                  prev.fetchurl sources.legacy.xf86-video-dummy;
+              version = sources.xlibre.xf86-video-dummy.version;
+              src = prev.fetchurl sources.xlibre.xf86-video-dummy;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

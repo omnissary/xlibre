@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -17,16 +16,8 @@
         # This package does not exist in nixpkgs
         prev.stdenv.mkDerivation (finalAttrs: {
           pname = "${basename}";
-          version =
-            if USE-XLIBRE-VERSION-DRIVER then
-              sources.xlibre.xf86-input-elographics.version
-            else
-              sources.legacy.xf86-input-elographics.version;
-          src =
-            if USE-XLIBRE-VERSION-DRIVER then
-              prev.fetchurl sources.xlibre.xf86-input-elographics
-            else
-              prev.fetchurl sources.legacy.xf86-input-elographics;
+          version = sources.xlibre.xf86-input-elographics.version;
+          src = prev.fetchurl sources.xlibre.xf86-input-elographics;
           hardeningDisable = [
             "bindnow"
             "relro"

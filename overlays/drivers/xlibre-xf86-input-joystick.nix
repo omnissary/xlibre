@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-input-joystick-overrideAttrs = prev.xf86-input-joystick.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-joystick.version
-                else
-                  sources.legacy.xf86-input-joystick.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-joystick
-                else
-                  prev.fetchurl sources.legacy.xf86-input-joystick;
+              version = sources.xlibre.xf86-input-joystick.version;
+              src = prev.fetchurl sources.xlibre.xf86-input-joystick;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

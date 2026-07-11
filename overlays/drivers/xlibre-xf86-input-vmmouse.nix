@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-input-vmmouse-overrideAttrs = prev.xf86-input-vmmouse.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-vmmouse.version
-                else
-                  sources.legacy.xf86-input-vmmouse.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-vmmouse
-                else
-                  prev.fetchurl sources.legacy.xf86-input-vmmouse;
+              version = sources.xlibre.xf86-input-vmmouse.version;
+              src = prev.fetchurl sources.xlibre.xf86-input-vmmouse;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

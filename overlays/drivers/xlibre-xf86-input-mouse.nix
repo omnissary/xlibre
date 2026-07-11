@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,18 +15,10 @@
           xf86-input-mouse-overrideAttrs = prev.xf86-input-mouse.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-mouse.version
-                else
-                  sources.legacy.xf86-input-mouse.version;
+              version = sources.xlibre.xf86-input-mouse.version;
               # Reason to bring back Linux support in xf86-input-mouse and xf86-input-keyboard:
               # https://github.com/X11Libre/ports-gentoo/pull/10
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-mouse
-                else
-                  prev.fetchurl sources.legacy.xf86-input-mouse;
+              src = prev.fetchurl sources.xlibre.xf86-input-mouse;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

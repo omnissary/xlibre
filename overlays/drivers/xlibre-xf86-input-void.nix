@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-input-void-overrideAttrs = prev.xf86-input-void.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-void.version
-                else
-                  sources.legacy.xf86-input-void.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-void
-                else
-                  prev.fetchurl sources.legacy.xf86-input-void;
+              version = sources.xlibre.xf86-input-void.version;
+              src = prev.fetchurl sources.xlibre.xf86-input-void;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

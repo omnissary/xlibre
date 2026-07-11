@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-input-synaptics-overrideAttrs = prev.xf86-input-synaptics.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-input-synaptics.version
-                else
-                  sources.legacy.xf86-input-synaptics.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-input-synaptics
-                else
-                  prev.fetchurl sources.legacy.xf86-input-synaptics;
+              version = sources.xlibre.xf86-input-synaptics.version;
+              src = prev.fetchurl sources.xlibre.xf86-input-synaptics;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]

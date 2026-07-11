@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -17,7 +16,6 @@
             finalAttrs: prevAttrs: {
               pname = "${basename}";
               version = sources.xlibre.xf86-video-qxl.version;
-              # Only xlibre tag is available.
               src = prev.fetchurl sources.xlibre.xf86-video-qxl;
               nativeBuildInputs =
                 with prev;

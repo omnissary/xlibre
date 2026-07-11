@@ -1,4 +1,3 @@
-{ USE-XLIBRE-VERSION-DRIVER }:
 {
   lib,
   self,
@@ -16,16 +15,8 @@
           xf86-video-mga-overrideAttrs = prev.xf86-video-mga.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
-              version =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  sources.xlibre.xf86-video-mga.version
-                else
-                  sources.legacy.xf86-video-mga.version;
-              src =
-                if USE-XLIBRE-VERSION-DRIVER then
-                  prev.fetchurl sources.xlibre.xf86-video-mga
-                else
-                  prev.fetchurl sources.legacy.xf86-video-mga;
+              version = sources.xlibre.xf86-video-mga.version;
+              src = prev.fetchurl sources.xlibre.xf86-video-mga;
               nativeBuildInputs =
                 with prev;
                 prevAttrs.nativeBuildInputs or [ ]
