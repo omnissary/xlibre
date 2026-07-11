@@ -38,10 +38,6 @@
       url = "path:./consumer-overridable/fetchurl-sources.nix";
       flake = false;
     };
-    xserver-meson-flags = {
-      url = "./consumer-overridable/xserver-meson-flags.nix";
-      flake = false;
-    };
   };
 
   outputs =
