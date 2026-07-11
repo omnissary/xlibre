@@ -1,7 +1,6 @@
 {
   lib,
   self,
-  inputs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     overlays.xlibre-xf86-input-elographics = final: prev: {
       xf86-input-elographics =
         let
-          sources = import inputs.fetchurl-sources;
+          sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-input-elographics";
           xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
         in

@@ -1,8 +1,8 @@
-{ lib, inputs, ... }:
+{ lib, self, ... }:
 {
   flake =
     let
-      sources = import inputs.fetchurl-sources;
+      sources = import (self + /fetchurl-sources.nix);
     in
     {
       overlays.xlibre-xserver = final: prev: {

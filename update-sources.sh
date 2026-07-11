@@ -6,7 +6,7 @@
 set -euo pipefail
 
 # These two files will be overwritten by this script
-SOURCE_FILE="consumer-overridable/fetchurl-sources.nix"
+SOURCE_FILE="fetchurl-sources.nix"
 JSON_FILE="sources-info.json"
 PIN_FILE="pin.json"
 

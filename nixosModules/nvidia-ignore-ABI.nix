@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ self, ... }:
 let
-  sources = import inputs.fetchurl-sources;
+  sources = import (self + /fetchurl-sources.nix);
 in
 {
   flake = {

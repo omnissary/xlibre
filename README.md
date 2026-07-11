@@ -129,13 +129,6 @@ This is implemented in `./nixosModules/nvidia-ignore-ABI.nix`.
 
 # This part is optional
 
-## Replace the sources URL of xserver or drivers for further testing
-All the sources of xserver and drivers are now located in `./consumer-overridable/fetchurl-sources.nix`.
-
-This file is now become flake inputs `fetchurl-sources` . Consumer can override the file by some inputs like:
-
-`inputs.xlibre-overlay.inputs.fetchurl-sources.follow = "your-own-flake-input-about-fetchurl-sources"`
-
 
 # Known issues
 It breaks some packages that were deeply integrated with Xorg.
