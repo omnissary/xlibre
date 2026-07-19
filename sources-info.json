@@ -2,7 +2,7 @@
   {
     "REPO": "xserver",
     "PREFIX": "xlibre-xserver",
-    "VERSION": "25.2.0"
+    "VERSION": "25.2.1"
   },
   {
     "REPO": "xf86-input-elographics",
