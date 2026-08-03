@@ -59,6 +59,7 @@
           # These files just define how the packages should be overlayed.
           ++ [
             ./overlays/xlibre-xserver-and-xvfb-xrdp.nix
+            ./overlays/packages/xpra.nix
           ]
           # Part 3
           # overlay drivers, all build against xlibre-xserver with above

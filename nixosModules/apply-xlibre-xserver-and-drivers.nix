@@ -29,6 +29,12 @@
           };
         */
 
+        overlay-xpra = {
+          nixpkgs.overlays = [
+            self.overlays.xpra
+          ];
+        };
+
         overlay-xlibre-xserver =
           { lib, ... }:
           {
@@ -105,6 +111,11 @@
           ...
           ...
           ...
+          overlay-xpra = {
+            nixpkgs.overlays = [
+              self.overlays.xpra
+            ];
+          };
         };
     */
   };

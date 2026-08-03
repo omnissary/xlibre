@@ -24,6 +24,8 @@
       #
       // {
         xvfb = pkgs.xvfb;
+        xrdp = pkgs.xrdp;
+        xpra = pkgs.xpra;
       }
       #
       ;
@@ -33,7 +35,9 @@
       # Consuming overlays
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        overlays = lib.forEach (lib.attrNames packages-reference) (name: self.overlays."${name}");
+        overlays = lib.forEach (lib.attrNames packages-reference) (name: self.overlays."${name}") ++ [
+          self.overlays.xpra
+        ];
         # EQUIVALENT TO
         /*
           overlays = [
@@ -46,6 +50,7 @@
             self.overlays.xlibre-xf86-input-evdev
             ...
             ...
+            self.overlays.xpra
           ];
         */
       };

@@ -55,6 +55,10 @@ inputs.xlibre-overlay.url = "git+https://codeberg.org/takagemacoed/xlibre-overla
           # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-input-libinput
           # inputs.xlibre-overlay.nixosModules.overlay-xlibre-xf86-video-amdgpu
           # ...
+
+          # Overlay xpra in this repo
+          # xpra have to be overlayed to install
+          inputs.xlibre-overlay.nixosModules.overlay-xpra
         ];
         # ...
       };
@@ -135,9 +139,7 @@ It breaks some packages that were deeply integrated with Xorg.
 
 1. For example `tigervnc`, the way it was packaged included [some hardcoded xorg paths](https://github.com/NixOS/nixpkgs/blob/fa0ef8a6bb1651aa26c939aeb51b5f499e86b0ec/pkgs/by-name/ti/tigervnc/package.nix#L69-L92). It assumed the source of `xorg-server` is a tarball, so `fetchFromGitHub` cannot be used. It failed to build against xlibre-xserver without modification.
 
-2. Anything pull `xpra` as dependences (e.g. `x11docker`) will also be failed to build when `xlibre-xf86-video-dummy` is used. Further information and the workaround can be found [here](https://codeberg.org/takagemacoed/xlibre-overlay/issues/2).
-
-3. `xvfb` and `xrdp` is failed to build against xlibre-xserevre, so now it is just build against xorg-server from nixpkgs. For details see [here](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/83bf43bd48e4b50661be3a929a8c3f09cdcd8aef/overlays/xlibre-xserver-and-xvfb-xrdp.nix#L78-L110).
+2. `xvfb` and `xrdp` is failed to build against xlibre-xserevre, so now it is just build against xorg-server from nixpkgs. For details see [here](https://codeberg.org/takagemacoed/xlibre-overlay/src/commit/83bf43bd48e4b50661be3a929a8c3f09cdcd8aef/overlays/xlibre-xserver-and-xvfb-xrdp.nix#L78-L110).
 
 
 ## nixpkgs breakage temporary workaround on January 2026
