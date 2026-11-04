@@ -7,8 +7,8 @@
     overlays.xpra = final: prev: {
       xpra =
         let
-          xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
-          xf86videodummy = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xf86-video-dummy;
+          xorg-server = final.xorg-server;
+          xf86videodummy = final.xf86-video-dummy;
           xpra-overrideAttrs = prev.xpra.overrideAttrs (
             finalAttrs: prevAttrs:
             let

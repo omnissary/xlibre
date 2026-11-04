@@ -10,7 +10,7 @@
         let
           sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-input-elographics";
-          xorgserver = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+          xorgserver = final.xorg-server;
         in
         # This package does not exist in nixpkgs
         prev.stdenv.mkDerivation (finalAttrs: {

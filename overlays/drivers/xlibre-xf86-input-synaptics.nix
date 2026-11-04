@@ -10,7 +10,7 @@
         let
           sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-input-synaptics";
-          xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+          xorg-server = final.xorg-server;
           xf86-input-synaptics-overrideAttrs = prev.xf86-input-synaptics.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";

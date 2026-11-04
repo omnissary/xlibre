@@ -10,7 +10,7 @@
         let
           sources = import (self + /fetchurl-sources.nix);
           basename = "xf86-video-dummy";
-          xorg-server = self.packages.${prev.stdenv.hostPlatform.system}.xlibre-xserver;
+          xorg-server = final.xorg-server;
           xf86-video-dummy-overrideAttrs = prev.xf86-video-dummy.overrideAttrs (
             finalAttrs: prevAttrs: {
               pname = "${basename}";
